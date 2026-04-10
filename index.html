@@ -1,0 +1,3586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plantar - Plantain Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   THEME — edit colors here
+   ============================================================ */
+:root {
+  --green:        #2E8B57;
+  --green-dark:   #236B43;
+  --green-deeper: #1A5233;
+  --lime:         #E8E4A0;
+  --lime-light:   #F2F0C4;
+  --yellow:       #F5E642;
+  --yellow-soft:  #EDE8A8;
+  --cream:        #F9F7E8;
+  --pink:         #E84B8A;
+  --orange:       #F5A623;
+  --white:        #FFFFFF;
+  --dark:         #1A3D2A;
+  --text-on-green:#E8E4A0;
+  --text-dark-green:#236B43;
+
+  --radius:    16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 50px;
+  --transition: 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--green);
+  color:var(--white);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ============================================================
+   ORGANIC WAVE SVG (reusable bottom decoration)
+   ============================================================ */
+.wave-bottom{
+  position:absolute;bottom:0;left:0;width:100%;
+  pointer-events:none;overflow:hidden;
+  line-height:0;
+}
+.wave-bottom svg{
+  width:120%;margin-left:-10%;
+  height:120px;
+  display:block;
+}
+
+/* Brand P-palm icon decoration */
+.brand-icon{
+  position:absolute;
+  pointer-events:none;
+  opacity:0.07;
+  animation:driftBreath 12s ease-in-out infinite;
+}
+.brand-icon img{
+  width:100%;height:100%;
+  /* Tint white PNG to lime */
+  filter:brightness(0) saturate(100%)
+    invert(91%) sepia(12%) saturate(600%) hue-rotate(15deg) brightness(100%) contrast(88%);
+}
+@keyframes driftBreath{
+  0%  {transform:translateX(0)   scale(1)}
+  25% {transform:translateX(15px) scale(1.06)}
+  50% {transform:translateX(-10px) scale(0.94)}
+  75% {transform:translateX(8px)  scale(1.04)}
+  100%{transform:translateX(0)   scale(1)}
+}
+
+/* ============================================================
+   LANDING
+   ============================================================ */
+.landing{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:var(--green);
+  position:relative;overflow:hidden;
+}
+
+/* Decorative P icons on landing */
+.landing .brand-icon.i1{top:-20px;right:-20px;width:180px;height:180px;animation-duration:14s}
+.landing .brand-icon.i2{bottom:60px;left:-30px;width:160px;height:160px;animation-duration:18s;animation-delay:-4s}
+.landing .brand-icon.i3{top:28%;right:12%;width:90px;height:90px;animation-duration:16s;animation-delay:-8s;opacity:0.05}
+
+.landing-wave{
+  position:absolute;bottom:0;left:0;width:100%;
+  pointer-events:none;z-index:1;
+}
+
+.landing-content{
+  position:relative;z-index:2;text-align:center;
+  padding:2rem;
+}
+
+.logo-wrap{
+  animation:popIn 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+  opacity:0;
+}
+@keyframes popIn{
+  from{opacity:0;transform:scale(0.8) translateY(30px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+/* Logo image — lime tint via CSS filter on white PNG */
+.logo-img{
+  max-width:clamp(280px,45vw,500px);
+  height:auto;
+  /* Tint white PNG to lime #E8E4A0 using filter */
+  filter:brightness(0) saturate(100%)
+    invert(91%) sepia(12%) saturate(600%) hue-rotate(15deg) brightness(100%) contrast(88%);
+  margin-bottom:0.5rem;
+  transition:filter 0.4s;
+}
+/* Portada truck */
+.portada-truck{
+  position:absolute;right:-10px;top:50%;transform:translateY(-50%);
+  width:clamp(140px,20vw,240px);height:auto;
+  z-index:3;pointer-events:none;
+  animation:truckBounce 3s ease-in-out infinite;
+  filter:drop-shadow(0 10px 25px rgba(0,0,0,0.15));
+}
+@keyframes truckBounce{
+  0%,100%{transform:translateY(-50%) rotate(-1deg)}
+  50%{transform:translateY(calc(-50% - 10px)) rotate(1deg)}
+}
+/* Sello sabor autentico */
+.portada-sello{
+  position:absolute;left:30px;top:50%;transform:translateY(-50%);
+  width:clamp(90px,14vw,150px);height:auto;
+  z-index:3;pointer-events:none;
+  animation:selloSpin 20s linear infinite;
+}
+@keyframes selloSpin{
+  from{transform:translateY(-50%) rotate(0deg)}
+  to{transform:translateY(-50%) rotate(360deg)}
+}
+/* Decorative tropical leaves */
+.portada-leaves{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;overflow:hidden;z-index:1;
+}
+.leaf{
+  position:absolute;font-size:clamp(2rem,5vw,4rem);
+  pointer-events:none;opacity:0.85;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+.leaf:nth-child(1){top:5%;left:8%;animation:leafFloat1 4s ease-in-out infinite;font-size:clamp(2.5rem,6vw,5rem)}
+.leaf:nth-child(2){top:8%;right:25%;animation:leafFloat2 5s ease-in-out infinite 0.5s;font-size:clamp(2rem,4vw,3.5rem)}
+.leaf:nth-child(3){top:2%;left:35%;animation:leafFloat1 4.5s ease-in-out infinite 1s;font-size:clamp(1.8rem,3.5vw,3rem)}
+.leaf:nth-child(4){bottom:15%;left:5%;animation:leafFloat2 3.5s ease-in-out infinite 0.3s;font-size:clamp(2.5rem,5vw,4.5rem)}
+.leaf:nth-child(5){bottom:10%;left:30%;animation:leafFloat1 5.5s ease-in-out infinite 0.8s;font-size:clamp(2rem,4vw,3.5rem)}
+.leaf:nth-child(6){bottom:5%;right:30%;animation:leafFloat2 4s ease-in-out infinite 1.2s;font-size:clamp(1.5rem,3vw,2.5rem)}
+.leaf:nth-child(7){top:15%;right:8%;animation:leafFloat1 3.8s ease-in-out infinite 0.6s;font-size:clamp(2rem,4.5vw,3.8rem)}
+.leaf:nth-child(8){bottom:20%;right:10%;animation:leafFloat2 4.2s ease-in-out infinite 1.5s;font-size:clamp(2rem,4vw,3rem)}
+@keyframes leafFloat1{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-15px) rotate(8deg)}
+}
+@keyframes leafFloat2{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-12px) rotate(-6deg)}
+}
+@media(max-width:600px){
+  .portada-truck{width:clamp(100px,28vw,150px);right:10px}
+  .portada-sello{width:clamp(65px,16vw,100px);left:10px}
+  .leaf{opacity:0.7}
+}
+
+.brand-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,14vw,10rem);
+  color:var(--lime);
+  letter-spacing:0.02em;
+  line-height:0.85;
+  text-shadow:0 4px 20px rgba(0,0,0,0.15);
+}
+
+.brand-sub{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(1rem,2.5vw,1.5rem);
+  color:rgba(232,228,160,0.5);
+  font-weight:600;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  margin-top:0.3rem;
+}
+
+.brand-slogan{
+  font-family:'Inter',sans-serif;
+  font-size:clamp(0.85rem,1.5vw,1.05rem);
+  color:rgba(255,255,255,0.7);
+  font-weight:400;
+  margin-top:1.2rem;
+  animation:fadeUp 1s ease forwards 0.6s;
+  opacity:0;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.cta{
+  display:inline-flex;align-items:center;gap:0.8rem;
+  margin-top:2.5rem;
+  padding:1.1rem 3rem;
+  font-family:'Outfit',sans-serif;
+  font-size:1rem;font-weight:800;
+  color:var(--green-dark);
+  background:var(--lime);
+  border:none;border-radius:var(--radius-pill);
+  cursor:pointer;
+  text-transform:uppercase;letter-spacing:0.12em;
+  box-shadow:0 6px 24px rgba(0,0,0,0.15);
+  transition:all var(--transition);
+  animation:fadeUp 1s ease forwards 0.9s;
+  opacity:0;
+  position:relative;overflow:hidden;
+}
+.cta::before{
+  content:'';position:absolute;
+  top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);
+  transition:left 0.5s;
+}
+.cta:hover::before{left:100%}
+.cta:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 32px rgba(0,0,0,0.2)}
+.cta:active{transform:translateY(0) scale(0.98)}
+.cta-icon{transition:transform 0.3s;font-size:1.1rem}
+.cta:hover .cta-icon{transform:translateX(4px)}
+
+/* ============================================================
+   BROCHURE OVERLAY
+   ============================================================ */
+.overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:1000;visibility:hidden;opacity:0;
+  transition:opacity 0.5s,visibility 0.5s;
+}
+.overlay.open{visibility:visible;opacity:1}
+
+.btn-close{
+  position:fixed;top:1.5rem;right:1.5rem;z-index:1010;
+  width:48px;height:48px;border-radius:50%;
+  border:3px solid rgba(255,255,255,0.2);
+  background:rgba(0,0,0,0.2);backdrop-filter:blur(8px);
+  color:white;font-size:1.2rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;
+}
+.btn-close:hover{background:var(--pink);border-color:var(--pink);transform:rotate(90deg) scale(1.1)}
+
+.arrow{
+  position:fixed;top:50%;transform:translateY(-50%);z-index:1005;
+  width:52px;height:52px;border-radius:50%;
+  border:3px solid rgba(255,255,255,0.15);
+  background:rgba(0,0,0,0.15);backdrop-filter:blur(8px);
+  color:white;font-size:1.2rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;
+}
+.arrow:hover{background:var(--lime);color:var(--green-dark);border-color:var(--lime)}
+.arrow.prev{left:1rem}.arrow.next{right:1rem}
+.arrow:disabled{opacity:0.15;cursor:default;pointer-events:none}
+
+.slider{position:relative;width:100%;height:100%;overflow:hidden}
+.track{display:flex;height:100%;transition:transform 0.7s cubic-bezier(0.22,1,0.36,1)}
+
+.slide{
+  min-width:100%;height:100%;overflow-y:auto;
+  display:flex;align-items:center;justify-content:center;
+  padding:4rem 2rem;position:relative;
+}
+.slide::-webkit-scrollbar{width:4px}
+.slide::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:4px}
+
+.slide-body{
+  max-width:1100px;width:100%;
+  opacity:0;transform:translateY(35px);
+  transition:all 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.slide.active .slide-body{opacity:1;transform:translateY(0)}
+
+/* Dots */
+.dots{
+  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);
+  z-index:1005;display:flex;gap:0.5rem;align-items:center;
+  padding:0.6rem 1.2rem;
+  background:rgba(0,0,0,0.35);backdrop-filter:blur(10px);
+  border-radius:var(--radius-pill);
+  border:1px solid rgba(255,255,255,0.1);
+}
+.dot{
+  width:10px;height:10px;border-radius:50%;
+  border:none;background:rgba(255,255,255,0.3);
+  cursor:pointer;transition:all 0.4s;padding:0;
+  position:relative;
+}
+.dot:hover{background:rgba(255,255,255,0.6);transform:scale(1.2)}
+.dot.on{
+  background:var(--green);width:32px;border-radius:6px;
+  box-shadow:0 0 12px rgba(46,139,87,0.5);
+  animation:dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse{
+  0%,100%{box-shadow:0 0 8px rgba(46,139,87,0.4)}
+  50%{box-shadow:0 0 16px rgba(46,139,87,0.7)}
+}
+
+/* ============================================================
+   PATAKIS FAMILIA - RAIN EMPAQUES
+   ============================================================ */
+.patakis-slide{
+  background:linear-gradient(135deg,#E8621C 0%,#D4247A 25%,#9C27B0 50%,#F5A623 75%,#2E8B57 100%);
+  background-size:300% 300%;
+  animation:patakisBg 10s ease infinite;
+  overflow:hidden;position:relative;
+}
+@keyframes patakisBg{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.patakis-rain{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;overflow:hidden;
+}
+.rain-emp{
+  position:absolute;top:-150px;
+  width:clamp(70px,10vw,130px);height:auto;
+  object-fit:contain;
+  animation:empRain linear infinite;
+  opacity:0.9;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,0.35));
+  pointer-events:none;
+}
+.rain-emp:nth-child(odd){animation-name:empRainSpin}
+@keyframes empRain{
+  0%{transform:translateY(-120px) rotate(-5deg);opacity:0}
+  10%{opacity:0.85}
+  90%{opacity:0.7}
+  100%{transform:translateY(calc(100vh + 120px)) rotate(5deg);opacity:0}
+}
+@keyframes empRainSpin{
+  0%{transform:translateY(-120px) rotate(-15deg) scale(0.9);opacity:0}
+  10%{opacity:0.8}
+  50%{transform:translateY(50vh) rotate(10deg) scale(1.05)}
+  90%{opacity:0.6}
+  100%{transform:translateY(calc(100vh + 120px)) rotate(20deg) scale(0.95);opacity:0}
+}
+.patakis-content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:1.5rem;
+  min-height:60vh;
+}
+.patakis-logo{
+  width:clamp(220px,35vw,450px);height:auto;
+  filter:drop-shadow(0 10px 40px rgba(0,0,0,0.35));
+  animation:patakisFloat 4s ease-in-out infinite;
+}
+@keyframes patakisFloat{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-12px) scale(1.02)}
+}
+.patakis-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,8vw,5rem);
+  color:#fff;line-height:1.05;
+  text-shadow:0 4px 30px rgba(0,0,0,0.3);
+}
+.patakis-title span{
+  display:block;
+  color:#fff;
+  font-size:1.3em;
+  text-shadow:0 6px 40px rgba(0,0,0,0.25);
+}
+.patakis-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(70px,1fr));
+  gap:0.4rem;max-width:800px;width:100%;
+  margin-top:0.3rem;
+}
+.patakis-emp-item{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;padding:0.4rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;cursor:pointer;
+}
+.patakis-emp-item:hover{
+  transform:translateY(-5px) scale(1.08);
+  background:rgba(255,255,255,0.15);
+  box-shadow:0 8px 24px rgba(245,166,35,0.3);
+  border-color:rgba(245,166,35,0.4);
+}
+.patakis-emp-item img{
+  width:100%;height:58px;object-fit:contain;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+}
+@media(max-width:768px){
+  .patakis-title{font-size:clamp(1.5rem,5vw,2.5rem)}
+  .patakis-logo{width:clamp(150px,40vw,250px)}
+  .patakis-grid{grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:0.5rem}
+  .patakis-emp-item img{height:60px}
+  .rain-emp{width:clamp(40px,10vw,70px)}
+}
+.dots-wrap{
+  position:fixed;bottom:0.8rem;left:50%;transform:translateX(-50%);
+  z-index:1005;display:flex;flex-direction:column;align-items:center;gap:0.4rem;
+}
+.dots{position:static;transform:none}
+.dots-hint{
+  font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:600;
+  color:rgba(255,255,255,0.9);
+  background:var(--green);
+  padding:0.3rem 1rem;border-radius:50px;
+  white-space:nowrap;
+  animation:hintFade 4s ease forwards;
+  pointer-events:none;
+}
+@keyframes hintFade{
+  0%{opacity:0;transform:translateY(5px)}
+  15%{opacity:1;transform:translateY(0)}
+  80%{opacity:1;transform:translateY(0)}
+  100%{opacity:0;transform:translateY(-5px)}
+}
+
+/* Progress */
+.progress{
+  position:fixed;top:0;left:0;height:4px;
+  background:linear-gradient(90deg,var(--lime),var(--yellow),var(--orange));
+  z-index:1010;transition:width 0.5s ease;border-radius:0 2px 2px 0;
+}
+
+.counter{
+  position:fixed;bottom:2rem;right:1.5rem;z-index:1005;
+  font-size:0.75rem;color:rgba(255,255,255,0.3);font-weight:600;
+}
+
+/* ============================================================
+   SLIDE BACKGROUNDS
+   ============================================================ */
+.bg-green{background:var(--green)}
+.bg-green-dark{background:var(--green-dark)}
+
+/* Legacy slide v2 */
+.legacy-slide{
+  background:linear-gradient(160deg,#FFF8F0 0%,#FFF3E0 40%,#E8F5E9 100%);
+  color:#2D3436;
+}
+.legacy-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--green),#43A047);
+  color:#fff;
+  padding:0.4rem 1.8rem;
+  border-radius:50px;
+  font-family:'Outfit',sans-serif;
+  font-size:0.85rem;
+  font-weight:700;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+}
+.legacy-accent-line{
+  width:80px;height:4px;
+  background:linear-gradient(90deg,var(--green),#F5A623,#E8621C);
+  border-radius:4px;
+  margin:0.8rem auto 0;
+}
+.legacy-tabs-v2{
+  display:flex;gap:1rem;margin-top:2rem;justify-content:center;
+}
+.ltab-v2{
+  display:flex;flex-direction:column;align-items:center;
+  padding:1.2rem 2.5rem;
+  background:#fff;
+  border:2px solid #e0e0e0;
+  border-radius:16px;
+  cursor:pointer;
+  transition:all 0.35s ease;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+  font-family:'Outfit',sans-serif;
+}
+.ltab-v2:hover{
+  border-color:var(--green);
+  transform:translateY(-4px);
+  box-shadow:0 8px 24px rgba(46,139,87,0.12);
+}
+.ltab-v2.active{
+  background:var(--green);
+  border-color:var(--green);
+  color:#fff;
+  transform:translateY(-4px);
+  box-shadow:0 8px 24px rgba(46,139,87,0.25);
+}
+.ltab-v2-icon{font-size:2rem;margin-bottom:0.4rem;display:block}
+.ltab-v2-label{font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em}
+
+.panel-quienes-v2{
+  margin-top:1.5rem;
+  padding:2rem;
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  border-left:4px solid var(--green);
+}
+.panel-quienes-v2 p{
+  font-size:0.95rem;line-height:1.9;color:#444;font-weight:400;
+}
+.legacy-highlights{
+  display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;
+}
+.legacy-hl{
+  display:flex;align-items:center;gap:0.5rem;
+  padding:0.6rem 1.2rem;
+  background:linear-gradient(135deg,#E8F5E9,#C8E6C9);
+  border-radius:50px;
+  font-size:0.85rem;font-weight:600;color:var(--green-dark);
+}
+.legacy-hl-icon{font-size:1.2rem}
+
+.panel-historia-v2{
+  margin-top:1.5rem;
+  padding:2rem;
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  max-height:400px;overflow-y:auto;
+}
+.panel-historia-v2::-webkit-scrollbar{width:4px}
+.panel-historia-v2::-webkit-scrollbar-thumb{background:var(--green);border-radius:4px}
+
+.timeline-v2{position:relative;padding-left:2.5rem}
+.timeline-v2::before{
+  content:'';position:absolute;
+  left:10px;top:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,var(--green),#F5A623,#E8621C,#D4247A);
+  border-radius:3px;
+}
+.tlv2-item{
+  position:relative;margin-bottom:2rem;
+  display:flex;gap:1rem;align-items:flex-start;
+}
+.tlv2-dot{
+  position:absolute;left:-2.15rem;top:0.2rem;
+  width:14px;height:14px;border-radius:50%;
+  background:#fff;
+  border:3px solid var(--green);
+  box-shadow:0 0 0 4px rgba(46,139,87,0.15);
+  z-index:2;
+}
+.tlv2-item:nth-child(2) .tlv2-dot{border-color:#43A047}
+.tlv2-item:nth-child(3) .tlv2-dot{border-color:#66BB6A}
+.tlv2-item:nth-child(4) .tlv2-dot{border-color:#F5A623}
+.tlv2-item:nth-child(5) .tlv2-dot{border-color:#E8621C}
+.tlv2-item:nth-child(6) .tlv2-dot{border-color:#D4247A}
+.tlv2-item:nth-child(7) .tlv2-dot{border-color:#9C27B0}
+
+.tlv2-year{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;color:var(--green);
+  line-height:1;min-width:60px;
+}
+.tlv2-content{flex:1}
+.tlv2-title{
+  font-family:'Outfit',sans-serif;
+  font-size:1rem;font-weight:700;color:#2D3436;
+  margin-bottom:0.25rem;
+}
+.tlv2-desc{font-size:0.85rem;color:#666;line-height:1.6;font-weight:400}
+.bg-lime{background:var(--lime);color:var(--green-dark)}
+.bg-yellow{background:var(--yellow-soft);color:var(--green-dark)}
+.bg-cream{background:var(--cream);color:var(--green-dark)}
+.bg-pink{background:linear-gradient(135deg,#C41E68,var(--pink))}
+.bg-orange{background:linear-gradient(135deg,#D4581A,var(--orange))}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.mega-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,8vw,5.5rem);
+  line-height:0.9;letter-spacing:0.02em;
+  margin-bottom:0.5rem;
+}
+.mega-title .highlight{color:var(--lime)}
+.bg-lime .mega-title .highlight,
+.bg-yellow .mega-title .highlight,
+.bg-cream .mega-title .highlight{color:var(--green)}
+
+.sub-title{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(0.95rem,1.8vw,1.15rem);
+  font-weight:500;opacity:0.75;
+  margin-bottom:2rem;
+}
+
+.body-text{
+  font-size:0.95rem;line-height:1.8;
+  opacity:0.85;max-width:550px;font-weight:400;
+}
+
+.section-label{
+  display:inline-block;
+  padding:0.35rem 1.2rem;border-radius:var(--radius-pill);
+  font-family:'Outfit',sans-serif;
+  font-size:0.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.15em;
+  background:rgba(255,255,255,0.12);
+  margin-bottom:1rem;
+}
+.bg-lime .section-label,
+.bg-yellow .section-label,
+.bg-cream .section-label{background:rgba(74,124,46,0.1)}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.center{text-align:center}
+@media(max-width:768px){.two-col{grid-template-columns:1fr;gap:2rem}}
+
+/* ============================================================
+   PILL CARDS (numbered items like Canva style)
+   ============================================================ */
+.pills{display:flex;flex-direction:column;gap:0.8rem;margin-top:1.5rem}
+.pill{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.5rem;
+  background:rgba(232,228,160,0.12);
+  border-radius:var(--radius-pill);
+  transition:all 0.3s;
+}
+.pill:hover{background:rgba(232,228,160,0.2);transform:translateX(6px)}
+.bg-lime .pill,.bg-yellow .pill,.bg-cream .pill{background:rgba(74,124,46,0.08)}
+.bg-lime .pill:hover,.bg-yellow .pill:hover,.bg-cream .pill:hover{background:rgba(74,124,46,0.15)}
+
+.pill-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;
+  min-width:40px;
+  color:var(--lime);
+}
+.bg-lime .pill-num,.bg-yellow .pill-num,.bg-cream .pill-num{color:var(--green)}
+.pill-text{font-size:0.9rem;font-weight:500;line-height:1.4}
+
+/* ============================================================
+   CARDS GRID
+   ============================================================ */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:2rem}
+.card{
+  background:rgba(255,255,255,0.08);
+  border-radius:var(--radius-lg);
+  padding:2rem 1.5rem;text-align:center;
+  transition:all var(--transition);
+  border:2px solid rgba(255,255,255,0.05);
+}
+.card:hover{transform:translateY(-6px);background:rgba(255,255,255,0.14);box-shadow:0 16px 40px rgba(0,0,0,0.15)}
+.bg-lime .card,.bg-yellow .card,.bg-cream .card{
+  background:var(--white);border-color:rgba(74,124,46,0.08);
+  box-shadow:0 2px 12px rgba(0,0,0,0.04);
+}
+.bg-lime .card:hover,.bg-yellow .card:hover,.bg-cream .card:hover{box-shadow:0 12px 36px rgba(0,0,0,0.1)}
+.card-icon{font-size:2.5rem;margin-bottom:0.8rem;display:block}
+.card-title{font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:800;margin-bottom:0.4rem}
+.card-text{font-size:0.82rem;opacity:0.65;line-height:1.6;font-weight:400}
+
+/* ============================================================
+   PRODUCTS
+   ============================================================ */
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:2rem}
+.product{
+  background:rgba(255,255,255,0.08);
+  border-radius:var(--radius-lg);overflow:hidden;
+  transition:all var(--transition);
+  border:2px solid rgba(255,255,255,0.05);
+}
+.product:hover{transform:translateY(-8px) rotate(-0.5deg);box-shadow:0 20px 50px rgba(0,0,0,0.2)}
+
+.product-img{
+  width:100%;height:200px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  background:rgba(232,228,160,0.08);
+}
+.product-img img{width:100%;height:100%;object-fit:cover}
+/* Organic blob behind product emoji */
+.product-img::before{
+  content:'';position:absolute;
+  width:140px;height:140px;
+  background:rgba(232,228,160,0.15);
+  border-radius:60% 40% 50% 50% / 50% 60% 40% 50%;
+  animation:blobMorph 6s ease-in-out infinite;
+}
+@keyframes blobMorph{
+  0%,100%{border-radius:60% 40% 50% 50%/50% 60% 40% 50%;transform:rotate(0deg)}
+  50%{border-radius:40% 60% 50% 50%/60% 40% 50% 50%;transform:rotate(15deg)}
+}
+.product-emoji{font-size:4rem;position:relative;z-index:1;animation:gentleFloat 4s ease-in-out infinite}
+@keyframes gentleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.product-body{padding:1.5rem}
+.product-name{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:0.3rem}
+.product-desc{font-size:0.82rem;opacity:0.65;line-height:1.5;font-weight:400}
+.product-tag{
+  display:inline-block;padding:0.25rem 0.8rem;
+  border-radius:var(--radius-pill);
+  font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;
+  background:var(--lime);color:var(--green-dark);
+  margin-top:0.7rem;
+}
+
+/* ============================================================
+   PROCESS STEPS
+   ============================================================ */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.5rem;margin-top:2rem}
+.step{text-align:center;padding:1rem 0.5rem}
+.step-num{
+  font-family:'Bebas Neue',sans-serif;font-size:2.2rem;
+  color:var(--lime);margin-bottom:0.3rem;
+}
+.bg-lime .step-num,.bg-yellow .step-num{color:var(--green)}
+.step-icon{font-size:2.2rem;margin-bottom:0.5rem;display:block}
+.step-label{font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:0.2rem}
+.step-desc{font-size:0.78rem;opacity:0.6;line-height:1.4;font-weight:400}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem}
+.stat{
+  text-align:center;padding:2rem 1.5rem;
+  background:rgba(232,228,160,0.08);
+  border-radius:var(--radius-lg);transition:all 0.3s;
+}
+.stat:hover{transform:scale(1.04);background:rgba(232,228,160,0.15)}
+.bg-lime .stat,.bg-cream .stat{background:var(--white);box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+.stat-icon{font-size:2rem;margin-bottom:0.5rem}
+.stat-val{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--lime);line-height:1}
+.bg-lime .stat-val,.bg-cream .stat-val{color:var(--green)}
+.stat-lbl{font-size:0.75rem;opacity:0.55;margin-top:0.2rem;font-weight:500}
+
+/* Capacity tabs */
+.cap-tabs{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.cap-tab{
+  display:flex;flex-direction:column;align-items:center;gap:0.4rem;
+  padding:1.2rem 2rem;background:#fff;
+  border:2px solid #e0e0e0;
+  border-radius:16px;transition:all 0.35s;min-width:160px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+.cap-tab:hover{transform:translateY(-4px);border-color:var(--green);box-shadow:0 8px 24px rgba(46,139,87,0.12)}
+.cap-tab.active{background:var(--green);border-color:var(--green);transform:translateY(-4px);box-shadow:0 8px 24px rgba(46,139,87,0.25)}
+.cap-tab.active .cap-tab-name{color:#fff}
+.cap-tab-icon{font-size:2rem}
+.cap-tab-name{font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:700;color:#2D3436}
+.cap-panel{display:none;margin-top:1.5rem;animation:fadeUp 0.4s ease}
+.cap-panel.visible{display:block}
+.cap-panel-content{
+  background:#fff;border-radius:16px;
+  padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  border-left:4px solid var(--green);
+}
+/* Toneladas panel */
+.ton-grid{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;align-items:stretch}
+.ton-card{
+  text-align:center;padding:1.5rem 2rem;background:#f9f9f9;
+  border-radius:16px;flex:1;min-width:140px;max-width:220px;
+  transition:all 0.3s;border:2px solid #e8e8e8;
+}
+.ton-card:hover{transform:scale(1.03);box-shadow:0 6px 20px rgba(0,0,0,0.08)}
+.ton-card.total{background:var(--green);border-color:var(--green)}
+.ton-card.total .ton-lbl{color:rgba(255,255,255,0.9)}
+.ton-card.total .ton-val{color:#fff}
+.ton-lbl{font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:600;color:#888;margin-bottom:0.5rem}
+.ton-val{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,3.5rem);color:var(--green);line-height:1}
+.ton-unit{font-family:'Outfit',sans-serif;font-size:0.75rem;color:#aaa;margin-top:0.3rem}
+/* Colaboradores panel */
+.colab-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.colab-img{border-radius:var(--radius-lg);overflow:hidden}
+.colab-img img{width:100%;height:auto;display:block;border-radius:var(--radius-lg)}
+.colab-text{color:#2D3436}
+.colab-text h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--green);margin-bottom:0.8rem}
+.colab-text p{font-family:'Outfit',sans-serif;font-size:0.9rem;line-height:1.6;color:#555}
+.colab-stat{display:flex;gap:1rem;margin-top:1.2rem}
+.colab-stat-item{text-align:center;flex:1;background:#f0f7f3;border-radius:12px;padding:0.8rem}
+.colab-stat-val{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--green)}
+.colab-stat-lbl{font-size:0.7rem;color:#888}
+/* Certificaciones panel */
+.cert-grid{display:flex;gap:2rem;justify-content:center;align-items:center;flex-wrap:wrap}
+.cert-item{
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
+  padding:1.2rem;background:rgba(255,255,255,0.95);border-radius:var(--radius-lg);
+  min-width:120px;transition:all 0.3s;
+}
+.cert-item:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+.cert-item img{height:60px;width:auto;object-fit:contain}
+.cert-big img{height:85px}
+.cert-big{padding:1.5rem 1.8rem}
+.cert-item span{font-family:'Outfit',sans-serif;font-size:0.75rem;font-weight:600;color:var(--green-dark);text-align:center}
+@media(max-width:600px){
+  .cap-tabs{gap:0.6rem}
+  .cap-tab{padding:0.8rem 1.2rem;min-width:100px}
+  .cap-tab-name{font-size:0.75rem}
+  .colab-layout{grid-template-columns:1fr}
+  .ton-card{min-width:100px;padding:1rem}
+  .cert-item{min-width:90px;padding:0.8rem}
+  .cert-item img{height:45px}
+}
+
+/* ============================================================
+   SPECIALTIES
+   ============================================================ */
+.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1.2rem;margin-top:2rem}
+.spec{
+  background:var(--white);border-radius:var(--radius-lg);
+  padding:1.8rem 1.2rem;text-align:center;
+  transition:all var(--transition);
+  box-shadow:0 2px 12px rgba(0,0,0,0.04);
+}
+.spec:hover{transform:translateY(-5px) rotate(-1deg);box-shadow:0 12px 36px rgba(0,0,0,0.1)}
+.spec-icon{font-size:2.8rem;margin-bottom:0.7rem;display:block}
+.spec-name{font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:0.3rem;color:var(--green-dark)}
+.spec-desc{font-size:0.78rem;opacity:0.6;line-height:1.4;color:var(--dark)}
+.spec.active{background:var(--green);color:white;transform:translateY(-5px);box-shadow:0 12px 36px rgba(0,0,0,0.15)}
+.spec.active .spec-name{color:white}
+.spec.active .spec-icon{filter:grayscale(0) brightness(1.2)}
+.spec-gallery{
+  display:none;margin-top:2rem;background:var(--white);border-radius:var(--radius-lg);
+  padding:1.5rem;box-shadow:0 8px 32px rgba(0,0,0,0.08);
+  animation:fadeUp 0.4s ease;
+}
+.spec-gallery.visible{display:block}
+.spec-gallery-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem}
+.spec-gallery-header h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--green-dark);margin:0}
+.spec-gallery-close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--dark);opacity:0.5;transition:opacity 0.3s}
+.spec-gallery-close:hover{opacity:1}
+.spec-gallery-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;
+  justify-items:center;align-items:stretch;
+}
+.spec-gallery-item{
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  height:100%;
+}
+.spec-gallery-item img{
+  max-height:340px;width:auto;max-width:100%;object-fit:contain;
+  transition:transform 0.3s ease;cursor:pointer;border-radius:8px;
+  flex:1;min-height:0;
+}
+.spec-gallery-item img:hover{transform:scale(1.05)}
+.spec-gallery-name{
+  font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:600;
+  color:var(--green-dark);text-align:center;
+  margin-top:0.5rem;flex-shrink:0;
+}
+@media(max-width:600px){
+  .spec-gallery-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
+  .spec-gallery-item img{max-height:280px}
+  .spec-gallery-name{font-size:0.75rem}
+}
+
+/* ============================================================
+   REGIONS / MAP
+   ============================================================ */
+.world-map-wrap{position:relative;width:100%;max-width:1000px;margin:1.5rem auto 0}
+.world-map-wrap img{width:100%;height:auto;border-radius:var(--radius-lg);display:block}
+.map-overlay{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.map-pin{
+  position:absolute;width:14px;height:14px;border-radius:50%;
+  transform:translate(-50%,-50%);pointer-events:all;cursor:pointer;
+  border:2px solid #fff;box-shadow:0 0 8px rgba(0,0,0,0.3);
+  transition:all 0.3s;z-index:2;
+}
+.map-pin::after{
+  content:'';position:absolute;top:-4px;left:-4px;right:-4px;bottom:-4px;
+  border-radius:50%;border:2px solid currentColor;opacity:0;
+  animation:pingMap 2s cubic-bezier(0,0,0.2,1) infinite;
+}
+.map-pin:hover,.map-pin.active{transform:translate(-50%,-50%) scale(1.5);z-index:5;box-shadow:0 0 16px rgba(0,0,0,0.4)}
+.map-pin-label{
+  position:absolute;top:-28px;left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,0.8);color:#fff;padding:3px 8px;border-radius:4px;
+  font-family:'Outfit',sans-serif;font-size:0.65rem;font-weight:600;
+  white-space:nowrap;opacity:0;transition:opacity 0.3s;pointer-events:none;
+}
+.map-pin:hover .map-pin-label,.map-pin.active .map-pin-label{opacity:1}
+.map-pin-label::after{
+  content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);
+  border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid rgba(0,0,0,0.8);
+}
+.map-line{
+  position:absolute;height:1px;transform-origin:left center;
+  opacity:0;pointer-events:none;z-index:1;
+}
+.map-line.visible{opacity:0.5;animation:drawLine 1s ease forwards}
+@keyframes pingMap{
+  0%{opacity:0.7;transform:scale(1)}
+  100%{opacity:0;transform:scale(2.5)}
+}
+@keyframes drawLine{
+  from{clip-path:inset(0 100% 0 0)}
+  to{clip-path:inset(0 0 0 0)}
+}
+.map-stats{display:flex;gap:2rem;justify-content:center;margin-top:1rem;margin-bottom:0.5rem;flex-wrap:wrap}
+.map-stat{text-align:center}
+.map-stat-val{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3rem);
+  color:var(--green-dark);line-height:1;
+}
+.map-stat-lbl{font-family:'Outfit',sans-serif;font-size:0.75rem;color:var(--dark);opacity:0.6;font-weight:500}
+.map-legend{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.2rem;justify-content:center}
+.map-legend-item{
+  display:flex;align-items:center;gap:0.4rem;
+  padding:0.35rem 0.8rem;
+  background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.1);
+  border-radius:var(--radius-pill);font-size:0.78rem;font-weight:500;color:var(--dark);
+  transition:all 0.3s;cursor:pointer;
+}
+.map-legend-item.active{background:var(--green);color:#fff;border-color:var(--green)}
+.map-legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.map-legend-item:hover{background:rgba(0,0,0,0.1);transform:scale(1.05)}
+.map-legend-item.active:hover{background:var(--green-dark)}
+
+/* ============================================================
+   PARTNERS
+   ============================================================ */
+.partners{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.2rem;margin-top:2rem}
+.partner{
+  background:rgba(255,255,255,0.08);
+  border-radius:var(--radius);padding:1.5rem;
+  text-align:center;transition:all 0.3s;
+}
+.partner:hover{transform:scale(1.06);background:rgba(255,255,255,0.15)}
+.partner-icon{font-size:1.8rem;margin-bottom:0.4rem}
+.partner-name{font-size:0.82rem;font-weight:600}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-box{
+  text-align:center;margin-top:3rem;
+  padding:2.5rem 2rem;
+  background:rgba(232,228,160,0.08);
+  border-radius:var(--radius-xl);
+  border:2px solid rgba(232,228,160,0.1);
+}
+.contact-btn{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  padding:1rem 2.5rem;
+  background:var(--lime);color:var(--green-dark);
+  border:none;border-radius:var(--radius-pill);
+  font-family:'Outfit',sans-serif;
+  font-size:0.85rem;font-weight:800;
+  cursor:pointer;transition:all 0.3s;
+  text-decoration:none;text-transform:uppercase;letter-spacing:0.12em;
+  margin-top:1.2rem;
+}
+.contact-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,0.15)}
+
+/* Aliados slide - fix overflow */
+[data-i="9"]{align-items:flex-start!important}
+
+/* Partners v2 light theme - Tab system */
+.aliados-tabs{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem}
+.aliado-tab{
+  padding:0.7rem 1.6rem;
+  background:#fff;border:2px solid #e0e0e0;
+  border-radius:50px;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:700;
+  color:#555;transition:all 0.3s;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.aliado-tab:hover{border-color:var(--green);color:var(--green)}
+.aliado-tab.active{background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 4px 16px rgba(46,139,87,0.25)}
+.aliado-tab img{width:22px;height:22px;object-fit:contain;border-radius:4px}
+.aliado-panel{
+  display:none;margin-top:1.5rem;
+  animation:fadeUp 0.5s ease;
+}
+.aliado-panel.visible{display:block}
+
+/* Goya panel */
+.goya-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;justify-content:center}
+.goya-logo{width:clamp(100px,18vw,180px);border-radius:12px}
+.goya-text{
+  background:#fff;border-radius:16px;padding:1.5rem 2rem;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  border-left:4px solid #E8621C;
+  font-size:0.95rem;line-height:1.7;color:#444;
+  max-width:600px;text-align:left;
+}
+.goya-empaques{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
+  gap:1rem;margin-top:1.5rem;
+}
+.goya-emp{
+  background:#fff;border-radius:12px;padding:0.8rem;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  transition:all 0.3s;text-align:center;
+}
+.goya-emp:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(232,98,28,0.15)}
+.goya-emp img{width:100%;height:auto;border-radius:8px}
+
+/* Stores panel */
+.stores-summary{display:flex;gap:1.5rem;justify-content:center;margin-bottom:1.2rem}
+.stores-stat{
+  background:#fff;border-radius:16px;padding:1rem 2rem;
+  text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.05);
+  border:2px solid #e8e8e8;display:flex;flex-direction:column;
+}
+.stores-stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--green);line-height:1}
+.stores-stat-label{font-size:0.75rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.08em}
+
+.stores-accordion{
+  max-height:340px;overflow-y:auto;
+  border-radius:16px;background:#fff;
+  box-shadow:0 2px 12px rgba(0,0,0,0.05);
+  border:2px solid #e8e8e8;
+}
+.stores-accordion::-webkit-scrollbar{width:4px}
+.stores-accordion::-webkit-scrollbar-thumb{background:var(--green);border-radius:4px}
+
+.store-city-block{border-bottom:1px solid #f0f0f0}
+.store-city-block:last-child{border-bottom:none}
+.store-city-btn{
+  width:100%;display:flex;align-items:center;gap:0.6rem;
+  padding:0.8rem 1.2rem;background:none;border:none;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:700;
+  color:#2D3436;transition:all 0.2s;text-align:left;
+}
+.store-city-btn:hover{background:#f8fdf8}
+.store-city-name{flex:1}
+.store-city-count{
+  font-size:0.7rem;font-weight:600;color:#fff;
+  background:var(--green);border-radius:50px;
+  padding:0.15rem 0.6rem;
+}
+.store-city-arrow{
+  font-size:0.8rem;color:#aaa;transition:transform 0.3s;
+}
+.store-city-block.open .store-city-arrow{transform:rotate(90deg);color:var(--green)}
+.store-city-block.open .store-city-btn{background:#f0faf0}
+
+.store-city-list{
+  display:none;padding:0 1.2rem 0.8rem;
+}
+.store-city-block.open .store-city-list{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.4rem;
+  animation:fadeUp 0.3s ease;
+}
+.store-pdv{
+  font-size:0.78rem;color:#555;padding:0.4rem 0.7rem;
+  background:#f8fdf8;border-radius:8px;border-left:3px solid var(--green);
+  font-weight:500;
+}
+
+/* Clients panel */
+.clients-text{
+  background:#fff;border-radius:16px;padding:1.5rem 2rem;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  border-left:4px solid var(--green);
+  font-size:0.95rem;line-height:1.7;color:#444;
+  text-align:left;margin-bottom:1.2rem;
+}
+.clients-list{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:0.8rem;margin-top:1rem;
+}
+.client-item{
+  display:flex;align-items:center;gap:0.7rem;
+  background:#fff;border-radius:12px;padding:1rem 1.3rem;
+  box-shadow:0 2px 10px rgba(0,0,0,0.04);
+  font-size:0.9rem;font-weight:600;color:#2D3436;
+  border:2px solid #f0f0f0;transition:all 0.3s;
+}
+.client-item:hover{border-color:var(--green);transform:translateX(4px)}
+.client-clickable{border-color:var(--green);background:#f0faf0}
+.client-clickable:hover{background:#e0f5e0;box-shadow:0 4px 16px rgba(46,139,87,0.15)}
+.client-item::before{content:"✓";display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;font-size:0.75rem;font-weight:800;flex-shrink:0}
+
+/* Private brand panel */
+.private-brand-box{
+  background:#fff;border-radius:20px;padding:2rem;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  border-top:4px solid #9C27B0;
+}
+.private-brand-box h3{
+  font-family:'Bebas Neue',sans-serif;font-size:1.8rem;
+  color:#9C27B0;margin-bottom:0.5rem;
+}
+.private-brand-box>p{
+  font-size:0.95rem;line-height:1.7;color:#555;margin-bottom:1.5rem;
+}
+.pb-features{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:0.7rem;
+}
+.pb-feature{
+  display:flex;align-items:center;gap:0.8rem;
+  padding:0.9rem 1.2rem;
+  background:linear-gradient(135deg,#F3E5F5,#EDE7F6);
+  border-radius:12px;font-size:0.88rem;font-weight:600;
+  color:#4A148C;transition:all 0.3s;
+}
+.pb-feature:hover{transform:translateX(4px);box-shadow:0 4px 12px rgba(156,39,176,0.12)}
+.pb-feature::before{content:"⚙️";font-size:1.1rem}
+.pb-cta{
+  display:flex;align-items:center;justify-content:center;gap:0.8rem;
+  margin-top:1.5rem;padding:1rem 2rem;
+  background:linear-gradient(135deg,#9C27B0,#7B1FA2);
+  color:#fff;border-radius:50px;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:700;
+  transition:all 0.3s;box-shadow:0 4px 16px rgba(156,39,176,0.3);
+}
+.pb-cta:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(156,39,176,0.4)}
+.pb-cta-hint{font-size:0.75rem;opacity:0.8}
+
+/* Contact box v2 */
+.contact-box-v2{
+  text-align:center;margin-top:2rem;
+  padding:2rem 1.5rem;
+  background:#fff;
+  border-radius:20px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  border-top:4px solid var(--green);
+}
+.contact-box-v2 h3{
+  font-family:'Bebas Neue',sans-serif;font-size:1.8rem;
+  color:var(--green);margin-bottom:0.8rem;
+}
+.contact-info-v2{
+  display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;
+  margin-bottom:1.2rem;
+}
+.contact-item-v2{
+  display:flex;align-items:center;gap:0.5rem;
+  font-size:0.9rem;color:#555;font-weight:500;
+}
+.contact-item-v2 span{font-size:1.2rem}
+.contact-btn-v2{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  padding:1rem 2.5rem;
+  background:var(--green);color:#fff;
+  border:none;border-radius:50px;
+  font-family:'Outfit',sans-serif;
+  font-size:0.85rem;font-weight:800;
+  cursor:pointer;transition:all 0.3s;
+  text-decoration:none;text-transform:uppercase;letter-spacing:0.12em;
+}
+.contact-btn-v2:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(46,139,87,0.3);background:var(--green-dark)}
+
+/* ============================================================
+   HIGHLIGHT CHIPS
+   ============================================================ */
+.chips{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.5rem}
+.chip{
+  display:flex;align-items:center;gap:0.4rem;
+  padding:0.4rem 1rem;
+  background:rgba(232,228,160,0.1);
+  border-radius:var(--radius-pill);font-size:0.8rem;font-weight:500;
+}
+
+/* Feature list */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0.7rem;margin-top:2rem}
+.feature{
+  display:flex;align-items:center;gap:0.6rem;
+  padding:0.8rem 1.2rem;
+  background:rgba(232,228,160,0.08);
+  border-radius:var(--radius-pill);font-size:0.85rem;font-weight:500;
+}
+.feature-check{color:var(--lime);font-size:1rem}
+
+/* ============================================================
+   LEGACY INTERACTIVE TABS
+   ============================================================ */
+.legacy-tabs{display:flex;gap:1rem;margin-top:2rem}
+.legacy-tab{
+  flex:1;padding:1.5rem;
+  background:rgba(232,228,160,0.08);
+  border:2px solid rgba(232,228,160,0.1);
+  border-radius:var(--radius-lg);
+  text-align:center;cursor:pointer;
+  transition:all 0.4s;
+}
+.legacy-tab:hover{background:rgba(232,228,160,0.15);transform:translateY(-3px)}
+.legacy-tab.active{
+  background:rgba(232,228,160,0.18);
+  border-color:var(--lime);
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(0,0,0,0.15);
+}
+.legacy-tab-icon{font-size:2.2rem;margin-bottom:0.5rem;display:block}
+.legacy-tab-label{font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em}
+
+/* Lime-bg variant for tabs */
+.tab-lime{
+  background:#fff !important;
+  border:2px solid #e0e0e0 !important;
+  border-radius:16px !important;
+  color:var(--green-dark);
+  box-shadow:0 2px 8px rgba(0,0,0,0.04) !important;
+}
+.tab-lime .legacy-tab-label{color:#2D3436}
+.tab-lime:hover{border-color:var(--green) !important;transform:translateY(-4px);box-shadow:0 8px 24px rgba(46,139,87,0.12) !important}
+.tab-lime.active{
+  background:var(--green) !important;
+  border-color:var(--green) !important;
+  box-shadow:0 8px 24px rgba(46,139,87,0.25) !important;
+}
+.tab-lime.active .legacy-tab-label{color:#fff}
+
+.legacy-panel{
+  display:none;
+  margin-top:1.5rem;
+  animation:panelIn 0.5s ease forwards;
+}
+.legacy-panel.visible{display:block}
+@keyframes panelIn{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Quienes Somos panel */
+.panel-quienes{
+  padding:2rem;
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  border-left:4px solid var(--green);
+}
+.panel-quienes p{font-size:0.95rem;line-height:1.85;color:#444;font-weight:400}
+
+/* Panel with image layout */
+.panel-with-img{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+  align-items:center;
+}
+.panel-text{flex:1}
+.panel-img{
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(0,0,0,0.1);
+  cursor:pointer;
+  position:relative;
+}
+.panel-img::after{
+  content:'🔍';
+  position:absolute;bottom:0.6rem;right:0.6rem;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.8rem;
+  opacity:0;transition:opacity 0.3s;
+  pointer-events:none;
+}
+.panel-img:hover::after{opacity:1}
+.panel-img img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.5s;
+}
+.panel-img:hover img{transform:scale(1.03)}
+@media(max-width:768px){
+  .panel-with-img{grid-template-columns:1fr}
+  .panel-img img{height:220px}
+}
+
+/* Lightbox */
+.lightbox{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:2000;
+  background:rgba(255,248,240,0.92);
+  backdrop-filter:blur(16px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;
+  transition:opacity 0.4s,visibility 0.4s;
+  cursor:pointer;
+}
+.lightbox.show{opacity:1;visibility:visible}
+.lightbox img{
+  max-width:90%;max-height:85vh;
+  object-fit:contain;
+  border-radius:var(--radius-lg);
+  box-shadow:0 20px 60px rgba(0,0,0,0.15);
+  transform:scale(0.9);
+  transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.lightbox.show img{transform:scale(1)}
+.lightbox-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  width:44px;height:44px;border-radius:50%;
+  border:2px solid rgba(0,0,0,0.1);
+  background:rgba(46,139,87,0.9);
+  color:white;font-size:1.2rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;
+}
+.lightbox-close:hover{background:var(--green-dark);transform:scale(1.1)}
+
+/* Product carousel slide */
+.carousel-slide{
+  transition:background-color 0.6s ease;
+  position:relative;overflow:hidden;
+}
+.carousel-waves{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+}
+.carousel-wave{
+  position:absolute;width:140%;height:auto;
+  min-height:40%;
+}
+.cw1{
+  bottom:0;left:-20%;
+  animation:waveFloat1 8s ease-in-out infinite;
+}
+.cw2{
+  bottom:-10%;left:-10%;
+  animation:waveFloat2 10s ease-in-out infinite;
+}
+.cw3{
+  top:-10%;left:-20%;
+  animation:waveFloat3 12s ease-in-out infinite;
+}
+@keyframes waveFloat1{
+  0%,100%{transform:translateX(0) translateY(0)}
+  50%{transform:translateX(-3%) translateY(-8px)}
+}
+@keyframes waveFloat2{
+  0%,100%{transform:translateX(0) translateY(0)}
+  50%{transform:translateX(2%) translateY(-12px)}
+}
+@keyframes waveFloat3{
+  0%,100%{transform:translateX(0) translateY(0)}
+  50%{transform:translateX(-2%) translateY(6px)}
+}
+.carousel-slide .slide-body{position:relative;z-index:1}
+.carousel-header{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;
+}
+.carousel-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  color:white;line-height:1;
+}
+.carousel-search{
+  display:flex;align-items:center;gap:0.5rem;
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:var(--radius-pill);
+  padding:0.5rem 1rem;
+  backdrop-filter:blur(6px);
+}
+.carousel-search input{
+  border:none;background:transparent;
+  color:white;font-family:'Inter',sans-serif;
+  font-size:0.85rem;outline:none;width:140px;
+}
+.carousel-search input::placeholder{color:rgba(255,255,255,0.5)}
+.carousel-search-icon{color:rgba(255,255,255,0.6);font-size:0.9rem}
+
+.carousel-cats{
+  display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;
+}
+.carousel-cat{
+  padding:0.45rem 1.2rem;
+  border-radius:var(--radius-pill);
+  border:2px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.1);
+  color:white;font-family:'Outfit',sans-serif;
+  font-size:0.75rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.08em;
+  cursor:pointer;transition:all 0.3s;
+}
+.carousel-cat:hover{background:rgba(255,255,255,0.2)}
+.carousel-cat.active{background:white;color:var(--dark);border-color:white}
+
+.carousel-content{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2.5rem;align-items:center;
+  min-height:300px;
+}
+.carousel-img{
+  display:flex;align-items:center;justify-content:center;
+}
+.carousel-img img{
+  max-width:100%;max-height:420px;
+  object-fit:contain;
+  mix-blend-mode:screen;
+  animation:productFloat 4s ease-in-out infinite;
+  cursor:pointer;
+}
+@keyframes productFloat{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  25%{transform:translateY(-12px) rotate(1deg)}
+  75%{transform:translateY(5px) rotate(-1deg)}
+}
+.carousel-info{color:white}
+.carousel-info h3{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2rem,5vw,3rem);
+  line-height:1;margin-bottom:0.8rem;
+}
+.carousel-info p{font-size:0.92rem;line-height:1.8;opacity:0.85}
+.carousel-info .sizes{font-weight:700;margin-top:0.8rem;font-size:0.9rem}
+.carousel-info-en{
+  margin-top:1.2rem;padding-top:1.2rem;
+  border-top:1px solid rgba(255,255,255,0.15);
+}
+.carousel-info-en h4{font-family:'Outfit';font-style:italic;font-size:1rem;font-weight:600;margin-bottom:0.3rem}
+.carousel-info-en p{font-size:0.85rem;opacity:0.65}
+
+.carousel-nav{
+  display:flex;align-items:center;justify-content:center;
+  gap:1rem;margin-top:1.5rem;
+}
+.carousel-arrow{
+  width:44px;height:44px;border-radius:50%;
+  border:2px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.1);
+  color:white;font-size:1.1rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;
+}
+.carousel-arrow:hover{background:rgba(255,255,255,0.25)}
+.carousel-arrow:disabled{opacity:0.2;cursor:default}
+.carousel-counter{
+  font-family:'Outfit';font-size:0.8rem;
+  color:rgba(255,255,255,0.5);font-weight:600;
+}
+
+/* Product/Info toggle tabs */
+.prod-tabs{
+  display:flex;gap:0.5rem;margin-bottom:1.2rem;
+}
+.prod-tab{
+  padding:0.4rem 1.2rem;
+  border-radius:var(--radius-pill);
+  border:2px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.08);
+  color:white;font-family:'Outfit';
+  font-size:0.75rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.08em;
+  cursor:pointer;transition:all 0.3s;
+}
+.prod-tab:hover{background:rgba(255,255,255,0.18)}
+.prod-tab.active{background:white;color:var(--dark);border-color:white}
+
+.prod-view{display:block}
+.prod-view.hidden{display:none}
+
+/* Info table */
+.info-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2rem;align-items:start;
+}
+.info-empaque{display:flex;align-items:center;justify-content:center}
+.info-empaque img{
+  max-width:100%;max-height:450px;object-fit:contain;
+  mix-blend-mode:screen;
+  animation:productFloat 4s ease-in-out infinite;
+}
+.info-table{color:white}
+.info-table h4{
+  font-family:'Bebas Neue';font-size:1.4rem;
+  margin-bottom:0.8rem;
+}
+.info-table table{
+  width:100%;border-collapse:collapse;
+  font-size:0.78rem;
+}
+.info-table td,.info-table th{
+  padding:0.45rem 0.6rem;
+  border:1px solid rgba(255,255,255,0.15);
+  text-align:left;
+}
+.info-table th{
+  background:rgba(255,255,255,0.1);
+  font-weight:700;font-size:0.7rem;
+  text-transform:uppercase;letter-spacing:0.05em;
+}
+.info-table td{font-weight:400;opacity:0.9}
+.info-extras{
+  margin-top:1rem;padding:0.8rem 1rem;
+  background:rgba(255,255,255,0.08);
+  border-radius:var(--radius);font-size:0.82rem;
+}
+.info-extras strong{font-weight:700}
+
+@media(max-width:768px){
+  .carousel-content{grid-template-columns:1fr;text-align:center}
+  .carousel-img img{max-height:300px}
+  .carousel-header{justify-content:center}
+  .info-layout{grid-template-columns:1fr}
+  .info-empaque img{max-height:320px}
+}
+
+/* Maquila slide */
+.maquila-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;
+  min-height:60vh;
+}
+.maquila-left{padding:2rem}
+.maquila-left h2{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);
+  color:white;line-height:1;margin-bottom:1rem;
+}
+.maquila-left h2 span{
+  font-family:'Dancing Script',cursive;color:var(--lime);
+  font-weight:400;display:block;font-size:1.1em;
+}
+.maquila-left p{color:#444;font-size:1rem;line-height:1.6;margin-bottom:1.5rem}
+.maquila-packages{
+  display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;
+  margin-top:1.5rem;
+}
+.maquila-packages img{
+  height:180px;object-fit:contain;
+  mix-blend-mode:screen;
+  transition:transform 0.3s;border-radius:8px;
+}
+.maquila-packages img:hover{transform:scale(1.08)}
+.maquila-right{
+  position:relative;height:100%;min-height:400px;
+  border-radius:var(--radius-lg);overflow:hidden;
+}
+.maquila-right img{width:100%;height:100%;object-fit:cover}
+.maquila-right .maquila-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:2rem;
+  background:linear-gradient(transparent,rgba(74,124,46,0.95));
+  text-align:right;
+}
+.maquila-right .maquila-overlay h3{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);
+  color:white;line-height:1.1;
+}
+.maquila-right .maquila-overlay h3 span{color:var(--lime)}
+.maquila-features{
+  display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1rem;
+}
+.maquila-features span{
+  background:linear-gradient(135deg,#E8F5E9,#C8E6C9);
+  color:var(--green-dark);
+  padding:0.5rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:600;
+  border:1px solid rgba(46,139,87,0.15);
+}
+.maquila-en{
+  margin-top:1.5rem;padding-top:1rem;
+  border-top:2px solid rgba(46,139,87,0.12);
+}
+.maquila-en p{color:#888;font-style:italic;font-size:0.9rem}
+@media(max-width:768px){
+  .maquila-layout{grid-template-columns:1fr}
+  .maquila-right{min-height:250px}
+  .maquila-packages img{height:120px}
+}
+
+/* Historia panel - timeline */
+.panel-historia{
+  position:relative;
+  padding:2rem;
+  background:rgba(232,228,160,0.06);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  max-height:420px;
+  overflow-y:auto;
+}
+.panel-historia::-webkit-scrollbar{width:3px}
+.panel-historia::-webkit-scrollbar-thumb{background:rgba(232,228,160,0.3);border-radius:3px}
+
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{
+  content:'';position:absolute;
+  left:8px;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--lime),rgba(232,228,160,0.2));
+}
+.tl-item{
+  position:relative;margin-bottom:1.8rem;
+  padding-left:1.5rem;
+}
+.tl-item::before{
+  content:'';position:absolute;
+  left:-1.55rem;top:0.35rem;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--lime);
+  box-shadow:0 0 8px rgba(232,228,160,0.4);
+}
+.tl-year{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;color:var(--lime);
+  line-height:1;margin-bottom:0.2rem;
+}
+.tl-title{font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:0.2rem}
+.tl-desc{font-size:0.82rem;opacity:0.75;line-height:1.5;font-weight:300}
+
+/* ============================================================
+   ANIMATED STAGGER
+   ============================================================ */
+.anim{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.slide.active .anim{opacity:1;transform:translateY(0)}
+.slide.active .anim:nth-child(1){transition-delay:0.05s}
+.slide.active .anim:nth-child(2){transition-delay:0.1s}
+.slide.active .anim:nth-child(3){transition-delay:0.18s}
+.slide.active .anim:nth-child(4){transition-delay:0.25s}
+.slide.active .anim:nth-child(5){transition-delay:0.32s}
+.slide.active .anim:nth-child(6){transition-delay:0.38s}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:768px){
+  .slide{padding:4rem 1.2rem 5rem}
+  .arrow{width:36px;height:36px;font-size:0.9rem}
+  .arrow.prev{left:0.3rem}.arrow.next{right:0.3rem}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .products{grid-template-columns:1fr}
+  .mega-title{font-size:clamp(1.8rem,8vw,3rem)!important}
+  .sub-title{font-size:0.85rem!important}
+  .legacy-badge{font-size:0.72rem;padding:0.3rem 1.2rem}
+  .legacy-tabs-v2{flex-direction:row;gap:0.6rem}
+  .ltab-v2{padding:0.8rem 1.2rem}
+  .ltab-v2-icon{font-size:1.5rem}
+  .ltab-v2-label{font-size:0.7rem}
+  .panel-quienes-v2{padding:1.2rem}
+  .panel-quienes-v2 p{font-size:0.85rem;line-height:1.7}
+  .legacy-highlights{gap:0.6rem}
+  .legacy-hl{padding:0.4rem 0.8rem;font-size:0.75rem}
+  .panel-historia-v2{padding:1.2rem;max-height:300px}
+  .tlv2-year{font-size:1.4rem;min-width:50px}
+  .tlv2-title{font-size:0.88rem}
+  .tlv2-desc{font-size:0.78rem}
+  /* Slide 2 - tabs grid */
+  .legacy-tabs[style*="grid-template-columns:repeat(4"]{
+    grid-template-columns:repeat(2,1fr)!important;
+  }
+  .panel-quienes{padding:1.2rem}
+  .panel-quienes p{font-size:0.85rem!important}
+  /* Maquila */
+  .maquila-layout{grid-template-columns:1fr!important}
+  .maquila-right{min-height:220px!important}
+  .maquila-features span{font-size:0.75rem;padding:0.4rem 0.8rem}
+  /* Capacity */
+  .cap-tabs{flex-wrap:wrap}
+  .cap-tab{padding:0.8rem 1rem;min-width:90px}
+  .cap-tab-name{font-size:0.72rem}
+  .cap-panel-content{padding:1.2rem}
+  .ton-card{min-width:90px;padding:0.8rem}
+  .ton-val{font-size:clamp(1.8rem,5vw,2.5rem)!important}
+  .colab-layout{grid-template-columns:1fr!important}
+  /* Specialties */
+  .specs{grid-template-columns:repeat(3,1fr);gap:0.8rem}
+  .spec{padding:1rem 0.6rem}
+  .spec-icon{font-size:1.8rem;margin-bottom:0.3rem}
+  .spec-name{font-size:0.8rem}
+  .spec-gallery{padding:1rem}
+  .spec-gallery-grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))!important;gap:0.8rem}
+  .spec-gallery-item img{max-height:200px}
+  /* Map */
+  .map-stats{gap:1rem}
+  .map-stat-val{font-size:clamp(1.5rem,4vw,2.2rem)!important}
+  .map-legend{flex-wrap:wrap;gap:0.4rem}
+  .map-legend-item{font-size:0.7rem;padding:0.25rem 0.5rem}
+  /* Partners / Aliados */
+  .aliados-tabs{gap:0.4rem}
+  .aliado-tab{padding:0.5rem 1rem;font-size:0.72rem}
+  .aliado-tab img{width:18px;height:18px}
+  .goya-header{flex-direction:column;gap:1rem}
+  .goya-logo{width:120px}
+  .goya-text{font-size:0.85rem;padding:1rem 1.2rem}
+  .goya-empaques{grid-template-columns:repeat(3,1fr);gap:0.6rem}
+  .stores-summary{gap:0.8rem}
+  .stores-stat{padding:0.8rem 1.2rem}
+  .stores-stat-num{font-size:1.8rem}
+  .stores-accordion{max-height:280px}
+  .store-city-block.open .store-city-list{grid-template-columns:1fr}
+  .clients-list{grid-template-columns:1fr}
+  .clients-text{font-size:0.85rem;padding:1rem 1.2rem}
+  .pb-features{grid-template-columns:1fr}
+  .private-brand-box{padding:1.2rem}
+  .private-brand-box h3{font-size:1.4rem}
+  .contact-box-v2{padding:1.5rem 1rem}
+  .contact-info-v2{flex-direction:column;gap:0.6rem;align-items:center}
+  .contact-item-v2{font-size:0.82rem}
+  .contact-btn-v2{padding:0.8rem 1.8rem;font-size:0.78rem}
+  /* Carousel product */
+  .carousel-header{flex-direction:column;gap:0.8rem}
+  .carousel-title{font-size:clamp(1.5rem,6vw,2.5rem)!important}
+  .carousel-content{flex-direction:column!important}
+  .carousel-img img{max-height:200px}
+  .carousel-info h3{font-size:clamp(1.2rem,5vw,1.8rem)}
+  .carousel-info p{font-size:0.82rem}
+  .info-layout{grid-template-columns:1fr!important}
+  /* Portada */
+  [data-i="0"]{background-size:cover!important;background-position:center!important}
+  .portada-sello{width:clamp(55px,14vw,85px)!important;left:10px!important}
+  .portada-truck{width:clamp(90px,24vw,130px)!important;right:-5px!important}
+  /* Dots */
+  .dots{bottom:0.8rem;padding:0.35rem 0.6rem;gap:0.3rem}
+  .dot{width:6px;height:6px}
+  .dot.on{width:22px}
+}
+@media(max-width:480px){
+  .cards,.steps{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .slide{padding:3rem 1rem 4.5rem}
+  .specs{grid-template-columns:repeat(3,1fr);gap:0.5rem}
+  .spec{padding:0.7rem 0.4rem}
+  .spec-icon{font-size:1.4rem}
+  .spec-name{font-size:0.7rem}
+  .aliados-tabs{flex-direction:column;align-items:stretch}
+  .aliado-tab{justify-content:center;font-size:0.75rem}
+  .stores-accordion{max-height:240px}
+  .goya-empaques{grid-template-columns:repeat(2,1fr)}
+  .cap-tab{min-width:80px;padding:0.6rem 0.8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     LANDING
+     ============================================================ -->
+<div class="landing" id="landing">
+  <div class="brand-icon i1"><img src="icon-p.png" alt=""></div>
+  <div class="brand-icon i2"><img src="icon-p.png" alt=""></div>
+  <div class="brand-icon i3"><img src="icon-p.png" alt=""></div>
+
+  <div class="landing-content">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Plantar - Plantain Company" class="logo-img" id="lLogo">
+      <div class="brand-slogan" id="lSlogan">El Sabor Auténtico del Plátano &mdash; Premium Colombiano</div>
+    </div>
+    <button class="cta" onclick="openBrochure()">
+      Ver Brochure <span class="cta-icon">&#10132;</span>
+    </button>
+  </div>
+
+  <!-- Wave decoration -->
+  <div class="landing-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:120%;margin-left:-10%;display:block;height:100px">
+      <path d="M0,80 C360,120 720,20 1080,80 C1260,110 1380,60 1440,80 L1440,120 L0,120 Z" fill="rgba(232,228,160,0.08)"/>
+      <path d="M0,90 C300,50 600,110 900,70 C1100,50 1300,100 1440,90 L1440,120 L0,120 Z" fill="rgba(232,228,160,0.05)"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ============================================================
+     BROCHURE
+     ============================================================ -->
+<div class="overlay" id="overlay">
+  <div class="progress" id="progress"></div>
+  <button class="btn-close" onclick="closeBrochure()">&#10005;</button>
+  <button class="arrow prev" id="prevBtn" onclick="prev()">&#10094;</button>
+  <button class="arrow next" id="nextBtn" onclick="next()">&#10095;</button>
+  <div class="slider"><div class="track" id="track"></div></div>
+  <div class="dots-wrap">
+    <div class="dots-hint" id="dotsHint">Desliza para ver más ➜</div>
+    <div class="dots" id="dots"></div>
+  </div>
+  <div class="counter" id="counter"></div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&#10005;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+/* ============================================================
+   C O N F I G — EDITAR AQUI PARA PERSONALIZAR
+   ============================================================ */
+const CFG = {
+  brand: {
+    name: "PLANTAR",
+    subtitle: "Plantain Company",
+    slogan: "El Sabor Auténtico del Plátano — Premium Colombiano",
+  },
+
+  legacy: {
+    badge: "Desde 2009",
+    title: "NUESTRO LEGADO",
+    quienes: "Somos una empresa colombiana dedicada a la producción y comercialización de snacks de plátano de la más alta calidad. Con más de 16 años de experiencia, llevamos el auténtico sabor del plátano colombiano a mercados internacionales, destacándonos por nuestros estándares de calidad, innovación y compromiso con la excelencia.",
+    highlights: [
+      { icon: "🏆", text: "16+ años de experiencia" },
+      { icon: "🌍", text: "Presencia internacional" },
+      { icon: "🤝", text: "320+ empleados" },
+    ],
+    timeline: [
+      { year: "2009", title: "Nuestra empresa ha nacido!", desc: "El comienzo de un gran sueño." },
+      { year: "2011", title: "Primer cliente", desc: "Iniciamos operaciones con nuestro primer cliente, expandiéndonos por Colombia." },
+      { year: "2017", title: "Eje Cafetero", desc: "Nos mudamos al Eje Cafetero en La Tebaida, Quindío." },
+      { year: "2018", title: "Primera exportación", desc: "Cruzamos fronteras con nuestra primera exportación a Estados Unidos y ampliamos nuestras operaciones abriendo una segunda planta de producción." },
+      { year: "2019", title: "Expansión internacional", desc: "Ampliamos nuestra presencia internacional con exportaciones a España, Panamá y República Dominicana." },
+      { year: "2020", title: "Crecimiento", desc: "Nuestro equipo creció a 320 empleados, abrimos un nuevo centro de distribución y fortalecimos las alianzas con nuestros proveedores." },
+      { year: "2023", title: "Unificación corporativa", desc: "Unificamos nuestro nombre corporativo." },
+    ],
+  },
+
+  operations: {
+    calidad: "Somos una empresa comprometida con la fabricación de productos innovadores, seguros y de alta calidad. Nuestras actividades se centran en el uso eficiente de los recursos, el desarrollo profesional de nuestros empleados y la supervisión continua de nuestros procesos. Basados en una cultura de seguridad alimentaria, mejora continua y estricto cumplimiento normativo, nos esforzamos por garantizar la satisfacción global del cliente, el desarrollo sostenible y la rentabilidad empresarial a largo plazo.",
+    centro: "Contamos con los espacios adecuados para el correcto almacenamiento y distribución de nuestros productos terminados, esto nos permite garantizar la calidad, la inocuidad y la rotación del inventario en toda la cadena de distribución.",
+    planta: "Ubicada en el municipio de La Tebaida en el departamento del Quindío, es la encargada de llevar a cabo los procesos productivos de nuestras diferentes categorías. Ubicada en la vereda Padilla en La Tebaida, a 500m de la zona franca del Quindío, cuenta con más de 6000 m2 y óptimas instalaciones que nos permiten desarrollar nuestros proyectos de expansión.",
+    categorias: "Líneas de producción a base de plátano verde o maduro, papa, yuca, arracacha y patata, ideales para disfrutar con cualquier tipo de salsa. Cada producto incluido en esta categoría puede ser saborizado según los requerimientos de nuestros clientes.",
+  },
+
+  productos: [
+    {
+      name: "Monedas de plátano verde",
+      desc: "Exquisitas monedas de plátano verde, con el toque perfecto entre sal y crocancia para deleitar tu paladar.",
+      sizes: "80g, 250g, 500g",
+      nameEn: "Green plantain coins:",
+      descEn: "Exquisite green plantain coins, with the perfect touch between salt and crunch to delight your palate.",
+      image: "moneda-platano.png",
+      empaque: "MONEDA VERDE.png",
+      color: "#e8491e",
+      info: {
+        nombre: "MONEDAS DE PLÁTANO VERDE PATAKIS",
+        pt: "0000", peso: "80 Gr", oz: "2.8",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano verde, sal",
+        aceite: "Mezcla de aceites vegetal",
+        calorias: "143", grasaSat: "3.3 g",
+        sodio: "40 mg",
+        azucares: "0.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "80gr, 250gr, 500gr",
+      },
+    },
+    {
+      name: "Canastas de plátano verde",
+      desc: "Innovadoras tostadas de plátano verde en forma de canasta, especiales para elaborar tus recetas favoritas.",
+      sizes: "Paquetes de 5 unidades",
+      nameEn: "Green plantain baskets:",
+      descEn: "Innovative green plantain toast in the form of a basket, special to make your favorite recipes.",
+      image: "canasta.png",
+      empaque: "",
+      color: "#512a6a",
+      info: null,
+    },
+    {
+      name: "Conos de plátano verde",
+      desc: "Prácticas tostadas de plátano verde en forma de cono, especiales para elaborar tus recetas preferidas. Deléitate con su presentación por paquetes de 5 unidad.",
+      sizes: "Paquetes de 5 unidades",
+      nameEn: "Green plantain cones:",
+      descEn: "Practical toasted green plantain in the shape of a cone, special to make your favorite recipes. Delight in its presentation in packs of 5 units.",
+      image: "productos/CONOS DE PLATANO VERDE.png",
+      empaque: "",
+      color: "#95c11f",
+      info: null,
+    },
+    {
+      name: "Malanga",
+      desc: "Innovadores snacks de malanga en forma de tajada con el toque perfecto de sal, para degustar los más deliciosos acompañantes en cualquier momento y lugar.",
+      sizes: "80g",
+      nameEn: "Malanga snacks:",
+      descEn: "Innovative malanga snacks in the form of a slice with the perfect touch of salt, to taste the most delicious accompaniments at any time and place.",
+      image: "productos/MALANGA.png",
+      empaque: "",
+      color: "#512a6a",
+      info: null,
+    },
+    {
+      name: "Snacks de ñame",
+      desc: "Exquisitos snacks de ñame en forma de tajada con el toque perfecto de sal y una crocancia única para deleitar tu paladar.",
+      sizes: "80g",
+      nameEn: "Yam snacks:",
+      descEn: "Exquisite yam snacks in the form of a slice with the perfect touch of salt and a unique crunch to delight your palate.",
+      image: "productos/ÑAME.png",
+      empaque: "",
+      color: "#e8491e",
+      info: null,
+    },
+    {
+      name: "Monedas de plátano maduro",
+      desc: "Exquisitos snacks de plátano verde en forma de moneda con el toque perfecto de sal y una crocancia única para deleitar tu paladar.",
+      sizes: "28g, 40g, 60g, 85g, 75g, 6kg (Producto a granel)",
+      nameEn: "Ripe plantain coins:",
+      descEn: "Irresistible ripe plantain snacks coin shaped, which with their delicious aroma and subtle cinnamon color, will captivate your palate.",
+      image: "productos/MONEDA MADURA.png",
+      empaque: "",
+      color: "#e6007e",
+      info: null,
+    },
+    {
+      name: "Mini tostada de plátano verde",
+      desc: "Innovadoras mini tostadas de plátano verde elaboradas con un toque especial que le permiten conservar esa suave crocancia de la cocina colombiana para que acompañes tus mejores comidas.",
+      sizes: "80g",
+      nameEn: "Mini green plantain toast:",
+      descEn: "Innovative mini green plantain toast made with a special touch that allows you to preserve that soft crunch of Colombian cuisine to accompany your best meals.",
+      image: "productos/MINI TOSTADA DE PLATANO VERDE.png",
+      empaque: "",
+      color: "#95c11f",
+      info: null,
+    },
+    // --- TOSTONES ---
+    {
+      name: "Tostón de plátano verde",
+      desc: "Irresistibles tostones de plátano verde elaborados con un toque especial que les permiten conservar la inigualable crocancia de la cocina colombiana.",
+      sizes: "50g, 60g, 100g, 170g, 1500g (a granel)",
+      nameEn: "Green Plantain Toston:",
+      descEn: "Irresistible green plantain tostons made with a special touch that allows them to preserve the unmatched crunch of Colombian cuisine.",
+      image: "productos/TOSTON VERDE.png",
+      empaque: "TOSTON VERDE.png",
+      color: "#95c11f",
+      info: {
+        nombre: "TOSTÓN DE PLÁTANO VERDE PATAKIS",
+        pt: "0099", peso: "80 Gr", oz: "2.8",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano verde, sal",
+        aceite: "Aceite low sat",
+        calorias: "142", grasaSat: "1.3 g",
+        sodio: "26 mg",
+        azucares: "3.0 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "80gr, 250gr, 454gr, 500gr, 4500gr",
+      },
+    },
+    {
+      name: "Tostón de plátano maduro",
+      desc: "Dulces tostones de plátano maduro, elaborados con las más deliciosas y naturales materias primas del campo colombiano.",
+      sizes: "50g, 60g, 100g, 170g, 1500g (a granel)",
+      nameEn: "Ripe Plantain Toston:",
+      descEn: "Sweet ripe plantain tostons, made with the most delicious and natural raw materials from the Colombian countryside.",
+      image: "productos/TOSTON MADURO.png",
+      empaque: "TOSTON MADURO.png",
+      color: "#e6007e",
+      info: {
+        nombre: "TOSTÓN DE PLÁTANO MADURO PATAKIS",
+        pt: "0000", peso: "80 Gr", oz: "2.8",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano maduro",
+        aceite: "Mezcla de aceites vegetal",
+        calorias: "136", grasaSat: "1.2 g",
+        sodio: "6.1 mg",
+        azucares: "4.5 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "80gr, 250gr, 500gr",
+      },
+    },
+    {
+      name: "Tostón de ajo",
+      desc: "Tostón de plátano verde con delicioso sabor a ajo. Un toque gourmet para tu snacking.",
+      sizes: "80g",
+      nameEn: "Garlic Plantain Toston:",
+      descEn: "Green plantain toston with delicious garlic flavor. A gourmet touch for your snacking.",
+      image: "productos/TOSTO AJO.png",
+      empaque: "TOSTON DE AJO.png",
+      color: "#009fe3",
+      info: null,
+    },
+    {
+      name: "Tostón de limón",
+      desc: "Exquisitos snacks de plátano verde en forma de tajada, realzados con un delicioso toque de limón que resalta su sabor natural.",
+      sizes: "28g, 85g",
+      nameEn: "Lime Plantain Toston:",
+      descEn: "Exquisite green plantain snacks in slice form, enhanced with a delicious touch of lime that highlights their natural flavor.",
+      image: "productos/TOSTON LIMON.png",
+      empaque: "TOSTON DE LIMON.png",
+      color: "#95c11f",
+      info: {
+        nombre: "TAJADA VERDE LIMÓN PATAKIS",
+        pt: "0097", peso: "85 Gr", oz: "2.99",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano verde, sal",
+        aceite: "Aceite low sat",
+        calorias: "136", grasaSat: "1.3 g",
+        sodio: "60 mg",
+        azucares: "0.4 g",
+        saborizantes: "Limón",
+        sellos: "Kosher, INVIMA",
+        extras: "28gr, 85gr",
+      },
+    },
+    // --- TAJADAS / PLATANITOS ---
+    {
+      name: "Tajada de plátano verde",
+      desc: "Exquisitos snacks de plátano verde en forma de tajada con el toque perfecto de sal y una crocancia única para deleitar tu paladar.",
+      sizes: "28g, 40g, 60g, 85g, 6kg (Producto a granel)",
+      nameEn: "Green Plantain Chips:",
+      descEn: "Exquisite green plantain snacks in slice form with the perfect touch of salt and a unique crunch to delight your palate.",
+      image: "productos/TAJADA DE PLATANO VERDE.png",
+      empaque: "PLATANITOS VERDES.png",
+      color: "#95c11f",
+      info: {
+        nombre: "TAJADA DE PLÁTANO VERDE PATAKIS",
+        pt: "0095", peso: "85 Gr", oz: "2.99",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano verde, sal",
+        aceite: "Aceite low sat",
+        calorias: "137", grasaSat: "1.0 g",
+        sodio: "48 mg",
+        azucares: "0.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "85gr, 500gr, 6000gr",
+      },
+    },
+    {
+      name: "Tajadas de plátano maduro",
+      desc: "Sabrosos snacks de plátano en forma de tajadas, con la maduración natural que brinda ese dulce aroma y sabor irresistible.",
+      sizes: "28g, 40g, 60g, 85g, 75g, 6kg",
+      nameEn: "Sweet Plantain Chips:",
+      descEn: "Delicious snacks made with ripe plantain in slice form, with a naturally sweet flavor and a crispy texture that will enchant your palate.",
+      image: "productos/MADURITOS.png",
+      empaque: "MADURITOS.png",
+      color: "#e6007e",
+      info: {
+        nombre: "TAJADA DE PLÁTANO MADURO PATAKIS",
+        pt: "0096", peso: "85 Gr", oz: "2.99",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano maduro",
+        aceite: "Aceite oleína de palma",
+        calorias: "130", grasaSat: "0.9 g",
+        sodio: "15 mg",
+        azucares: "5 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "85gr, 500gr, 6000gr",
+      },
+    },
+    {
+      name: "Maduritos picante habanero",
+      desc: "Irresistibles snacks de plátano maduro en forma de tajada, con el dulzor natural del plátano y un atrevido toque de picante habanero. Una combinación explosiva de sabores.",
+      sizes: "85g",
+      nameEn: "Habanero Spicy Sweet Plantain Chips:",
+      descEn: "Irresistible ripe plantain snacks in slice form, with the natural sweetness of plantain and a bold touch of habanero spice. An explosive flavor combination.",
+      image: "productos/MADURITOS PICANTE HABANERO.png",
+      empaque: "MADURITOS PICANTE HABANERO.png",
+      color: "#e8491e",
+      info: {
+        nombre: "TAJADA DE PLÁTANO MADURO PICANTE HABANERO PATAKIS",
+        pt: "0139", peso: "85 Gr", oz: "2.99",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano maduro",
+        aceite: "Aceite oleína de palma",
+        calorias: "125", grasaSat: "1.0 g",
+        sodio: "46 mg",
+        azucares: "6.1 g",
+        saborizantes: "Picante habanero",
+        sellos: "Kosher, INVIMA",
+        extras: "85gr",
+      },
+    },
+    {
+      name: "Platanitos queso explosión",
+      desc: "Deliciosos snacks de plátano verde en forma de tajada, con una explosiva combinación de queso y picante habanero. La mezcla perfecta entre cremosidad, picante y crocancia.",
+      sizes: "85g",
+      nameEn: "Cheese Explosion Plantain Chips:",
+      descEn: "Delicious green plantain snacks in slice form, with an explosive combination of cheese and habanero spice. The perfect blend of creaminess, spice and crunch.",
+      image: "productos/queso explosion.png",
+      empaque: "PLATANITOS QUESO EXPLOSION.png",
+      color: "#fbdc59",
+      info: {
+        nombre: "TAJADA DE PLÁTANO VERDE QUESO EXPLOSIÓN PATAKIS",
+        pt: "0206", peso: "85 Gr", oz: "2.99",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano verde",
+        aceite: "Aceite oleína de palma",
+        calorias: "154", grasaSat: "11 g",
+        sodio: "262 mg",
+        azucares: "1.1 g",
+        saborizantes: "Queso y picante habanero",
+        sellos: "Kosher, INVIMA",
+        extras: "85gr",
+      },
+    },
+    // --- PALITOS ---
+    {
+      name: "Sticks de plátano maduro",
+      desc: "Innovadores snacks de plátano maduro en forma de sticks (palitos o fosforitos), con maduración natural, dulce aroma y un sabor irresistible, perfectos para degustar los más deliciosos acompañantes en cualquier momento y lugar.",
+      sizes: "80g",
+      nameEn: "Ripe plantain sticks:",
+      descEn: "Innovative ripe plantain snacks in the form of sticks, with natural ripening, sweet aroma and an irresistible flavor, perfect to taste the most delicious accompaniments at any time and place.",
+      image: "productos/PALITOS MADUROS.png",
+      empaque: "PALITOS MADUROS.png",
+      color: "#e6007e",
+      info: {
+        nombre: "PALITOS DE PLÁTANO MADURO PATAKIS",
+        pt: "0203", peso: "85 Gr", oz: "2.99",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano maduro, sal",
+        aceite: "Aceite oleína de palma",
+        calorias: "134", grasaSat: "1.1 g",
+        sodio: "28 mg",
+        azucares: "7.7 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "85gr, 1000gr",
+      },
+    },
+    {
+      name: "Sticks de plátano verde",
+      desc: "Exquisitos snacks de plátano verde en forma de sticks (palitos o fosforitos) con el toque perfecto de sal y una crocancia única para deleitar tu paladar y acompañar diferentes tipos de alimentos.",
+      sizes: "80g",
+      nameEn: "Green plantain sticks:",
+      descEn: "Exquisite green plantain snacks in the form of sticks with the perfect touch of salt and a unique crunch to delight your palate and accompany different types of food.",
+      image: "productos/PALITOS VERDES.png",
+      empaque: "PALITOS VERDES.png",
+      color: "#95c11f",
+      info: {
+        nombre: "PALITOS DE PLÁTANO VERDE PATAKIS",
+        pt: "0204", peso: "85 Gr", oz: "2.99",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano verde, sal",
+        aceite: "Aceite oleína de palma",
+        calorias: "144", grasaSat: "1.3 g",
+        sodio: "71 mg",
+        azucares: "0.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "85gr, 1000gr",
+      },
+    },
+    // --- PATAKON ---
+    {
+      name: "Tostada de plátano verde",
+      desc: "Tostadas de plátano verde, que gracias a su excepcional toque crocante, rinden homenaje a la tradición de la cocina colombiana.",
+      sizes: "80g",
+      nameEn: "Green plantain toast:",
+      descEn: "Green plantain toast, which thanks to its exceptional crunchy touch, pays homage to the tradition of Colombian cuisine.",
+      image: "productos/TOSTADAS DE PLATANO.png",
+      empaque: "PATAKON PISAO.png",
+      color: "#e8491e",
+      info: {
+        nombre: "PATAKON PISAO DE PLÁTANO VERDE PATAKIS",
+        pt: "0094", peso: "80 Gr", oz: "2.8",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano verde, sal",
+        aceite: "Aceite oleína de palma",
+        calorias: "141", grasaSat: "0.8 g",
+        sodio: "92 mg",
+        azucares: "0.2 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "80gr",
+      },
+    },
+    // --- CUCHARITAS ---
+    {
+      name: "Cucharitas de plátano verde",
+      desc: "Innovadoras cucharitas de plátano verde, ideales para degustar los más deliciosos acompañantes en cualquier momento y lugar.",
+      sizes: "85g",
+      nameEn: "Green Plantain Spoon Chips:",
+      descEn: "Innovative green plantain spoon-shaped chips, ideal for enjoying the most delicious accompaniments anytime and anywhere.",
+      image: "productos/CUCHARITAS DE PLATANO VERDE.png",
+      empaque: "CUCHAITAS.png",
+      color: "#009fe3",
+      info: {
+        nombre: "CUCHARITAS DE PLÁTANO VERDE PATAKIS",
+        pt: "0205", peso: "85 Gr", oz: "2.99",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano verde, sal",
+        aceite: "Aceite oleína de palma",
+        calorias: "168", grasaSat: "4.7 g",
+        sodio: "66 mg",
+        azucares: "0.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "85gr",
+      },
+    },
+    // --- YUCA ---
+    {
+      name: "Tostón de yuca",
+      desc: "Crujientes y deliciosos tostones de yuca, elaborados de forma natural para resaltar su sabor auténtico. Un snack tradicional con una textura irresistible.",
+      sizes: "80g",
+      nameEn: "Cassava Toston:",
+      descEn: "Crispy and delicious cassava tostons, naturally made to highlight their authentic flavor. A traditional snack with an irresistible texture.",
+      image: "productos/TOSTON DE YUCA.png",
+      empaque: "TOSTÓN DE YUCA.png",
+      color: "#009fe3",
+      info: {
+        nombre: "TOSTÓN DE YUCA PATAKIS",
+        pt: "0296", peso: "80 Gr", oz: "2.8",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Yuca, sal",
+        aceite: "Aceite low sat",
+        calorias: "131", grasaSat: "1.0 g",
+        sodio: "12 mg",
+        azucares: "0.6 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "80gr",
+      },
+    },
+    {
+      name: "Snacks de yuca",
+      desc: "Deliciosos snacks de yuca con la mezcla perfecta entre la sal y la crocancia, ideal para acompañar tus diferentes alimentos! Elige entre sus presentaciones.",
+      sizes: "50g, 80g, 85g",
+      nameEn: "Cassava Snacks:",
+      descEn: "Delicious cassava snacks with the perfect mix of salt and crunch, ideal for accompanying your different foods.",
+      image: "productos/YUKITAS.png",
+      empaque: "YUKITAS.png",
+      color: "#009fe3",
+      info: {
+        nombre: "SNACKS DE YUKITAS PATAKIS",
+        pt: "0098", peso: "80 Gr", oz: "2.8",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Yuca, sal",
+        aceite: "Aceite oleína de palma",
+        calorias: "150", grasaSat: "1.0 g",
+        sodio: "117 mg",
+        azucares: "1.0 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "80gr, 2000gr",
+      },
+    },
+    {
+      name: "Yuca amarilla",
+      desc: "Exquisitos snacks de yuca amarilla, en corte tipo tajada, con el toque perfecto de sal y una crocancia irresistible que resalta su sabor natural.",
+      sizes: "28g, 80g, 2000g",
+      nameEn: "Yellow Cassava Chips:",
+      descEn: "Exquisite yellow cassava snacks in slice cut, with the perfect touch of salt and an irresistible crunch that highlights their natural flavor.",
+      image: "productos/YUCA AMARILLA.png",
+      empaque: "YUCA AMARILLA.png",
+      color: "#fbdc59",
+      info: {
+        nombre: "YUCA AMARILLA PATAKIS",
+        pt: "0000", peso: "28 Gr", oz: "0.98",
+        medidas: "Alto 16cm, Ancho 12cm, Profundidad 4cm",
+        undCaja: "12 unidades",
+        ingredientes: "Yuca amarilla",
+        aceite: "Aceite oleína de palma",
+        calorias: "157", grasaSat: "4.4 g",
+        sodio: "62 mg",
+        azucares: "0.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "80gr, 2000gr",
+      },
+    },
+    // --- PAPA ---
+    {
+      name: "Snacks de papa",
+      desc: "Riquísimos snacks de papa, perfectos para degustar tus acompañantes favoritos.",
+      sizes: "50g, 80g, 85g",
+      nameEn: "Natural Potato Chips:",
+      descEn: "Delicious potato snacks, perfect for enjoying with your favorite accompaniments.",
+      image: "productos/PAPA.png",
+      empaque: "PAPA.png",
+      color: "#fbdc59",
+      info: {
+        nombre: "SNACKS DE PAPA PATAKIS",
+        pt: "0291", peso: "65 Gr", oz: "2.3",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Papa, sal",
+        aceite: "Aceite low sat",
+        calorias: "145", grasaSat: "1.5 g",
+        sodio: "9.7 mg",
+        azucares: "0.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "65gr, 2000gr",
+      },
+    },
+    {
+      name: "Papa trufa",
+      desc: "Exquisitos snacks de papa trufa, en corte tipo tajada, con el toque perfecto de sal y el inconfundible sabor gourmet de la trufa.",
+      sizes: "28g, 65g",
+      nameEn: "Truffle Potato Chips:",
+      descEn: "Exquisite truffle potato snacks in slice cut, with the perfect touch of salt and the unmistakable gourmet truffle flavor.",
+      image: "productos/PAPA TRUFA.png",
+      empaque: "PAPA TRUFA (2).png",
+      color: "#512a6a",
+      info: {
+        nombre: "PAPA TRUFA PATAKIS",
+        pt: "0000", peso: "28 Gr", oz: "2.2",
+        medidas: "Alto 16cm, Ancho 12cm, Profundidad 4cm",
+        undCaja: "12 unidades",
+        ingredientes: "Papa",
+        aceite: "Aceite oleína de palma",
+        calorias: "155", grasaSat: "4.2 g",
+        sodio: "39 mg",
+        azucares: "0 g",
+        saborizantes: "Trufa",
+        sellos: "Kosher, INVIMA",
+        extras: "65gr",
+      },
+    },
+    // --- ARRACACHA ---
+    {
+      name: "Snacks de arracacha",
+      desc: "Estos increíbles snacks de arracacha son la mejor opción para disfrutar de innovadoras preparaciones. Conoce sus presentaciones.",
+      sizes: "80g, 85g",
+      nameEn: "Arracacha Chips:",
+      descEn: "These incredible arracacha snacks are the best option for enjoying innovative preparations.",
+      image: "productos/ARRACACHA.png",
+      empaque: "ARRACACHA.png",
+      color: "#512a6a",
+      info: {
+        nombre: "SNACKS DE ARRACACHACHA PATAKIS",
+        pt: "0142", peso: "80 Gr", oz: "2.8",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Arracacha, sal",
+        aceite: "Aceite oleína de palma",
+        calorias: "141", grasaSat: "1.2 g",
+        sodio: "41 mg",
+        azucares: "1.5 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "80gr, 2000gr",
+      },
+    },
+    // --- BATATA ---
+    {
+      name: "Snacks de batata",
+      desc: "Innovadores snacks de batata en forma de tajada con el toque perfecto de sal, para degustar los más deliciosos acompañantes en cualquier momento y lugar.",
+      sizes: "80g",
+      nameEn: "Sweet Potato Chips:",
+      descEn: "Innovative sweet potato snacks in slice form with the perfect touch of salt, to enjoy the most delicious accompaniments anytime and anywhere.",
+      image: "productos/BATATA.png",
+      empaque: "BATATA.png",
+      color: "#e8491e",
+      info: {
+        nombre: "SNACKS DE BATATA PATAKIS",
+        pt: "0290", peso: "65 Gr", oz: "2.3",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Batata, sal",
+        aceite: "Aceite low sat",
+        calorias: "148", grasaSat: "1.3 g",
+        sodio: "36 mg",
+        azucares: "3.0 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "65gr",
+      },
+    },
+    // --- CARANTANTA ---
+    {
+      name: "Carantanta",
+      desc: "Exquisitos snacks de carantanta a base de maíz, crujientes y dorados, con el toque perfecto de sal y una textura extra crocante que realza su sabor tradicional.",
+      sizes: "28g, 80g, 2000g",
+      nameEn: "Corn Carantanta Chips:",
+      descEn: "Exquisite corn-based carantanta snacks, crispy and golden, with the perfect touch of salt and an extra crunchy texture that enhances their traditional flavor.",
+      image: "productos/CARANTANTA.png",
+      empaque: "carantanta de y maiz.png",
+      color: "#fbdc59",
+      info: {
+        nombre: "CARANTANTA PATAKIS",
+        pt: "0000", peso: "28 Gr", oz: "0.98",
+        medidas: "Alto 16cm, Ancho 12cm, Profundidad 4cm",
+        undCaja: "12 unidades",
+        ingredientes: "Yuca",
+        aceite: "Aceite oleína de palma",
+        calorias: "157", grasaSat: "4.4 g",
+        sodio: "62 mg",
+        azucares: "0.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "80gr, 2000gr",
+      },
+    },
+    // --- MIXES ---
+    {
+      name: "Snacks mix",
+      desc: "Deliciosa mezcla de snacks de plátano, tocineta, papa, trocillos y chicharrón que te invitan a hacer una pausa para disfrutar de la mejor combinación y deleitar un poco de cada uno de los sabores que más te gustan en cualquier momento y en cualquier lugar.",
+      sizes: "260g",
+      nameEn: "Premium Party Mix:",
+      descEn: "Delicious mix of plantain, bacon, potato, bits and pork rind snacks that invite you to take a break and enjoy the best combination.",
+      image: "productos/ALL-MIX.png",
+      empaque: "ALL-MIX.png",
+      color: "#009fe3",
+      info: {
+        nombre: "ALL MIX PATAKIS",
+        pt: "0138", peso: "80 Gr", oz: "2.8",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano verde, papa, tocineta, trocitos de sabor natural, chicharrón y sal",
+        aceite: "Aceite oleína de palma",
+        calorias: "160", grasaSat: "3.9 g",
+        sodio: "120 mg",
+        azucares: "0.4 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "80gr",
+      },
+    },
+    {
+      name: "Mix vegetal",
+      desc: "Deliciosa mezcla de snacks naturales elaborados con yuca morada, batata y arracacha. Una combinación única de sabores y texturas.",
+      sizes: "65g",
+      nameEn: "Veggie Mix:",
+      descEn: "Delicious mix of natural snacks made with purple cassava, sweet potato and arracacha. A unique combination of flavors and textures.",
+      image: "productos/MIX VEGETAL.png",
+      empaque: "MIX VEGETAL.png",
+      color: "#95c11f",
+      info: {
+        nombre: "MIX ARRACACHA, BATATA Y YUKA MORADA PATAKIS",
+        pt: "0295", peso: "65 Gr", oz: "2.3",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Arracacha, batata, yuca morada y sal",
+        aceite: "Aceite low sat",
+        calorias: "138", grasaSat: "1.2 g",
+        sodio: "22 mg",
+        azucares: "0.1 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "65gr",
+      },
+    },
+    {
+      name: "Mix palitos maduros y chicharrón",
+      desc: "Una mezcla irresistible de palitos crujientes de plátano maduro y trozos de chicharrón. El balance perfecto entre dulce y salado.",
+      sizes: "85g",
+      nameEn: "Sweet Plantain Sticks & Pork Rinds Mix:",
+      descEn: "An irresistible mix of crispy sweet plantain sticks and pork rind pieces. The perfect balance between sweet and salty.",
+      image: "productos/MIX PALITOS MADUROS Y CHICHARROS.png",
+      empaque: "MIX PALITOS MADUROS Y CHICHARROS.png",
+      color: "#e6007e",
+      info: {
+        nombre: "MIX PALITOS MADUROS + CHICHARROS PATAKIS",
+        pt: "0000", peso: "85 Gr", oz: "2.99",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano maduro, chicharrón y sal",
+        aceite: "Mezcla de aceites vegetal",
+        calorias: "142", grasaSat: "1.3 g",
+        sodio: "26 mg",
+        azucares: "3.0 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "85gr",
+      },
+    },
+    // --- NACHOS ---
+    {
+      name: "Nachos natural",
+      desc: "Exquisitos nachos naturales a base de maíz, crujientes y dorados, con el toque perfecto de sal y una textura crocante que resalta su sabor auténtico.",
+      sizes: "28g, 65g",
+      nameEn: "Natural Nachos:",
+      descEn: "Exquisite natural nachos made from corn, crispy and golden, with the perfect touch of salt and a crunchy texture that highlights their authentic flavor.",
+      image: "productos/NACHOS.png",
+      empaque: "MOCKUPS NACHOS.png",
+      color: "#009fe3",
+      info: {
+        nombre: "NACHOS PATAKIS",
+        pt: "0000", peso: "28 Gr", oz: "0.98",
+        medidas: "Alto 16cm, Ancho 12cm, Profundidad 4cm",
+        undCaja: "12 unidades",
+        ingredientes: "Maíz",
+        aceite: "Aceite oleína de palma",
+        calorias: "157", grasaSat: "4.4 g",
+        sodio: "62 mg",
+        azucares: "0.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "65gr",
+      },
+    },
+    // --- PLATANITOS LIMON ---
+    {
+      name: "Platanitos verde limón",
+      desc: "Exquisitos snacks de plátano verde en forma de tajada, realzados con un delicioso toque de limón que resalta su sabor natural.",
+      sizes: "28g, 85g",
+      nameEn: "Lime Green Plantain Chips:",
+      descEn: "Exquisite green plantain snacks in slice form, enhanced with a delicious touch of lime that highlights their natural flavor.",
+      image: "productos/PLATANITOS DE LIMON.png",
+      empaque: "platanitos verde limon.png",
+      color: "#95c11f",
+      info: {
+        nombre: "TAJADA VERDE LIMÓN PATAKIS",
+        pt: "0097", peso: "85 Gr", oz: "2.99",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Plátano verde, sal",
+        aceite: "Aceite low sat",
+        calorias: "136", grasaSat: "1.3 g",
+        sodio: "60 mg",
+        azucares: "0.4 g",
+        saborizantes: "Limón",
+        sellos: "Kosher, INVIMA",
+        extras: "28gr, 85gr",
+      },
+    },
+    // --- MADURITOS 28g ---
+    // --- OTROS ---
+    {
+      name: "Croutones",
+      desc: "Croutones crujientes de plátano, perfectos para ensaladas y sopas.",
+      sizes: "80g",
+      nameEn: "Plantain Croutons:",
+      descEn: "Crispy plantain croutons, perfect for salads and soups.",
+      image: "productos/CROUTONES.png",
+      empaque: "CROUTONES .png",
+      color: "#e8491e",
+      info: null,
+    },
+    {
+      name: "Palomitas de maíz",
+      desc: "Una deliciosa combinación de sabores que equilibra lo mejor de lo dulce y lo salado en cada bocado. Crujientes palomitas de maíz que despiertan tus sentidos.",
+      sizes: "35g",
+      nameEn: "Popcorn:",
+      descEn: "A delicious combination of flavors that balances the best of sweet and salty in every bite. Crunchy popcorn that awakens your senses.",
+      image: "productos/PALOMITAS DE MAIZ.png",
+      empaque: "PALOMITAS DE MAIZ.png",
+      color: "#fbdc59",
+      info: {
+        nombre: "PALOMITAS DE MAÍZ PATAKIS",
+        pt: "0000", peso: "35 Gr", oz: "1.23",
+        medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
+        undCaja: "24 unidades",
+        ingredientes: "Palomitas de maíz",
+        aceite: "Mezcla de aceites vegetal",
+        calorias: "123", grasaSat: "1.4 g",
+        sodio: "93 mg",
+        azucares: "6.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "35g",
+      },
+    },
+    // --- STRIPS ---
+    {
+      name: "Tiras de plátano verde",
+      desc: "Deliciosas tiras/lenguas de plátano verde que te invitan a acompañar los más deliciosos platos o simplemente darte un gusto que te recargará de energía.",
+      sizes: "170g, 200g, 340g",
+      nameEn: "Green plantain strips:",
+      descEn: "Delicious strips/tongues of green plantain that invite you to accompany the most delicious dishes or simply give you a taste that will recharge you with energy.",
+      image: "productos/TIRAS DE PLATANO VERDE STRIPS VERDE.png",
+      empaque: "STRIPS VERDE.png",
+      color: "#95c11f",
+      info: {
+        nombre: "STRIPS DE PLÁTANO VERDE PATAKIS",
+        pt: "0263", peso: "340 Gr", oz: "11.99",
+        medidas: "Alto 32.5cm, Ancho 25cm, Profundidad 10cm",
+        undCaja: "6 unidades",
+        ingredientes: "Plátano verde, sal",
+        aceite: "Aceite low sat",
+        calorias: "160", grasaSat: "4 g",
+        sodio: "65 mg",
+        azucares: "0 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "340gr",
+      },
+    },
+    {
+      name: "Tiras de plátano maduro",
+      desc: "Suculentas y dulces tiras de plátano maduro, idóneas para complementar todo tipo de recetas.",
+      sizes: "170g, 200g, 340g",
+      nameEn: "Ripe plantain strips:",
+      descEn: "Succulent and sweet strips of ripe plantain, ideal to complement all kinds of recipes.",
+      image: "productos/STRIPS MADURO.png",
+      empaque: "STRIPS MADURO.png",
+      color: "#e6007e",
+      info: {
+        nombre: "STRIPS DE PLÁTANO MADURO PATAKIS",
+        pt: "0262", peso: "340 Gr", oz: "11.99",
+        medidas: "Alto 32.5cm, Ancho 25cm, Profundidad 10cm",
+        undCaja: "6 unidades",
+        ingredientes: "Plátano maduro",
+        aceite: "Aceite low sat",
+        calorias: "140", grasaSat: "3 g",
+        sodio: "55 mg",
+        azucares: "10 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "340gr, 500gr",
+      },
+    },
+    {
+      name: "Strips tostón verde",
+      desc: "Irresistibles tostones de plátano verde en formato strips, elaborados con un toque especial que les permiten conservar la inigualable crocancia.",
+      sizes: "454g",
+      nameEn: "Green Toston Strips:",
+      descEn: "Irresistible green plantain tostons in strip format, made with a special touch that preserves the unmatched crunch.",
+      image: "productos/TOSTON VERDE.png",
+      empaque: "STRIPS TOSTÓN MADURO.png",
+      color: "#fbdc59",
+      info: {
+        nombre: "STRIPS TOSTÓN DE PLÁTANO VERDE PATAKIS",
+        pt: "0264", peso: "453.6 Gr", oz: "16",
+        medidas: "Alto 32.5cm, Ancho 25cm, Profundidad 10cm",
+        undCaja: "6 unidades",
+        ingredientes: "Plátano verde",
+        aceite: "Aceite low sat",
+        calorias: "143", grasaSat: "5 g",
+        sodio: "62 mg",
+        azucares: "0 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "454gr",
+      },
+    },
+    // --- BOMBONERAS ---
+    {
+      name: "Bombonera tostón verde",
+      desc: "Bombonera de tostón de plátano verde, ideales para degustar los más deliciosos acompañantes en cualquier momento y lugar.",
+      sizes: "600g",
+      nameEn: "Green Toston Family Jar:",
+      descEn: "Green plantain toston family jar, ideal for enjoying the most delicious accompaniments anytime and anywhere.",
+      image: "productos/TOSTON VERDE.png",
+      empaque: "BOMBONERA TOSRON VERDE.png",
+      color: "#512a6a",
+      info: {
+        nombre: "BOMBONERA DE PLÁTANO VERDE PATAKIS",
+        pt: "0233", peso: "600 Gr", oz: "21.1",
+        medidas: "Alto 21cm, Ancho 50cm, Profundidad 16cm",
+        undCaja: "6 unidades",
+        ingredientes: "Plátano verde, sal",
+        aceite: "Aceite low sat",
+        calorias: "142", grasaSat: "1 g",
+        sodio: "26 mg",
+        azucares: "1 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "600gr",
+      },
+    },
+    {
+      name: "Bombonera tostón maduro",
+      desc: "Bombonera de tostón de plátano maduro con maduración natural, dulce aroma y un sabor irresistible, perfectos para degustar en cualquier momento.",
+      sizes: "600g",
+      nameEn: "Sweet Plantain Toston Family Jar:",
+      descEn: "Sweet plantain toston family jar with natural ripening, sweet aroma and irresistible flavor, perfect for enjoying anytime.",
+      image: "productos/TOSTON MADURO.png",
+      empaque: "BOMBONERA TOSRON MADURO.png",
+      color: "#e8621c",
+      info: null,
+    },
+    // --- SIX PACKS ---
+    {
+      name: "Six Pack tajada verde",
+      desc: "Exquisitos snacks de plátano verde, en forma de tajada con el toque perfecto de sal y una crocancia única para deleitar tu paladar.",
+      sizes: "6 x 28g (168g)",
+      nameEn: "Green Plantain 6-Pack:",
+      descEn: "Exquisite green plantain snacks in slice form with the perfect touch of salt and a unique crunch to delight your palate.",
+      image: "productos/TAJADA DE PLATANO VERDE.png",
+      empaque: "six tajada verde.png",
+      color: "#95c11f",
+      info: {
+        nombre: "SIX PACK TAJADA VERDE PATAKIS",
+        pt: "0180", peso: "28 Gr", oz: "0.98",
+        medidas: "Alto 16cm, Ancho 12cm, Profundidad 4cm",
+        undCaja: "12 unidades",
+        ingredientes: "Plátano verde",
+        aceite: "Aceite oleína de palma",
+        calorias: "157", grasaSat: "4.4 g",
+        sodio: "62 mg",
+        azucares: "0.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "(28gr/und), (168gr umc)",
+      },
+    },
+    {
+      name: "Six Pack tajada madura",
+      desc: "Exquisitos snacks de plátano maduro, en forma de tajada y una crocancia única para deleitar tu paladar.",
+      sizes: "6 x 28g (168g)",
+      nameEn: "Sweet Plantain 6-Pack:",
+      descEn: "Exquisite sweet plantain snacks in slice form with a unique crunch to delight your palate.",
+      image: "productos/MADURITOS.png",
+      empaque: "six tajada madura.png",
+      color: "#e6007e",
+      info: {
+        nombre: "SIX PACK TAJADA MADURA PATAKIS",
+        pt: "0181", peso: "28 Gr", oz: "0.98",
+        medidas: "Alto 16cm, Ancho 12cm, Profundidad 4cm",
+        undCaja: "12 unidades",
+        ingredientes: "Plátano maduro",
+        aceite: "Aceite oleína de palma",
+        calorias: "157", grasaSat: "4.4 g",
+        sodio: "62 mg",
+        azucares: "0.3 g",
+        saborizantes: "Ninguno",
+        sellos: "Kosher, INVIMA",
+        extras: "(28gr/und), (168gr umc)",
+      },
+    },
+    {
+      name: "Six Pack verde limón",
+      desc: "Exquisitos snacks de plátano verde, con sabor a limón en forma de tajada con el toque perfecto de sal y una crocancia única.",
+      sizes: "6 x 28g (168g)",
+      nameEn: "Lime Green Plantain 6-Pack:",
+      descEn: "Exquisite green plantain snacks with lime flavor in slice form with the perfect touch of salt and a unique crunch.",
+      image: "productos/PLATANITOS DE LIMON.png",
+      empaque: "six tajada verde limon.png",
+      color: "#009fe3",
+      info: {
+        nombre: "SIX PACK DE PLÁTANO VERDE LIMÓN PATAKIS",
+        pt: "0246", peso: "28 Gr", oz: "0.98",
+        medidas: "Alto 16cm, Ancho 12cm, Profundidad 4cm",
+        undCaja: "12 unidades",
+        ingredientes: "Plátano verde",
+        aceite: "Aceite oleína de palma",
+        calorias: "141", grasaSat: "2.7 g",
+        sodio: "128 mg",
+        azucares: "0.6 g",
+        saborizantes: "Limón",
+        sellos: "Kosher, INVIMA",
+        extras: "(28gr/und), (168gr umc)",
+      },
+    },
+    {
+      name: "Papa 28g",
+      desc: "Chips de papa en presentación personal de 28g. Perfecta para llevar.",
+      sizes: "28g",
+      nameEn: "Potato Chips 28g:",
+      descEn: "Potato chips in 28g personal size. Perfect to go.",
+      image: "productos/PAPA.png",
+      empaque: "MOCKUPS DE EMPAQUE 28GR  PAPA.jpg",
+      color: "#fbdc59",
+      info: null,
+    },
+    {
+      name: "Papa limón 28g",
+      desc: "Chips de papa con limón en presentación personal de 28g. Frescura en cada bocado.",
+      sizes: "28g",
+      nameEn: "Lime Potato Chips 28g:",
+      descEn: "Lime potato chips in 28g personal size. Freshness in every bite.",
+      image: "productos/PAPA LIMON.png",
+      empaque: "MOCKUPS PAPA LIMÓN PATAKIS 28GR.png",
+      color: "#95c11f",
+      info: null,
+    },
+  ],
+
+  maquila: {
+    title: "MAQUILA TU MARCA CON NOSOTROS",
+    titleEn: "MAKE YOUR BRAND WITH US",
+    desc: "En Plantar contamos con la capacidad de maquilar productos saborizados en diversas presentaciones, garantizándole que cumplirán con sus requerimientos y la calidad e inocuidad necesarios para ser comercializados.",
+    descEn: "In Plantar we have the ability to make flavored products in various presentations, guaranteeing that they will comply with the requirements and the quality and safety necessary to be marketed.",
+    highlight: "TU MARCA, NUESTRA CALIDAD",
+    highlightEn: "YOUR BRAND, OUR QUALITY",
+    features: [
+      "Productos saborizados personalizados",
+      "Diversas presentaciones y empaques",
+      "Cumplimiento de requerimientos específicos",
+      "Calidad e inocuidad garantizada",
+    ],
+  },
+
+  specialties: {
+    title: "ESPECIALIDADES",
+    subtitle: "Creaciones únicas que nos diferencian",
+    items: [
+      { icon: "⭐", name: "Especiales", key: "especiales", empaques: [
+        {img:"canasta.png", name:"Canastas"},
+        {img:"productos/CONOS DE PLATANO VERDE.png", name:"Conos"},
+        {img:"productos/ÑAME.png", name:"Ñame"},
+        {img:"productos/MALANGA.png", name:"Malanga"},
+        {img:"productos/MONEDA MADURA.png", name:"Moneda madura"},
+      ]},
+      { icon: "🫓", name: "Tostones", key: "tostones", empaques: [
+        {img:"TOSTON VERDE.png", name:"Tostón verde"},
+        {img:"TOSTON MADURO.png", name:"Tostón maduro"},
+        {img:"TOSTON DE AJO.png", name:"Tostón de ajo"},
+        {img:"TOSTON DE LIMON.png", name:"Tostón de limón"},
+        {img:"TOSTÓN DE YUCA.png", name:"Tostón de yuca"},
+      ]},
+      { icon: "🌶️", name: "Saborizados", key: "saborizados", empaques: [
+        {img:"MADURITOS PICANTE HABANERO.png", name:"Picante habanero"},
+        {img:"PLATANITOS QUESO EXPLOSION.png", name:"Queso explosión"},
+        {img:"platanitos verde limon.png", name:"Verde limón"},
+        {img:"PAPA TRUFA (2).png", name:"Papa trufa"},
+      ]},
+      { icon: "🥣", name: "Mix", key: "mix", empaques: [
+        {img:"ALL-MIX.png", name:"All Mix"},
+        {img:"MIX VEGETAL.png", name:"Mix vegetal"},
+        {img:"MIX PALITOS MADUROS Y CHICHARROS.png", name:"Mix palitos y chicharrón"},
+      ]},
+      { icon: "➕", name: "Más", key: "mas", empaques: [
+        {img:"BOMBONERA TOSRON VERDE.png", name:"Bombonera verde"},
+        {img:"BOMBONERA TOSRON MADURO.png", name:"Bombonera madura"},
+        {img:"six tajada verde.png", name:"Six pack verde"},
+        {img:"six tajada madura.png", name:"Six pack madura"},
+        {img:"six tajada verde limon.png", name:"Six pack verde limón"},
+        {img:"STRIPS VERDE.png", name:"Strips verde"},
+        {img:"STRIPS MADURO.png", name:"Strips maduro"},
+        {img:"STRIPS TOSTÓN MADURO.png", name:"Strips tostón maduro"},
+        {img:"MONEDA VERDE.png", name:"Monedas verde"},
+        {img:"PATAKON PISAO.png", name:"Patakon pisao"},
+        {img:"CUCHAITAS.png", name:"Cucharitas"},
+        {img:"CARANTANTA de y maiz.png", name:"Carantanta"},
+        {img:"MOCKUPS NACHOS.png", name:"Nachos"},
+        {img:"ARRACACHA.png", name:"Arracacha"},
+        {img:"BATATA.png", name:"Batata"},
+        {img:"PAPA.png", name:"Papa"},
+        {img:"YUKITAS.png", name:"Yukitas"},
+        {img:"YUCA AMARILLA.png", name:"Yuca amarilla"},
+        {img:"CROUTONES .png", name:"Croutones"},
+        {img:"PALOMITAS DE MAIZ.png", name:"Palomitas de maíz"},
+      ]},
+    ],
+  },
+
+  capacity: {
+    title: "CAPACIDAD PRODUCTIVA",
+    subtitle: "Infraestructura de clase mundial",
+    tabs: [
+      { icon: "🏭", name: "Toneladas / Año", key: "toneladas" },
+      { icon: "👥", name: "Colaboradores", key: "colaboradores" },
+      { icon: "🏅", name: "Certificaciones", key: "certificaciones" },
+    ],
+    toneladas: {
+      nacional: { label: "Nacionales", val: "3,200" },
+      exportacion: { label: "Exportación", val: "1,800" },
+      total: { label: "Total", val: "5,000+" },
+    },
+    colaboradores: {
+      imagen: "EMPLEADOS.png",
+      texto: "Contamos con un equipo humano de más de 300 colaboradores comprometidos con la excelencia. Nuestro talento es el motor que impulsa la calidad en cada producto que fabricamos.",
+    },
+    certificaciones: {
+      sellos: [
+        { img: "SELLO Bureau-Veritas-ISO-9001-Logo.png", name: "ISO 9001" },
+        { img: "SELLO GLUTEN.png", name: "Gluten Free" },
+        { img: "SELLO Invima-logo.png", name: "INVIMA" },
+        { img: "SELLO VERIFIED.png", name: "Verified" },
+        { img: "SELLO KOSHER.png", name: "Kosher", big: true },
+        { img: "SELLO LIBRE.png", name: "Libre de gluten", big: true },
+      ],
+    },
+  },
+
+  global: {
+    title: "PRESENCIA GLOBAL",
+    subtitle: "Países donde tenemos presencia",
+    countries: [
+      { id: "ca", name: "Canadá", color: "#E8621C" },
+      { id: "us", name: "Estados Unidos", color: "#F5A623" },
+      { id: "mx", name: "México", color: "#D4247A" },
+      { id: "do", name: "Rep. Dominicana", color: "#2196F3" },
+      { id: "pr", name: "Puerto Rico", color: "#00BCD4" },
+      { id: "pa", name: "Panamá", color: "#8BC34A" },
+      { id: "co", name: "Colombia", color: "#FFD700" },
+      { id: "gb", name: "Reino Unido", color: "#4CAF50" },
+      { id: "ch", name: "Suiza", color: "#F44336" },
+      { id: "es", name: "España", color: "#9C27B0" },
+      { id: "au", name: "Australia", color: "#FF9800" },
+    ],
+  },
+
+  partners: {
+    title: "ALIADOS ESTRATÉGICOS",
+    subtitle: "Trabajamos con los mejores del mercado",
+    goya: {
+      logo: "logo-goya.png",
+      text: "Goya Foods es uno de nuestros principales aliados comerciales. Como la empresa de alimentos hispanos más grande de los Estados Unidos, Goya confía en la calidad y autenticidad de nuestros productos de plátano para llevar el sabor latino a millones de hogares.",
+      empaques: ["goya-maduro.png","goya-verde.png"]
+    },
+    stores: {
+      title: "Dónde Encontrarnos",
+      cities: [
+        {city:"Medellín", stores:["Mercolanta Suramericana","Mercolanta Visitación","Mercolanta San Cristobal","Supermuu Parque","Supermuu San Antonio del Prado","Supermuu Poblado","Supermuu Intermedia","Supermuu San Marcos","Supermuu Laureles","Supermuu la 33","Supermuu San Joaquín","Supermuu Floresta","Supermuu San Cristobal","Supermuu Pedregal","Merca Z Santa Lucía","Merca Z Guayabal","Novaventa","Trade Works"]},
+        {city:"Santiago de Cali", stores:["Mercatodo Floresta","Mercatodo Floralia","Merca Mío Plaza Norte","Merca Mío Guaduales","La Montaña Calima","La Montaña Av Sexta","La Montaña Terminal","La Montaña Pasoancho","La Montaña Cosmocentro","Super A","Mercar Santa Elena","Mercar Caney","Mercar Bochalema","Mercar Valle del Lili","Super Belalcázar (7 sedes)","Cañaveral (8 sedes)","Mercamio Ciudad Jardín","Mercamio la Quinta","Mercamio la 39","Mercamio Centro Sur","Bodega Ilusión","Combuscol Cosmocentro","Combuscol Estadio","Merca Z"]},
+        {city:"Bogotá", stores:["Colanta Ciudad Montes","Mercolanta Chapinero","Mercolanta Montevideo","Mercolanta Castilla","Mercolanta Pradera","Colanta Minuto (Engativá)","Colanta Villa Luz (Engativá)","Colanta Villa del Prado (Usaquén)","Colanta Colina (Suba)","Mercolanta El Lago (Chapinero)","Mercamio (Engativá)","Mercamio Chía","Isimo (Distribución nacional)","Distriviveres del Norte","Supermercado Tequendama","Supermercados Porvenir","Nova Nuez","Trade Works"]},
+        {city:"Armenia", stores:["Supermercado Éxito la 16","Rindemax Armenia","Laureles Express","Laureles Norte","Agromercados La Montaña","Bodega Ilusión Centro","Bodega Ilusión Cra 13","Expendio Bimbo la 13","Almacenes Gaby","Tienda Fitness","Gimnasio Inglés"]},
+        {city:"Manizales", stores:["Mercaldas La Fuente","Mercaldas Versalles","Mercaldas Cristo Rey","Mercaldas Calleja","Mercaldas Las Palmas","Mercaldas Palermo","Mercaldas Alto Río","Mercaldas CEDI","Mercaldas La Enea","Mercaldas San Marcel","Mercaldas Av. Río","Mercaldas Centro","Mercaldas Campohermoso","Mercaldas Neira","Mercaldas La Rochela","Mercaldas Parque Caldas","PDV Artesanal"]},
+        {city:"Ibagué", stores:["Mercacentro 10","Mercacentro 4","Surtiplaza la 37","Surtiplaza Salado","Surtiplaza Aqua","Supermercados Populares"]},
+        {city:"Salento", stores:["Tienda Boquia","Supercocora Salento","Hotel Kawa","Hotel TerAso"]},
+        {city:"Tebaida", stores:["Café Amor Perfecto","PDV Aeropuerto El Edén","Yipao Coffee","Laureles Mall","La Cava","Supermercado Mío"]},
+        {city:"Montenegro", stores:["Mercomunal Idema","Parque del Café","Parque de los Arrieros","Granero Centenario"]},
+        {city:"Pereira", stores:["Bodega Ilusión","MIGAN Capital - La Montaña"]},
+        {city:"Cartago", stores:["Supermercado Mercaplaza Norte"]},
+        {city:"Rionegro", stores:["Supermuu Rionegro","Mercolanta Rionegro"]},
+        {city:"Sabaneta", stores:["Supermuu Sabaneta"]},
+        {city:"Palmira", stores:["Mercamio Plaza de las Américas","Kandie King Palmira"]},
+        {city:"Barranquilla", stores:["PDV Bejman"]},
+        {city:"Apartadó", stores:["Distribuidor Urabá"]},
+        {city:"Duitama", stores:["Distribuidor Duitama (Dalsco)"]},
+        {city:"Aguachica", stores:["Distribución Aguachica Cesar"]},
+        {city:"Internacional", stores:["Prestige Concep - Nueva Jersey (USA)","Komsa - Tijuana, Baja California (MX)","Cheeky Foods - Australia"]},
+      ]
+    },
+    clients: {
+      title: "Nuestros Clientes",
+      text: "Trabajamos con cadenas de supermercados, distribuidores y comercializadoras a nivel nacional e internacional que confían en la calidad de nuestros productos.",
+      list: ["Distribuidores mayoristas","Cadenas de supermercados","Tiendas especializadas","Mercados latinos en EE.UU.","Exportadores internacionales"]
+    },
+    privateBrand: {
+      title: "Marca Privada",
+      subtitle: "Fabricación por Contrato y Servicios de Marca Privada",
+      text: "En Plantar ofrecemos servicios de fabricación por contrato y desarrollo de marca privada. Con nuestra experiencia, tecnología y capacidad instalada, producimos snacks de plátano y otros productos bajo tu propia marca, garantizando los más altos estándares de calidad e inocuidad.",
+      features: [
+        "Desarrollo de producto personalizado",
+        "Empaque con tu marca y diseño",
+        "Cumplimiento de estándares internacionales",
+        "Capacidad de producción escalable",
+        "Soporte técnico y de calidad",
+        "Certificaciones: ISO 9001, INVIMA, Kosher, Gluten Free"
+      ]
+    },
+    contact: {
+      emails: ["ventasnacionales@plantarsas.com","recepcion@plantarsas.com"],
+      phones: ["(+57) 310 643 77 45","(+57) 314 431 56 79"],
+      address: "La Tebaida, Quindío - Lote 1E Bonanza, Vereda Padilla, Colombia",
+      website: "www.plantarsas.com",
+      cta: "Conecta con Nosotros",
+    },
+  },
+};
+
+/* ============================================================
+   BUILD SLIDES
+   ============================================================ */
+function build(){
+  const C=CFG, t=document.getElementById('track');
+  // Helper for wave SVG
+  const wave=(color)=>`<div style="position:absolute;bottom:0;left:0;width:100%;pointer-events:none;line-height:0;overflow:hidden">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="width:120%;margin-left:-10%;display:block;height:80px">
+      <path d="M0,60 C360,100 720,20 1080,60 C1260,90 1380,40 1440,60 L1440,100 L0,100Z" fill="${color}"/>
+    </svg></div>`;
+  // Helper for brand circles
+  const circles=`<div class="brand-icon" style="top:-30px;left:-30px;width:150px;height:150px;animation-duration:14s"><img src="icon-p.png" alt=""></div>
+    <div class="brand-icon" style="bottom:-25px;right:-25px;width:130px;height:130px;animation-duration:18s;animation-delay:-5s"><img src="icon-p.png" alt=""></div>`;
+
+  const S=[
+    /* 0 — Cover */
+    `<div class="slide" data-i="0" style="background:#fff url('portada-fondo.png') center/contain no-repeat"><div class="slide-body center">
+      <img src="sabor autentico.png" alt="100% colombiano sabor auténtico" class="portada-sello anim">
+      <img src="CARRO01.png" alt="Willys platanero" class="portada-truck anim">
+    </div></div>`,
+
+    /* 1 — Legacy */
+    `<div class="slide legacy-slide" data-i="1"><div class="slide-body">
+      <div class="center">
+        <span class="legacy-badge anim">${C.legacy.badge}</span>
+        <h2 class="mega-title anim" style="color:var(--green);text-shadow:none">${C.legacy.title}</h2>
+        <div class="legacy-accent-line anim"></div>
+      </div>
+
+      <div class="legacy-tabs-v2 anim">
+        <button class="ltab-v2 active" onclick="showLegacyPanel('quienes',this)">
+          <span class="ltab-v2-icon">🏢</span>
+          <span class="ltab-v2-label">Quiénes Somos</span>
+        </button>
+        <button class="ltab-v2" onclick="showLegacyPanel('historia',this)">
+          <span class="ltab-v2-icon">📜</span>
+          <span class="ltab-v2-label">Historia</span>
+        </button>
+      </div>
+
+      <div class="legacy-panel visible anim" id="panel-quienes">
+        <div class="panel-quienes-v2">
+          <p>${C.legacy.quienes}</p>
+          <div class="legacy-highlights">${C.legacy.highlights.map(function(h){return '<div class="legacy-hl"><span class="legacy-hl-icon">'+h.icon+'</span><span class="legacy-hl-text">'+h.text+'</span></div>'}).join('')}</div>
+        </div>
+      </div>
+
+      <div class="legacy-panel anim" id="panel-historia">
+        <div class="panel-historia-v2">
+          <div class="timeline-v2">
+            ${C.legacy.timeline.map(function(t){return '<div class="tlv2-item"><div class="tlv2-dot"></div><div class="tlv2-year">'+t.year+'</div><div class="tlv2-content"><div class="tlv2-title">'+t.title+'</div><div class="tlv2-desc">'+t.desc+'</div></div></div>'}).join('')}
+          </div>
+        </div>
+      </div>
+
+    </div></div>`,
+
+    /* 2 — Calidad, Inocuidad y Operacion */
+    `<div class="slide bg-lime" data-i="2"><div class="slide-body">
+      <div class="center">
+        <span class="section-label anim">Nuestro Compromiso</span>
+        <h2 class="mega-title anim">CALIDAD, INOCUIDAD<br>& <span class="highlight">OPERACIÓN</span></h2>
+      </div>
+
+      <div class="legacy-tabs anim" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;margin-top:2rem">
+        <div class="legacy-tab tab-lime active" onclick="showPanel('calidad',this,'ops')">
+          <span class="legacy-tab-icon">✅</span>
+          <span class="legacy-tab-label">Calidad</span>
+        </div>
+        <div class="legacy-tab tab-lime" onclick="showPanel('centro',this,'ops')">
+          <span class="legacy-tab-icon">📦</span>
+          <span class="legacy-tab-label">Centro de Distribución</span>
+        </div>
+        <div class="legacy-tab tab-lime" onclick="showPanel('planta',this,'ops')">
+          <span class="legacy-tab-icon">🏭</span>
+          <span class="legacy-tab-label">Planta</span>
+        </div>
+        <div class="legacy-tab tab-lime" onclick="showPanel('categorias',this,'ops')">
+          <span class="legacy-tab-icon">🍌</span>
+          <span class="legacy-tab-label">Categorías de Snacks</span>
+        </div>
+      </div>
+
+      <div class="legacy-panel visible anim" id="panel-calidad" data-group="ops">
+        <div class="panel-quienes panel-with-img" style="color:var(--green-dark)">
+          <div class="panel-text"><p style="color:var(--dark)">${C.operations.calidad}</p></div>
+          <div class="panel-img" onclick="openLightbox(event,'calidad.jpeg')"><img src="calidad.jpeg" alt="Calidad"></div>
+        </div>
+      </div>
+      <div class="legacy-panel anim" id="panel-centro" data-group="ops">
+        <div class="panel-quienes panel-with-img" style="color:var(--green-dark)">
+          <div class="panel-text"><p style="color:var(--dark)">${C.operations.centro}</p></div>
+          <div class="panel-img" onclick="openLightbox(event,'bodega.jpeg')"><img src="bodega.jpeg" alt="Centro de Distribución"></div>
+        </div>
+      </div>
+      <div class="legacy-panel anim" id="panel-planta" data-group="ops">
+        <div class="panel-quienes panel-with-img" style="color:var(--green-dark)">
+          <div class="panel-text"><p style="color:var(--dark)">${C.operations.planta}</p></div>
+          <div class="panel-img" onclick="openLightbox(event,'planta.jpeg')"><img src="planta.jpeg" alt="Planta"></div>
+        </div>
+      </div>
+      <div class="legacy-panel anim" id="panel-categorias" data-group="ops">
+        <div class="panel-quienes panel-with-img" style="color:var(--green-dark)">
+          <div class="panel-text"><p style="color:var(--dark)">${C.operations.categorias}</p></div>
+          <div class="panel-img" onclick="openLightbox(event,'snacks.jpeg')"><img src="snacks.jpeg" alt="Categorías de Snacks"></div>
+        </div>
+      </div>
+    </div></div>`,
+
+    /* 3 — Del Campo a la Mesa / Productos */
+    `<div class="slide carousel-slide" data-i="3" id="carouselSlide" style="background:${C.productos[0].color}"><div class="carousel-waves">
+      <svg class="carousel-wave cw1" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.15)" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,154.7C672,149,768,171,864,186.7C960,203,1056,213,1152,197.3C1248,181,1344,139,1392,117.3L1440,96V320H0Z"/></svg>
+      <svg class="carousel-wave cw2" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.1)" d="M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,218.7C672,213,768,171,864,154.7C960,139,1056,149,1152,165.3C1248,181,1344,203,1392,213.3L1440,224V320H0Z"/></svg>
+      <svg class="carousel-wave cw3" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.07)" d="M0,96L48,112C96,128,192,160,288,176C384,192,480,192,576,176C672,160,768,128,864,128C960,128,1056,160,1152,170.7C1248,181,1344,171,1392,165.3L1440,160V0H0Z"/></svg>
+    </div><div class="slide-body">
+      <div class="carousel-header anim">
+        <div>
+          <h2 class="carousel-title" style="font-size:clamp(2.5rem,6vw,4rem)">DEL CAMPO A LA MESA</h2>
+          <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;font-weight:400;margin-top:0.3rem">Productos artesanales elaborados con el mejor plátano colombiano, llevando tradición y sabor a tu mesa.</p>
+        </div>
+        <div class="carousel-search">
+          <span class="carousel-search-icon">&#128269;</span>
+          <input type="text" placeholder="Buscar producto..." id="prodSearch" onkeyup="searchProduct(this.value)">
+        </div>
+      </div>
+
+      <div class="prod-tabs anim">
+        <button class="prod-tab active" id="tabProducto" onclick="showProdView('producto')">Producto</button>
+        <button class="prod-tab" id="tabInfo" onclick="showProdView('info')">Información</button>
+      </div>
+
+      <!-- Vista Producto -->
+      <div class="prod-view" id="viewProducto">
+        <div class="carousel-content anim">
+          <div class="carousel-img">
+            <img id="carouselImg" src="${C.productos[0].image}" alt="${C.productos[0].name}" onclick="openLightbox(event,this.src)">
+          </div>
+          <div class="carousel-info">
+            <h3 id="carouselName">${C.productos[0].name}</h3>
+            <p id="carouselDesc">${C.productos[0].desc}</p>
+            <p class="sizes" id="carouselSizes">${C.productos[0].sizes}</p>
+            <div class="carousel-info-en">
+              <h4 id="carouselNameEn">${C.productos[0].nameEn}</h4>
+              <p id="carouselDescEn">${C.productos[0].descEn}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vista Informacion -->
+      <div class="prod-view hidden" id="viewInfo">
+        <div class="info-layout">
+          <div class="info-empaque">
+            <img id="infoEmpaque" src="${C.productos[0].empaque||C.productos[0].image}" alt="Empaque" onclick="openLightbox(event,this.src)">
+          </div>
+          <div class="info-table" id="infoTableWrap"></div>
+        </div>
+      </div>
+
+      <div class="carousel-nav anim">
+        <button class="carousel-arrow" id="cprev" onclick="prevProduct()">&#10094;</button>
+        <span class="carousel-counter" id="carouselCounter">1 / ${C.productos.length}</span>
+        <button class="carousel-arrow" id="cnext" onclick="nextProduct()">&#10095;</button>
+      </div>
+    </div></div>`,
+
+    /* 4 — Maquila */
+    `<div class="slide legacy-slide" data-i="4"><div class="slide-body">
+      <div class="maquila-layout anim">
+        <div class="maquila-left">
+          <span class="legacy-badge anim">Private Label</span>
+          <h2 class="mega-title anim" style="color:var(--green);text-shadow:none">MAQUILA TU MARCA<br>CON NOSOTROS</h2>
+          <div class="legacy-accent-line anim" style="margin:0.8rem 0 0"></div>
+          <p class="sub-title anim" style="color:#444">${C.maquila.desc}</p>
+          <div class="maquila-features anim">
+            ${C.maquila.features.map(function(f){return '<span>' + f + '</span>'}).join('')}
+          </div>
+          <div class="maquila-en anim">
+            <p><em>${C.maquila.descEn}</em></p>
+          </div>
+        </div>
+        <div class="maquila-right anim">
+          <img src="planta.jpeg" alt="Nuestra planta">
+          <div class="maquila-overlay">
+            <h3><span>${C.maquila.highlight.split(',')[0]},</span><br>${C.maquila.highlight.split(',')[1]}</h3>
+          </div>
+        </div>
+      </div>
+    </div></div>`,
+
+    /* 5 — Patakis Familia */
+    `<div class="slide patakis-slide" data-i="5">
+      <div class="patakis-rain" id="patakisRain"></div>
+      <div class="slide-body">
+        <div class="patakis-content">
+          <div class="patakis-title anim">CONOCE NUESTRA<br><span>GRAN FAMILIA</span></div>
+          <img src="patakis-logo.png" alt="Patakis" class="patakis-logo anim">
+        </div>
+      </div>
+    </div>`,
+
+    /* 6 — Specialties */
+    `<div class="slide bg-cream" data-i="6"><div class="slide-body">
+      <div class="center">
+        <span class="section-label anim">Edición Especial</span>
+        <h2 class="mega-title anim">${C.specialties.title}</h2>
+        <p class="sub-title anim">${C.specialties.subtitle}</p>
+      </div>
+      <div class="specs">${C.specialties.items.map((i,idx)=>`
+        <div class="spec anim" onclick="showSpecGallery('${i.key}')" data-spec="${i.key}" style="cursor:pointer">
+          <span class="spec-icon">${i.icon}</span>
+          <h3 class="spec-name">${i.name}</h3>
+        </div>`).join('')}</div>
+      <div class="spec-gallery" id="specGallery">
+        <div class="spec-gallery-header">
+          <h3 id="specGalleryTitle"></h3>
+          <button class="spec-gallery-close" onclick="closeSpecGallery()">&#10005;</button>
+        </div>
+        <div class="spec-gallery-grid" id="specGalleryGrid"></div>
+      </div>
+    </div></div>`,
+
+    /* 7 — Capacity */
+    `<div class="slide legacy-slide" data-i="7" id="slideCapacity"><div class="slide-body">
+      <div class="center">
+        <span class="legacy-badge anim">Infraestructura</span>
+        <h2 class="mega-title anim" style="color:var(--green);text-shadow:none">${C.capacity.title}</h2>
+        <div class="legacy-accent-line anim"></div>
+        <p class="sub-title anim" style="color:#666">${C.capacity.subtitle}</p>
+      </div>
+      <div class="cap-tabs anim">${C.capacity.tabs.map((t,i)=>`
+        <div class="cap-tab" data-captab="${t.key}" onclick="showCapPanel('${t.key}')" style="cursor:pointer">
+          <span class="cap-tab-icon">${t.icon}</span>
+          <span class="cap-tab-name">${t.name}</span>
+        </div>`).join('')}</div>
+      <div class="cap-panel" id="capPanel">
+        <div class="cap-panel-content" id="capPanelContent"></div>
+      </div>
+    </div></div>`,
+
+    /* 7 — Global */
+    `<div class="slide bg-cream" data-i="8"><div class="slide-body">
+      ${circles}
+      <div class="center">
+        <span class="section-label anim">Alcance Mundial</span>
+        <h2 class="mega-title anim">${C.global.title}</h2>
+        <p class="sub-title anim">${C.global.subtitle}</p>
+      </div>
+      <div class="map-stats anim">
+        <div class="map-stat"><div class="map-stat-val" data-count="11">0</div><div class="map-stat-lbl">Países</div></div>
+        <div class="map-stat"><div class="map-stat-val" data-count="3">0</div><div class="map-stat-lbl">Continentes</div></div>
+        <div class="map-stat"><div class="map-stat-val" data-count="16">0</div><div class="map-stat-lbl">Años exportando</div></div>
+      </div>
+      <div class="world-map-wrap anim" id="worldMapWrap">
+        <img src="mapa.png" alt="Mapa de presencia global">
+        <div class="map-overlay" id="mapOverlay"></div>
+      </div>
+      <div class="map-legend anim">${C.global.countries.map((c,i)=>`
+        <div class="map-legend-item" data-mapidx="${i}" onclick="highlightCountry(${i})"><span class="map-legend-dot" style="background:${c.color}"></span>${c.name}</div>`).join('')}</div>
+    </div></div>`,
+
+    /* 8 — Partners & Contact */
+    `<div class="slide legacy-slide" data-i="9"><div class="slide-body" style="padding-top:1rem">
+      <div class="center" style="margin-bottom:0.5rem">
+        <span class="legacy-badge anim" style="font-size:0.7rem;padding:0.3rem 1.2rem">Nuestros Aliados</span>
+        <h2 class="mega-title anim" style="color:var(--green);text-shadow:none;font-size:clamp(1.8rem,5vw,2.8rem);margin:0.3rem 0">${C.partners.title}</h2>
+        <div class="legacy-accent-line anim" style="margin:0.3rem auto"></div>
+      </div>
+      <div class="aliados-tabs anim" style="margin-top:0.6rem">
+        <button class="aliado-tab active" data-atab="goya" onclick="showAliadoPanel('goya',this)"><img src="logo-goya.png" alt="Goya"> Goya</button>
+        <button class="aliado-tab" data-atab="stores" onclick="showAliadoPanel('stores',this)">🛒 Dónde Encontrarnos</button>
+        <button class="aliado-tab" data-atab="clients" onclick="showAliadoPanel('clients',this)">🤝 Clientes</button>
+        <button class="aliado-tab" data-atab="private" onclick="showAliadoPanel('private',this)">🏭 Marca Privada</button>
+      </div>
+
+      <div class="aliado-panel visible" id="apanel-goya">
+        <div class="goya-header">
+          <img src="${C.partners.goya.logo}" alt="Goya Foods" class="goya-logo">
+          <div class="goya-text">${C.partners.goya.text}</div>
+        </div>
+        ${C.partners.goya.empaques.length?`<div class="goya-empaques" style="grid-template-columns:repeat(${C.partners.goya.empaques.length},minmax(120px,180px));justify-content:center">${C.partners.goya.empaques.map(e=>`<div class="goya-emp"><img src="${e}" alt="Producto Goya" onclick="openLightbox(event,this.src)" style="cursor:pointer"></div>`).join('')}</div>`:''}
+      </div>
+
+      <div class="aliado-panel" id="apanel-stores">
+        <div class="stores-summary anim">
+          <div class="stores-stat"><span class="stores-stat-num">${C.partners.stores.cities.length}</span><span class="stores-stat-label">Ciudades</span></div>
+          <div class="stores-stat"><span class="stores-stat-num">${C.partners.stores.cities.reduce((a,c)=>a+c.stores.length,0)}+</span><span class="stores-stat-label">Puntos de Venta</span></div>
+        </div>
+        <div class="stores-accordion">
+          ${C.partners.stores.cities.map((c,i)=>`
+            <div class="store-city-block">
+              <button class="store-city-btn" onclick="toggleStoreCity(this)">
+                <span class="store-city-name">${c.city==='Internacional'?'🌎':'📍'} ${c.city}</span>
+                <span class="store-city-count">${c.stores.length} punto${c.stores.length>1?'s':''}</span>
+                <span class="store-city-arrow">▸</span>
+              </button>
+              <div class="store-city-list">
+                ${c.stores.map(s=>`<div class="store-pdv">${s}</div>`).join('')}
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <div class="aliado-panel" id="apanel-clients">
+        <div class="clients-text">${C.partners.clients.text}</div>
+        <div class="clients-list">
+          ${C.partners.clients.list.map(c=>`<div class="client-item${c==='Cadenas de supermercados'?' client-clickable':''}" ${c==='Cadenas de supermercados'?'onclick="openLightbox(event,\'clientes-img.png\')" style="cursor:pointer"':''}>${c}${c==='Cadenas de supermercados'?' <span style="font-size:0.7rem;opacity:0.6">ver ▸</span>':''}</div>`).join('')}
+        </div>
+      </div>
+
+      <div class="aliado-panel" id="apanel-private">
+        <div class="private-brand-box">
+          <h3>${C.partners.privateBrand.subtitle}</h3>
+          <p>${C.partners.privateBrand.text}</p>
+          <div class="pb-features">
+            ${C.partners.privateBrand.features.map(f=>`<div class="pb-feature">${f}</div>`).join('')}
+          </div>
+          <div class="pb-cta" onclick="openLightbox(event,'maquila-clientes.png')">
+            <span>🏷️ Servicios a Marcas Privadas</span>
+            <span class="pb-cta-hint">ver ▸</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-box-v2 anim" style="margin-top:1rem;padding:1.2rem 1.5rem">
+        <h3 style="font-size:1.4rem;margin-bottom:0.5rem">CONTÁCTANOS</h3>
+        <div class="contact-info-v2" style="margin-bottom:0.8rem">
+          ${C.partners.contact.emails.map(e=>`<div class="contact-item-v2"><span>📧</span>${e}</div>`).join('')}
+          ${C.partners.contact.phones.map(p=>`<div class="contact-item-v2"><span>📞</span>${p}</div>`).join('')}
+          <div class="contact-item-v2"><span>📍</span>${C.partners.contact.address}</div>
+          <div class="contact-item-v2"><span>🌐</span>${C.partners.contact.website}</div>
+        </div>
+        <a href="mailto:${C.partners.contact.emails[0]}" class="contact-btn-v2" style="padding:0.7rem 2rem">${C.partners.contact.cta} <span>&#10132;</span></a>
+      </div>
+    </div></div>`,
+  ];
+
+  t.innerHTML=S.join('');
+}
+
+/* ============================================================
+   SLIDER
+   ============================================================ */
+let cur=0,total=0,tx0=0;
+function init(){
+  build();total=document.querySelectorAll('.slide').length;
+  const d=document.getElementById('dots');d.innerHTML='';
+  for(let i=0;i<total;i++){const b=document.createElement('button');b.className='dot'+(i===0?' on':'');b.onclick=()=>go(i);d.appendChild(b)}
+  go(0);
+  const sl=document.querySelector('.slider');
+  sl.addEventListener('touchstart',e=>{tx0=e.changedTouches[0].screenX},false);
+  sl.addEventListener('touchend',e=>{const dx=tx0-e.changedTouches[0].screenX;if(Math.abs(dx)>50)dx>0?next():prev()},false);
+}
+function go(i){
+  if(i<0||i>=total)return;cur=i;
+  document.getElementById('track').style.transform=`translateX(-${i*100}%)`;
+  document.querySelectorAll('.slide').forEach((s,j)=>s.classList.toggle('active',j===i));
+  document.querySelectorAll('.dot').forEach((d,j)=>d.classList.toggle('on',j===i));
+  document.getElementById('prevBtn').disabled=i===0;
+  document.getElementById('nextBtn').disabled=i===total-1;
+  document.getElementById('progress').style.width=((i+1)/total*100)+'%';
+  document.getElementById('counter').textContent=`${i+1} / ${total}`;
+  // Auto-open panels when reaching specific slides
+  if(i===5){setTimeout(function(){initPatakisRain()},300)}
+  if(i===6){setTimeout(function(){showSpecGallery('especiales')},400)}
+  if(i===7){setTimeout(function(){showCapPanel('toneladas')},400)}
+  if(i===8){buildMapPins();animateMapStats();}
+  if(i===9){setTimeout(function(){showAliadoPanel('goya',document.querySelector('.aliado-tab[data-atab="goya"]'))},400)}
+}
+function next(){go(cur+1)}function prev(){go(cur-1)}
+function showLegacyPanel(id,el){
+  document.querySelectorAll('.legacy-panel:not([data-group])').forEach(p=>p.classList.remove('visible'));
+  el.parentElement.querySelectorAll('.ltab-v2,.legacy-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('visible');
+  el.classList.add('active');
+}
+function openLightbox(e,src){
+  if(e){e.stopPropagation();e.preventDefault();}
+  var lb=document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src=src;
+  lb.classList.add('show');
+}
+function closeLightbox(e){
+  if(e){e.stopPropagation();}
+  document.getElementById('lightbox').classList.remove('show');
+}
+
+/* Aliados tabs */
+function toggleStoreCity(btn){
+  var block=btn.parentElement;
+  block.classList.toggle('open');
+}
+function showAliadoPanel(key,el){
+  document.querySelectorAll('.aliado-panel').forEach(function(p){p.classList.remove('visible')});
+  document.querySelectorAll('.aliado-tab').forEach(function(t){t.classList.remove('active')});
+  var panel=document.getElementById('apanel-'+key);
+  if(panel)panel.classList.add('visible');
+  if(el)el.classList.add('active');
+}
+
+/* Specialties gallery */
+/* Capacity panels */
+function showCapPanel(key){
+  var tabs=document.querySelectorAll('.cap-tab');
+  tabs.forEach(function(t){t.classList.toggle('active',t.dataset.captab===key);});
+  var panel=document.getElementById('capPanel');
+  var content=document.getElementById('capPanelContent');
+  var C=CFG.capacity;
+  var html='';
+  if(key==='toneladas'){
+    var t=C.toneladas;
+    html='<div class="ton-grid">';
+    html+='<div class="ton-card"><div class="ton-lbl">'+t.nacional.label+'</div><div class="ton-val">'+t.nacional.val+'</div><div class="ton-unit">toneladas/año</div></div>';
+    html+='<div class="ton-card"><div class="ton-lbl">'+t.exportacion.label+'</div><div class="ton-val">'+t.exportacion.val+'</div><div class="ton-unit">toneladas/año</div></div>';
+    html+='<div class="ton-card total"><div class="ton-lbl">'+t.total.label+'</div><div class="ton-val">'+t.total.val+'</div><div class="ton-unit">toneladas/año</div></div>';
+    html+='</div>';
+  } else if(key==='colaboradores'){
+    var co=C.colaboradores;
+    html='<div class="colab-layout">';
+    html+='<div class="colab-img"><img src="'+co.imagen+'" alt="Nuestro equipo"></div>';
+    html+='<div class="colab-text"><h3>NUESTRO EQUIPO, NUESTRA FORTALEZA</h3>';
+    html+='<p>'+co.texto+'</p>';
+    html+='<div class="colab-stat"><div class="colab-stat-item"><div class="colab-stat-val">300+</div><div class="colab-stat-lbl">Colaboradores</div></div>';
+    html+='<div class="colab-stat-item"><div class="colab-stat-val">16+</div><div class="colab-stat-lbl">Años de experiencia</div></div></div>';
+    html+='</div></div>';
+  } else if(key==='certificaciones'){
+    var ce=C.certificaciones;
+    html='<div style="text-align:center;margin-bottom:1rem"><h3 style="font-family:Bebas Neue,sans-serif;font-size:1.8rem;color:var(--lime);margin:0">NUESTRAS CERTIFICACIONES</h3><p style="font-size:0.85rem;opacity:0.7;color:rgba(255,255,255,0.8)">Calidad garantizada con estándares internacionales</p></div>';
+    html+='<div class="cert-grid">';
+    ce.sellos.forEach(function(s){
+      var cls=s.big?'cert-item cert-big':'cert-item';
+      html+='<div class="'+cls+'"><img src="'+s.img+'" alt="'+s.name+'"><span>'+s.name+'</span></div>';
+    });
+    html+='</div>';
+  }
+  content.innerHTML=html;
+  panel.classList.add('visible');
+}
+
+function showSpecGallery(key){
+  var C=CFG.specialties;
+  var item=C.items.find(function(i){return i.key===key;});
+  if(!item)return;
+  /* highlight active spec */
+  document.querySelectorAll('.spec').forEach(function(el){
+    el.classList.toggle('active',el.dataset.spec===key);
+  });
+  var gallery=document.getElementById('specGallery');
+  var title=document.getElementById('specGalleryTitle');
+  var grid=document.getElementById('specGalleryGrid');
+  title.textContent=item.name;
+  grid.innerHTML=item.empaques.map(function(p){
+    var src=typeof p==='string'?p:p.img;
+    var name=typeof p==='string'?src.replace(/\.\w+$/,''):p.name;
+    return '<div class="spec-gallery-item"><img src="'+src+'" alt="'+name+'" onclick="openLightbox(event,\''+src.replace(/'/,"\\'")+'\')">'+'<span class="spec-gallery-name">'+name+'</span></div>';
+  }).join('');
+  gallery.classList.add('visible');
+  gallery.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function closeSpecGallery(){
+  document.getElementById('specGallery').classList.remove('visible');
+  document.querySelectorAll('.spec').forEach(function(el){el.classList.remove('active');});
+}
+
+/* World Map — interactive pins + lines */
+var mapPinPositions=[
+  {id:'ca', x:17, y:18},
+  {id:'us', x:18, y:33},
+  {id:'mx', x:16, y:47},
+  {id:'do', x:26, y:51},
+  {id:'pr', x:28, y:53},
+  {id:'pa', x:22, y:58},
+  {id:'co', x:22, y:62},
+  {id:'gb', x:43, y:24},
+  {id:'ch', x:46, y:32},
+  {id:'es', x:42, y:35},
+  {id:'au', x:15, y:88},
+];
+var coOrigin={x:22,y:62}; // Colombia as origin
+
+/* Patakis rain animation */
+var patakisRainInit=false;
+function initPatakisRain(){
+  if(patakisRainInit)return;patakisRainInit=true;
+  var container=document.getElementById('patakisRain');
+  if(!container)return;
+  var emps=['ALL-MIX.png','ARRACACHA.png','BATATA.png','BOMBONERA TOSRON VERDE.png','CUCHAITAS.png','MADURITOS.png','MADURITOS PICANTE HABANERO.png','MIX VEGETAL.png','MIX PALITOS MADUROS Y CHICHARROS.png','MONEDA VERDE.png','PALITOS MADUROS.png','PALITOS VERDES.png','PALOMITAS DE MAIZ.png','PAPA.png','PAPA TRUFA (2).png','PATAKON PISAO.png','PLATANITOS VERDES.png','PLATANITOS QUESO EXPLOSION.png','STRIPS VERDE.png','STRIPS MADURO.png','TOSTON VERDE.png','TOSTON MADURO.png','TOSTON DE LIMON.png','TOSTON DE AJO.png','YUKITAS.png','TOSTÓN DE YUCA.png','YUCA AMARILLA.png','carantanta de y maiz.png'];
+  for(var w=0;w<35;w++){
+    var img=document.createElement('img');
+    img.className='rain-emp';
+    img.src='empaques/'+emps[w%emps.length];
+    img.alt='';
+    img.style.left=Math.random()*92+'%';
+    img.style.animationDuration=(5+Math.random()*8)+'s';
+    img.style.animationDelay=(Math.random()*10)+'s';
+    img.style.width=clamp(60+Math.random()*80)+'px';
+    img.style.opacity=0.6+Math.random()*0.35;
+    container.appendChild(img);
+  }
+}
+function clamp(v){return Math.max(40,Math.min(v,110))}
+
+function buildMapPins(){
+  var overlay=document.getElementById('mapOverlay');
+  if(!overlay)return;
+  var countries=CFG.global.countries;
+  var html='';
+  mapPinPositions.forEach(function(pos,i){
+    var c=countries.find(function(ct){return ct.id===pos.id;});
+    if(!c)return;
+    // Connection line from Colombia
+    if(pos.id!=='co'){
+      var dx=pos.x-coOrigin.x, dy=pos.y-coOrigin.y;
+      var len=Math.sqrt(dx*dx+dy*dy);
+      var angle=Math.atan2(dy,dx)*180/Math.PI;
+      html+='<div class="map-line" data-mapline="'+i+'" style="left:'+coOrigin.x+'%;top:'+coOrigin.y+'%;width:'+len+'%;transform:rotate('+angle+'deg);background:linear-gradient(90deg,'+c.color+','+c.color+')"></div>';
+    }
+    // Pin
+    var delay=(i*0.15);
+    html+='<div class="map-pin" data-mappin="'+i+'" style="left:'+pos.x+'%;top:'+pos.y+'%;background:'+c.color+';color:'+c.color+';animation-delay:'+delay+'s" onclick="highlightCountry('+i+')">';
+    html+='<span class="map-pin-label">'+c.name+'</span>';
+    html+='</div>';
+  });
+  overlay.innerHTML=html;
+  // Animate pins appearing with stagger
+  setTimeout(function(){
+    document.querySelectorAll('.map-line').forEach(function(l){l.classList.add('visible');});
+  },500);
+}
+var activeCountryIdx=-1;
+function highlightCountry(idx){
+  var pins=document.querySelectorAll('.map-pin');
+  var legends=document.querySelectorAll('.map-legend-item');
+  var lines=document.querySelectorAll('.map-line');
+  if(activeCountryIdx===idx){
+    // Deselect
+    activeCountryIdx=-1;
+    pins.forEach(function(p){p.classList.remove('active');});
+    legends.forEach(function(l){l.classList.remove('active');});
+    lines.forEach(function(l){l.style.opacity='';});
+    return;
+  }
+  activeCountryIdx=idx;
+  pins.forEach(function(p,i){
+    p.classList.toggle('active',i===idx);
+  });
+  legends.forEach(function(l,i){
+    l.classList.toggle('active',i===idx);
+  });
+  lines.forEach(function(l,i){
+    var lineIdx=parseInt(l.dataset.mapline);
+    l.style.opacity=lineIdx===idx?'0.8':'0.15';
+  });
+}
+/* Animate map stat counters */
+function animateMapStats(){
+  document.querySelectorAll('.map-stat-val[data-count]').forEach(function(el){
+    var target=parseInt(el.dataset.count);
+    var dur=1500;var start=0;var startTime=null;
+    function step(ts){
+      if(!startTime)startTime=ts;
+      var progress=Math.min((ts-startTime)/dur,1);
+      var eased=1-Math.pow(1-progress,3);
+      el.textContent=Math.floor(eased*target)+(target>1?'+':'');
+      if(progress<1)requestAnimationFrame(step);
+      else el.textContent=target+'+';
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+/* Product carousel */
+var curProd=0;
+function goProduct(i){
+  var p=CFG.productos;
+  if(i<0||i>=p.length)return;
+  curProd=i;
+  var s=document.getElementById('carouselSlide');
+  if(s)s.style.backgroundColor=p[i].color;
+  var img=document.getElementById('carouselImg');
+  if(img){img.src=p[i].image;img.alt=p[i].name;}
+  var el=document.getElementById('carouselName');if(el)el.textContent=p[i].name;
+  el=document.getElementById('carouselDesc');if(el)el.textContent=p[i].desc;
+  el=document.getElementById('carouselSizes');if(el)el.textContent=p[i].sizes;
+  el=document.getElementById('carouselNameEn');if(el)el.textContent=p[i].nameEn;
+  el=document.getElementById('carouselDescEn');if(el)el.textContent=p[i].descEn;
+  el=document.getElementById('carouselCounter');if(el)el.textContent=(i+1)+' / '+p.length;
+  // Update info view
+  var emp=document.getElementById('infoEmpaque');
+  if(emp)emp.src=p[i].empaque||p[i].image;
+  buildInfoTable(p[i]);
+  document.getElementById('cprev').disabled=i===0;
+  document.getElementById('cnext').disabled=i===p.length-1;
+  // Reset to producto view
+  showProdView('producto');
+}
+function nextProduct(){goProduct(curProd+1)}
+function prevProduct(){goProduct(curProd-1)}
+function showProdView(view){
+  document.getElementById('viewProducto').classList.toggle('hidden',view!=='producto');
+  document.getElementById('viewInfo').classList.toggle('hidden',view!=='info');
+  document.getElementById('tabProducto').classList.toggle('active',view==='producto');
+  document.getElementById('tabInfo').classList.toggle('active',view==='info');
+}
+function buildInfoTable(p){
+  var wrap=document.getElementById('infoTableWrap');
+  if(!wrap)return;
+  if(!p.info){wrap.innerHTML='<p style="opacity:0.6;font-style:italic;margin-top:2rem">Información técnica no disponible aún.</p>';return;}
+  var d=p.info;
+  wrap.innerHTML='<h4>Información de producto y sus características</h4>'+
+    '<table><tr><th>Nombre</th><td colspan="3">'+d.nombre+'</td></tr>'+
+    '<tr><th>PT</th><th>Peso</th><th>OZ</th><th>Und por Caja</th></tr>'+
+    '<tr><td>'+d.pt+'</td><td>'+d.peso+'</td><td>'+d.oz+'</td><td>'+d.undCaja+'</td></tr>'+
+    '<tr><th>Medidas</th><td colspan="3">'+d.medidas+'</td></tr>'+
+    '<tr><th>Ingredientes</th><td>'+d.ingredientes+'</td><th>Aceite</th><td>'+d.aceite+'</td></tr>'+
+    '<tr><th>Calorías</th><td>'+d.calorias+'</td><th>Grasa Sat.</th><td>'+d.grasaSat+'</td></tr>'+
+    '<tr><th>Sodio</th><td>'+d.sodio+'</td><th>Azúcares</th><td>'+d.azucares+'</td></tr>'+
+    '<tr><th>Saborizantes</th><td>'+d.saborizantes+'</td><th>Sellos</th><td>'+d.sellos+'</td></tr>'+
+    '</table>'+
+    '<div class="info-extras"><strong>Presentaciones Adicionales:</strong> '+d.extras+'</div>';
+}
+function searchProduct(q){
+  q=q.toLowerCase().trim();
+  if(!q)return;
+  var p=CFG.productos;
+  for(var i=0;i<p.length;i++){
+    if(p[i].name.toLowerCase().includes(q)){
+      goProduct(i);return;
+    }
+  }
+}
+
+function showPanel(id,el,group){
+  document.querySelectorAll('.legacy-panel[data-group="'+group+'"]').forEach(p=>p.classList.remove('visible'));
+  el.parentElement.querySelectorAll('.legacy-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('visible');
+  el.classList.add('active');
+}
+function openBrochure(){document.getElementById('overlay').classList.add('open');document.body.style.overflow='hidden';init()}
+function closeBrochure(){document.getElementById('overlay').classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('overlay').classList.contains('open'))return;
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next()}
+  if(e.key==='ArrowLeft'){e.preventDefault();prev()}
+  if(e.key==='Escape')closeBrochure();
+});
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('lSlogan').innerHTML=CFG.brand.slogan;
+});
+</script>
+</body>
+</html>
