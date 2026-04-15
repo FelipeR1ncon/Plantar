@@ -125,59 +125,68 @@ body{
   margin-bottom:0.5rem;
   transition:filter 0.4s;
 }
+/* Portada elements */
+.portada-elem{position:absolute;pointer-events:none;z-index:2}
+.portada-top-left{top:0;left:0;width:clamp(180px,28vw,380px);animation:leafFloat1 4s ease-in-out infinite}
+.portada-top-center{top:0;left:50%;transform:translateX(-50%);width:clamp(160px,22vw,300px);animation:leafFloat2 5s ease-in-out infinite 0.5s}
+.portada-top-right{top:0;right:0;width:clamp(180px,28vw,380px);animation:leafFloat1 4.5s ease-in-out infinite 1s}
+.portada-bottom-left{bottom:-30px;left:0;width:clamp(180px,25vw,350px);animation:leafFloat2 3.5s ease-in-out infinite 0.3s}
+.portada-bottom-center{bottom:0;left:50%;transform:translateX(-50%) scaleY(-1);width:clamp(150px,20vw,280px);animation:leafFloatBC 4.2s ease-in-out infinite 0.7s}
+.portada-bottom-right{bottom:0;right:0;width:clamp(160px,22vw,300px);transform:scaleX(-1) scaleY(-1);animation:leafFloatBR 4s ease-in-out infinite 0.5s}
+.portada-logo{
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:clamp(250px,35vw,450px);z-index:3;
+}
+@keyframes leafFloat1{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+@keyframes leafFloat2{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@keyframes leafFloatBC{
+  0%,100%{transform:translateX(-50%) scaleY(-1)}
+  50%{transform:translateX(-50%) scaleY(-1) translateY(8px)}
+}
+@keyframes leafFloatBR{
+  0%,100%{transform:scaleX(-1) scaleY(-1)}
+  50%{transform:scaleX(-1) scaleY(-1) translateY(8px)}
+}
 /* Portada truck */
 .portada-truck{
-  position:absolute;right:-10px;top:50%;transform:translateY(-50%);
-  width:clamp(140px,20vw,240px);height:auto;
-  z-index:3;pointer-events:none;
-  animation:truckBounce 3s ease-in-out infinite;
-  filter:drop-shadow(0 10px 25px rgba(0,0,0,0.15));
+  position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  width:clamp(150px,24vw,300px);height:auto;
+  z-index:10;pointer-events:none;
+  animation:truckDrive 3s ease-in-out infinite;
+  filter:drop-shadow(0 10px 30px rgba(0,0,0,0.25));
 }
-@keyframes truckBounce{
-  0%,100%{transform:translateY(-50%) rotate(-1deg)}
-  50%{transform:translateY(calc(-50% - 10px)) rotate(1deg)}
+@keyframes truckDrive{
+  0%,100%{transform:translateY(-50%) translateX(0) rotate(-1deg)}
+  50%{transform:translateY(-50%) translateX(8px) rotate(1deg)}
 }
 /* Sello sabor autentico */
 .portada-sello{
-  position:absolute;left:30px;top:50%;transform:translateY(-50%);
-  width:clamp(90px,14vw,150px);height:auto;
-  z-index:3;pointer-events:none;
-  animation:selloSpin 20s linear infinite;
+  position:absolute;left:6%;top:50%;transform:translateY(-50%);
+  width:clamp(110px,16vw,190px);height:auto;
+  z-index:10;pointer-events:none;
+  animation:selloSpin 12s linear infinite;
+  filter:drop-shadow(0 4px 15px rgba(0,0,0,0.15));
 }
 @keyframes selloSpin{
   from{transform:translateY(-50%) rotate(0deg)}
   to{transform:translateY(-50%) rotate(360deg)}
 }
-/* Decorative tropical leaves */
-.portada-leaves{
-  position:absolute;top:0;left:0;width:100%;height:100%;
-  pointer-events:none;overflow:hidden;z-index:1;
-}
-.leaf{
-  position:absolute;font-size:clamp(2rem,5vw,4rem);
-  pointer-events:none;opacity:0.85;
-  filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-}
-.leaf:nth-child(1){top:5%;left:8%;animation:leafFloat1 4s ease-in-out infinite;font-size:clamp(2.5rem,6vw,5rem)}
-.leaf:nth-child(2){top:8%;right:25%;animation:leafFloat2 5s ease-in-out infinite 0.5s;font-size:clamp(2rem,4vw,3.5rem)}
-.leaf:nth-child(3){top:2%;left:35%;animation:leafFloat1 4.5s ease-in-out infinite 1s;font-size:clamp(1.8rem,3.5vw,3rem)}
-.leaf:nth-child(4){bottom:15%;left:5%;animation:leafFloat2 3.5s ease-in-out infinite 0.3s;font-size:clamp(2.5rem,5vw,4.5rem)}
-.leaf:nth-child(5){bottom:10%;left:30%;animation:leafFloat1 5.5s ease-in-out infinite 0.8s;font-size:clamp(2rem,4vw,3.5rem)}
-.leaf:nth-child(6){bottom:5%;right:30%;animation:leafFloat2 4s ease-in-out infinite 1.2s;font-size:clamp(1.5rem,3vw,2.5rem)}
-.leaf:nth-child(7){top:15%;right:8%;animation:leafFloat1 3.8s ease-in-out infinite 0.6s;font-size:clamp(2rem,4.5vw,3.8rem)}
-.leaf:nth-child(8){bottom:20%;right:10%;animation:leafFloat2 4.2s ease-in-out infinite 1.5s;font-size:clamp(2rem,4vw,3rem)}
-@keyframes leafFloat1{
-  0%,100%{transform:translateY(0) rotate(0deg)}
-  50%{transform:translateY(-15px) rotate(8deg)}
-}
-@keyframes leafFloat2{
-  0%,100%{transform:translateY(0) rotate(0deg)}
-  50%{transform:translateY(-12px) rotate(-6deg)}
-}
 @media(max-width:600px){
-  .portada-truck{width:clamp(100px,28vw,150px);right:10px}
-  .portada-sello{width:clamp(65px,16vw,100px);left:10px}
-  .leaf{opacity:0.7}
+  .portada-top-left{width:clamp(120px,35vw,180px)}
+  .portada-top-center{width:clamp(110px,30vw,160px)}
+  .portada-top-right{width:clamp(120px,35vw,180px)}
+  .portada-bottom-left{bottom:0;width:clamp(140px,42vw,220px)}
+  .portada-bottom-center{bottom:0;width:clamp(110px,28vw,160px)}
+  .portada-bottom-right{bottom:0;width:clamp(120px,32vw,170px)}
+  .portada-logo{width:clamp(200px,58vw,280px);top:25%}
+  .portada-truck{width:clamp(100px,28vw,140px);right:12%;top:48%;transform:translateY(0)}
+  .portada-sello{width:clamp(75px,22vw,110px);left:5%;top:50%;transform:translateY(0)}
 }
 
 .brand-name{
@@ -288,6 +297,7 @@ body{
   max-width:1100px;width:100%;
   opacity:0;transform:translateY(35px);
   transition:all 0.8s cubic-bezier(0.22,1,0.36,1);
+  overflow-x:hidden;
 }
 .slide.active .slide-body{opacity:1;transform:translateY(0)}
 
@@ -417,7 +427,7 @@ body{
 }
 .dots-wrap{
   position:fixed;bottom:0.8rem;left:50%;transform:translateX(-50%);
-  z-index:1005;display:flex;flex-direction:column;align-items:center;gap:0.4rem;
+  z-index:1005;display:none;flex-direction:column;align-items:center;gap:0.4rem;
 }
 .dots{position:static;transform:none}
 .dots-hint{
@@ -818,6 +828,86 @@ body{
   .cert-item img{height:45px}
 }
 
+/* Legacy & Capacity - all sections inline */
+.legacy-highlights-inline{display:flex;gap:0.5rem;flex-wrap:wrap}
+.legacy-hl-inline{
+  display:flex;align-items:center;gap:0.4rem;
+  padding:0.4rem 1rem;background:#f0f7f3;
+  border-radius:50px;font-size:0.78rem;font-weight:600;color:#2D3436;
+}
+.legacy-hl-inline span:first-child{font-size:1rem}
+
+.timeline-inline{display:flex;flex-direction:column;gap:0.6rem}
+.tl-inline-item{display:flex;gap:0.8rem;align-items:flex-start}
+.tl-inline-year{
+  font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--green);
+  min-width:50px;text-align:center;flex-shrink:0;
+  background:#f0f7f3;border-radius:8px;padding:0.2rem 0.4rem;line-height:1.2;
+}
+.tl-inline-body{flex:1}
+.tl-inline-title{font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:800;color:#2D3436;margin-bottom:0.1rem}
+.tl-inline-desc{font-size:0.78rem;color:#666;line-height:1.4}
+
+/* Also make this slide scrollable */
+[data-i="1"]{align-items:flex-start!important}
+[data-i="6"]{align-items:flex-start!important}
+
+/* Capacity - all sections inline */
+.cap-all-sections{display:flex;flex-direction:column;gap:1.2rem}
+.cap-section{
+  background:#fff;border-radius:16px;padding:1.2rem 1.5rem;
+  box-shadow:0 2px 12px rgba(0,0,0,0.05);border-left:4px solid var(--green);
+}
+.cap-section-title{
+  font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:800;
+  color:var(--green);margin-bottom:0.8rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.cap-section-title span{font-size:1.3rem}
+
+.ton-grid-inline{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap}
+.ton-card-inline{
+  text-align:center;padding:0.8rem 1.5rem;background:#f9f9f9;
+  border-radius:12px;flex:1;min-width:100px;max-width:180px;
+  border:2px solid #e8e8e8;
+}
+.ton-card-inline.total{background:var(--green);border-color:var(--green)}
+.ton-card-inline.total .ton-lbl{color:rgba(255,255,255,0.9)}
+.ton-card-inline.total .ton-val-inline{color:#fff}
+.ton-card-inline.total .ton-unit{color:rgba(255,255,255,0.8)}
+.ton-val-inline{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);color:var(--green);line-height:1}
+
+.colab-inline{display:flex;gap:1.2rem;align-items:center}
+.colab-inline-img{
+  width:clamp(80px,15vw,140px);height:clamp(80px,15vw,140px);
+  object-fit:cover;border-radius:12px;cursor:pointer;flex-shrink:0;
+}
+.colab-inline-info p{font-size:0.82rem;line-height:1.5;color:#555;margin:0 0 0.6rem}
+.colab-inline-stats{display:flex;gap:0.6rem}
+.colab-mini-stat{
+  text-align:center;background:#f0f7f3;border-radius:10px;padding:0.5rem 0.8rem;flex:1;
+}
+.colab-mini-stat strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--green);line-height:1}
+.colab-mini-stat small{font-size:0.65rem;color:#888;font-weight:600}
+
+.cert-inline-grid{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap}
+.cert-inline-item{
+  display:flex;flex-direction:column;align-items:center;gap:0.3rem;
+  padding:0.6rem;background:#f9f9f9;border-radius:10px;min-width:80px;
+  transition:all 0.3s;
+}
+.cert-inline-item:hover{transform:translateY(-3px);box-shadow:0 4px 16px rgba(0,0,0,0.08)}
+.cert-inline-item img{height:45px;width:auto;object-fit:contain;cursor:pointer}
+.cert-inline-item span{font-size:0.65rem;font-weight:700;color:#555;text-align:center}
+
+@media(max-width:768px){
+  .colab-inline{flex-direction:column;text-align:center}
+  .colab-inline-img{width:100px;height:100px}
+  .ton-card-inline{min-width:80px;padding:0.6rem 1rem}
+  .ton-val-inline{font-size:1.5rem}
+  .cert-inline-item img{height:35px}
+}
+
 /* ============================================================
    SPECIALTIES
    ============================================================ */
@@ -829,7 +919,8 @@ body{
   box-shadow:0 2px 12px rgba(0,0,0,0.04);
 }
 .spec:hover{transform:translateY(-5px) rotate(-1deg);box-shadow:0 12px 36px rgba(0,0,0,0.1)}
-.spec-icon{font-size:2.8rem;margin-bottom:0.7rem;display:block}
+.spec-icon{font-size:2.8rem;margin-bottom:0.7rem;display:flex;align-items:center;justify-content:center;min-height:48px}
+.spec-icon svg{width:48px;height:48px}
 .spec-name{font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:800;margin-bottom:0.3rem;color:var(--green-dark)}
 .spec-desc{font-size:0.78rem;opacity:0.6;line-height:1.4;color:var(--dark)}
 .spec.active{background:var(--green);color:white;transform:translateY(-5px);box-shadow:0 12px 36px rgba(0,0,0,0.15)}
@@ -839,6 +930,7 @@ body{
   display:none;margin-top:2rem;background:var(--white);border-radius:var(--radius-lg);
   padding:1.5rem;box-shadow:0 8px 32px rgba(0,0,0,0.08);
   animation:fadeUp 0.4s ease;
+  max-width:100%;overflow:hidden;
 }
 .spec-gallery.visible{display:block}
 .spec-gallery-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem}
@@ -968,8 +1060,24 @@ body{
 }
 .contact-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,0.15)}
 
-/* Aliados slide - fix overflow */
+/* Combined slides & overflow fix */
+.combined-slide{align-items:flex-start!important}
+[data-i="7"]{align-items:flex-start!important}
 [data-i="9"]{align-items:flex-start!important}
+
+.section-divider{
+  width:80%;max-width:400px;height:3px;margin:2.5rem auto;
+  background:linear-gradient(90deg,transparent,var(--green),#F5A623,#E8621C,transparent);
+  border-radius:4px;
+}
+
+.patakis-section{
+  position:relative;overflow:hidden;
+  border-radius:24px;padding:3rem 2rem;margin-top:0.5rem;
+  background:linear-gradient(135deg,#E8621C 0%,#D4247A 25%,#9C27B0 50%,#F5A623 75%,#2E8B57 100%);
+  background-size:300% 300%;animation:patakisBg 10s ease infinite;
+  text-align:center;
+}
 
 /* Partners v2 light theme - Tab system */
 .aliados-tabs{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem}
@@ -991,18 +1099,21 @@ body{
 .aliado-panel.visible{display:block}
 
 /* Goya panel */
-.goya-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;justify-content:center}
+.goya-featured{
+  background:#fff;border-radius:var(--radius-lg);padding:1.2rem 1.5rem;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  border-left:4px solid #E8621C;margin-bottom:0.8rem;
+}
+.goya-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap;justify-content:center}
 .goya-logo{width:clamp(100px,18vw,180px);border-radius:12px}
 .goya-text{
-  background:#fff;border-radius:16px;padding:1.5rem 2rem;
-  box-shadow:0 4px 20px rgba(0,0,0,0.06);
-  border-left:4px solid #E8621C;
-  font-size:0.95rem;line-height:1.7;color:#444;
+  background:rgba(232,98,28,0.04);border-radius:12px;padding:1rem 1.2rem;
+  font-size:0.9rem;line-height:1.6;color:#444;
   max-width:600px;text-align:left;
 }
 .goya-empaques{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
-  gap:1rem;margin-top:1.5rem;
+  gap:0.8rem;margin-top:0.8rem;
 }
 .goya-emp{
   background:#fff;border-radius:12px;padding:0.8rem;
@@ -1394,8 +1505,8 @@ body{
 .carousel-content{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:2.5rem;align-items:center;
-  min-height:300px;
+  gap:1.5rem;align-items:center;
+  min-height:0;
 }
 .carousel-img{
   display:flex;align-items:center;justify-content:center;
@@ -1427,9 +1538,16 @@ body{
 .carousel-info-en h4{font-family:'Outfit';font-style:italic;font-size:1rem;font-weight:600;margin-bottom:0.3rem}
 .carousel-info-en p{font-size:0.85rem;opacity:0.65}
 
+.carousel-slide .slide-body{
+  display:flex!important;flex-direction:column;height:100%;
+  padding-bottom:0.5rem!important;
+}
+.carousel-slide .prod-view{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden}
+.carousel-slide .prod-view::-webkit-scrollbar{width:0;display:none}
 .carousel-nav{
   display:flex;align-items:center;justify-content:center;
-  gap:1rem;margin-top:1.5rem;
+  gap:1rem;flex-shrink:0;
+  padding:0.4rem 0;
 }
 .carousel-arrow{
   width:44px;height:44px;border-radius:50%;
@@ -1477,6 +1595,8 @@ body{
   mix-blend-mode:screen;
   animation:productFloat 4s ease-in-out infinite;
 }
+.info-empaque img.empaque-large{max-height:550px;max-width:110%}
+.info-empaque img.empaque-xl{max-height:650px;max-width:130%;transform:scale(1.15)}
 .info-table{color:white}
 .info-table h4{
   font-family:'Bebas Neue';font-size:1.4rem;
@@ -1505,11 +1625,13 @@ body{
 .info-extras strong{font-weight:700}
 
 @media(max-width:768px){
-  .carousel-content{grid-template-columns:1fr;text-align:center}
-  .carousel-img img{max-height:300px}
+  .carousel-content{grid-template-columns:1fr 1fr;text-align:center;gap:1rem;min-height:auto}
+  .carousel-img img{max-height:200px}
   .carousel-header{justify-content:center}
   .info-layout{grid-template-columns:1fr}
   .info-empaque img{max-height:320px}
+  .info-empaque img.empaque-large{max-height:420px;max-width:110%}
+  .info-empaque img.empaque-xl{max-height:500px;max-width:130%;transform:scale(1.15)}
 }
 
 /* Maquila slide */
@@ -1571,6 +1693,8 @@ body{
   .maquila-layout{grid-template-columns:1fr}
   .maquila-right{min-height:250px}
   .maquila-packages img{height:120px}
+  .patakis-section{padding:2rem 1rem;border-radius:16px}
+  .section-divider{margin:1.5rem auto}
 }
 
 /* Historia panel - timeline */
@@ -1670,9 +1794,9 @@ body{
   .spec{padding:1rem 0.6rem}
   .spec-icon{font-size:1.8rem;margin-bottom:0.3rem}
   .spec-name{font-size:0.8rem}
-  .spec-gallery{padding:1rem}
+  .spec-gallery{padding:1rem;max-height:50vh;overflow-y:auto}
   .spec-gallery-grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))!important;gap:0.8rem}
-  .spec-gallery-item img{max-height:200px}
+  .spec-gallery-item img{max-height:160px}
   /* Map */
   .map-stats{gap:1rem}
   .map-stat-val{font-size:clamp(1.5rem,4vw,2.2rem)!important}
@@ -1709,9 +1833,7 @@ body{
   .carousel-info p{font-size:0.82rem}
   .info-layout{grid-template-columns:1fr!important}
   /* Portada */
-  [data-i="0"]{background-size:cover!important;background-position:center!important}
-  .portada-sello{width:clamp(55px,14vw,85px)!important;left:10px!important}
-  .portada-truck{width:clamp(90px,24vw,130px)!important;right:-5px!important}
+  /* Portada mobile handled in main @media(max-width:600px) */
   /* Dots */
   .dots{bottom:0.8rem;padding:0.35rem 0.6rem;gap:0.3rem}
   .dot{width:6px;height:6px}
@@ -1860,7 +1982,7 @@ const CFG = {
     },
     {
       name: "Conos de plátano verde",
-      desc: "Prácticas tostadas de plátano verde en forma de cono, especiales para elaborar tus recetas preferidas. Deléitate con su presentación por paquetes de 5 unidad.",
+      desc: "Prácticas tostadas de plátano verde en forma de cono, especiales para elaborar tus recetas preferidas. Deléitate con su presentación por paquetes de 5 unidades.",
       sizes: "Paquetes de 5 unidades",
       nameEn: "Green plantain cones:",
       descEn: "Practical toasted green plantain in the shape of a cone, special to make your favorite recipes. Delight in its presentation in packs of 5 units.",
@@ -1969,7 +2091,7 @@ const CFG = {
       nameEn: "Garlic Plantain Toston:",
       descEn: "Green plantain toston with delicious garlic flavor. A gourmet touch for your snacking.",
       image: "productos/TOSTO AJO.png",
-      empaque: "TOSTON DE AJO.png",
+      empaque: "toston de ajo.png",
       color: "#009fe3",
       info: null,
     },
@@ -1980,7 +2102,7 @@ const CFG = {
       nameEn: "Lime Plantain Toston:",
       descEn: "Exquisite green plantain snacks in slice form, enhanced with a delicious touch of lime that highlights their natural flavor.",
       image: "productos/TOSTON LIMON.png",
-      empaque: "TOSTON DE LIMON.png",
+      empaque: "toston de limón.png",
       color: "#95c11f",
       info: {
         nombre: "TAJADA VERDE LIMÓN PATAKIS",
@@ -1996,6 +2118,17 @@ const CFG = {
         sellos: "Kosher, INVIMA",
         extras: "28gr, 85gr",
       },
+    },
+    {
+      name: "Tostón trufa",
+      desc: "Exquisitos tostones de plátano verde con un exclusivo sabor a trufa. Una experiencia gourmet en cada bocado.",
+      sizes: "85g",
+      nameEn: "Truffle Plantain Toston:",
+      descEn: "Exquisite green plantain tostons with an exclusive truffle flavor. A gourmet experience in every bite.",
+      image: "productos/producto toston de trufa.png",
+      empaque: "toston trufa.png",
+      color: "#5d4037",
+      info: null,
     },
     // --- TAJADAS / PLATANITOS ---
     {
@@ -2076,7 +2209,7 @@ const CFG = {
       sizes: "85g",
       nameEn: "Cheese Explosion Plantain Chips:",
       descEn: "Delicious green plantain snacks in slice form, with an explosive combination of cheese and habanero spice. The perfect blend of creaminess, spice and crunch.",
-      image: "productos/queso explosion.png",
+      image: "productos/producto platanitos queso explosion.png",
       empaque: "PLATANITOS QUESO EXPLOSION.png",
       color: "#fbdc59",
       info: {
@@ -2326,7 +2459,7 @@ const CFG = {
       empaque: "ARRACACHA.png",
       color: "#512a6a",
       info: {
-        nombre: "SNACKS DE ARRACACHACHA PATAKIS",
+        nombre: "SNACKS DE ARRACACHA PATAKIS",
         pt: "0142", peso: "80 Gr", oz: "2.8",
         medidas: "Alto 20cm, Ancho 17cm, Profundidad 6 cm",
         undCaja: "24 unidades",
@@ -2373,7 +2506,7 @@ const CFG = {
       nameEn: "Corn Carantanta Chips:",
       descEn: "Exquisite corn-based carantanta snacks, crispy and golden, with the perfect touch of salt and an extra crunchy texture that enhances their traditional flavor.",
       image: "productos/CARANTANTA.png",
-      empaque: "carantanta de y maiz.png",
+      empaque: "CARANTANTA PATAKIS.png",
       color: "#fbdc59",
       info: {
         nombre: "CARANTANTA PATAKIS",
@@ -2393,7 +2526,7 @@ const CFG = {
     // --- MIXES ---
     {
       name: "Snacks mix",
-      desc: "Deliciosa mezcla de snacks de plátano, tocineta, papa, trocillos y chicharrón que te invitan a hacer una pausa para disfrutar de la mejor combinación y deleitar un poco de cada uno de los sabores que más te gustan en cualquier momento y en cualquier lugar.",
+      desc: "Deliciosa mezcla de snacks de plátano, tocineta, papa, trocitos y chicharrón que te invitan a hacer una pausa para disfrutar de la mejor combinación y deleitar un poco de cada uno de los sabores que más te gustan en cualquier momento y en cualquier lugar.",
       sizes: "260g",
       nameEn: "Premium Party Mix:",
       descEn: "Delicious mix of plantain, bacon, potato, bits and pork rind snacks that invite you to take a break and enjoy the best combination.",
@@ -2471,7 +2604,7 @@ const CFG = {
       nameEn: "Natural Nachos:",
       descEn: "Exquisite natural nachos made from corn, crispy and golden, with the perfect touch of salt and a crunchy texture that highlights their authentic flavor.",
       image: "productos/NACHOS.png",
-      empaque: "MOCKUPS NACHOS.png",
+      empaque: "nachos naturales patakis.png",
       color: "#009fe3",
       info: {
         nombre: "NACHOS PATAKIS",
@@ -2521,9 +2654,20 @@ const CFG = {
       sizes: "80g",
       nameEn: "Plantain Croutons:",
       descEn: "Crispy plantain croutons, perfect for salads and soups.",
-      image: "productos/CROUTONES.png",
+      image: "CROUTONES PATAKIS.png",
       empaque: "CROUTONES .png",
       color: "#e8491e",
+      info: null,
+    },
+    {
+      name: "Rosquillitas",
+      desc: "Deliciosas rosquillitas crujientes, un snack tradicional con sabor auténtico colombiano.",
+      sizes: "80g",
+      nameEn: "Rosquillitas:",
+      descEn: "Delicious crispy rosquillitas, a traditional snack with authentic Colombian flavor.",
+      image: "productos/producto rosquillas.png",
+      empaque: "rosquillitas.png",
+      color: "#d4a05a",
       info: null,
     },
     {
@@ -2552,7 +2696,7 @@ const CFG = {
     },
     // --- STRIPS ---
     {
-      name: "Tiras de plátano verde",
+      name: "Strips tiras de plátano verde",
       desc: "Deliciosas tiras/lenguas de plátano verde que te invitan a acompañar los más deliciosos platos o simplemente darte un gusto que te recargará de energía.",
       sizes: "170g, 200g, 340g",
       nameEn: "Green plantain strips:",
@@ -2576,7 +2720,7 @@ const CFG = {
       },
     },
     {
-      name: "Tiras de plátano maduro",
+      name: "Strips tiras de plátano maduro",
       desc: "Suculentas y dulces tiras de plátano maduro, idóneas para complementar todo tipo de recetas.",
       sizes: "170g, 200g, 340g",
       nameEn: "Ripe plantain strips:",
@@ -2739,7 +2883,7 @@ const CFG = {
       nameEn: "Potato Chips 28g:",
       descEn: "Potato chips in 28g personal size. Perfect to go.",
       image: "productos/PAPA.png",
-      empaque: "MOCKUPS DE EMPAQUE 28GR  PAPA.jpg",
+      empaque: "papa natural 28 gramos.png",
       color: "#fbdc59",
       info: null,
     },
@@ -2752,6 +2896,73 @@ const CFG = {
       image: "productos/PAPA LIMON.png",
       empaque: "MOCKUPS PAPA LIMÓN PATAKIS 28GR.png",
       color: "#95c11f",
+      info: null,
+    },
+    // --- CHIPS ---
+    {
+      name: "Chips de plátano verde",
+      desc: "Crujientes chips de plátano verde, elaborados artesanalmente con el mejor plátano colombiano y el toque justo de sal.",
+      sizes: "312g",
+      nameEn: "Green Plantain Chips:",
+      descEn: "Crunchy green plantain chips, handcrafted with the finest Colombian plantain and just the right touch of salt.",
+      image: "productos/CHIPS TAJADA VERDE EN TAZON.png",
+      empaque: "CHIPS VERDE.png",
+      color: "#4caf50",
+      info: null,
+    },
+    {
+      name: "Chips de plátano maduro",
+      desc: "Dulces y crujientes chips de plátano maduro, con su sabor natural que deleita en cada bocado.",
+      sizes: "312g",
+      nameEn: "Ripe Plantain Chips:",
+      descEn: "Sweet and crunchy ripe plantain chips, with natural flavor that delights in every bite.",
+      image: "productos/CHIPS TAJADA MADURA.png",
+      empaque: "CHIPS MADURO.png",
+      color: "#e8971e",
+      info: null,
+    },
+    {
+      name: "Chips de yuca",
+      desc: "Crujientes chips de yuca con el toque perfecto de sal, ideales para acompañar cualquier comida o disfrutar como snack.",
+      sizes: "312g",
+      nameEn: "Cassava Chips:",
+      descEn: "Crunchy cassava chips with the perfect touch of salt, ideal to accompany any meal or enjoy as a snack.",
+      image: "productos/CHIPS YUCAS TAZON.png",
+      empaque: "CHIPS DE YUCA.png",
+      color: "#d4a05a",
+      info: null,
+    },
+    {
+      name: "Chips de limón",
+      desc: "Chips de plátano verde con un delicioso toque de limón que resalta su sabor natural. Frescura y crocancia en cada bocado.",
+      sizes: "312g",
+      nameEn: "Lime Chips:",
+      descEn: "Green plantain chips with a delicious touch of lime that enhances their natural flavor. Freshness and crunch in every bite.",
+      image: "productos/CHIPS TAJADA VERDE LIMON.png",
+      empaque: "CHIPS DE LIMON.png",
+      color: "#7cb342",
+      info: null,
+    },
+    {
+      name: "Chips de ajo",
+      desc: "Chips de plátano verde con un irresistible sabor a ajo. La combinación perfecta entre crocancia y sabor.",
+      sizes: "312g",
+      nameEn: "Garlic Chips:",
+      descEn: "Green plantain chips with an irresistible garlic flavor. The perfect combination of crunch and taste.",
+      image: "productos/chips TAJADA Y AJO.png",
+      empaque: "CHIPS DE AJO.png",
+      color: "#8d6e63",
+      info: null,
+    },
+    {
+      name: "Chips habanero",
+      desc: "Chips de plátano verde con el toque picante del habanero. Para los amantes del sabor intenso y la crocancia.",
+      sizes: "312g",
+      nameEn: "Habanero Chips:",
+      descEn: "Green plantain chips with the spicy touch of habanero. For lovers of intense flavor and crunch.",
+      image: "productos/CHIPS TAJADA PICANTE HABANERO.png",
+      empaque: "CHIPS HABANERO.png",
+      color: "#e53935",
       info: null,
     },
   ],
@@ -2782,11 +2993,12 @@ const CFG = {
         {img:"productos/MALANGA.png", name:"Malanga"},
         {img:"productos/MONEDA MADURA.png", name:"Moneda madura"},
       ]},
-      { icon: "🫓", name: "Tostones", key: "tostones", empaques: [
+      { icon: "<svg viewBox='0 0 64 64' width='48' height='48'><ellipse cx='32' cy='38' rx='26' ry='12' fill='#E8B84B' stroke='#C4922A' stroke-width='2'/><ellipse cx='32' cy='34' rx='24' ry='10' fill='#F5D06B'/><ellipse cx='32' cy='30' rx='22' ry='9' fill='#E8B84B' stroke='#C4922A' stroke-width='1.5'/><ellipse cx='32' cy='27' rx='20' ry='8' fill='#F5D06B'/><ellipse cx='32' cy='24' rx='18' ry='7' fill='#E8B84B' stroke='#C4922A' stroke-width='1.5'/><ellipse cx='32' cy='21' rx='16' ry='6' fill='#F5D06B'/><circle cx='25' cy='21' r='1.5' fill='#C4922A' opacity='0.4'/><circle cx='35' cy='19' r='1' fill='#C4922A' opacity='0.3'/><circle cx='30' cy='23' r='1.2' fill='#C4922A' opacity='0.35'/></svg>", name: "Tostones", key: "tostones", empaques: [
         {img:"TOSTON VERDE.png", name:"Tostón verde"},
         {img:"TOSTON MADURO.png", name:"Tostón maduro"},
-        {img:"TOSTON DE AJO.png", name:"Tostón de ajo"},
-        {img:"TOSTON DE LIMON.png", name:"Tostón de limón"},
+        {img:"toston de ajo.png", name:"Tostón de ajo"},
+        {img:"toston de limón.png", name:"Tostón de limón"},
+        {img:"toston trufa.png", name:"Tostón trufa"},
         {img:"TOSTÓN DE YUCA.png", name:"Tostón de yuca"},
       ]},
       { icon: "🌶️", name: "Saborizados", key: "saborizados", empaques: [
@@ -2795,7 +3007,7 @@ const CFG = {
         {img:"platanitos verde limon.png", name:"Verde limón"},
         {img:"PAPA TRUFA (2).png", name:"Papa trufa"},
       ]},
-      { icon: "🥣", name: "Mix", key: "mix", empaques: [
+      { icon: "<svg viewBox='0 0 64 64' width='48' height='48'><ellipse cx='20' cy='40' rx='10' ry='5' fill='#F5D06B' stroke='#C4922A' stroke-width='1.5'/><ellipse cx='20' cy='38' rx='9' ry='4' fill='#E8B84B'/><ellipse cx='44' cy='42' rx='8' ry='4' fill='#D4956A' stroke='#B07040' stroke-width='1.5'/><ellipse cx='44' cy='40' rx='7' ry='3.5' fill='#E8AA78'/><path d='M28 26c0-4 3-8 7-8s7 4 7 8c0 3-2 6-7 7-5-1-7-4-7-7z' fill='#E8C84B' stroke='#C4A22A' stroke-width='1.5'/><circle cx='31' cy='24' r='1' fill='#C4922A' opacity='0.3'/><circle cx='36' cy='26' r='0.8' fill='#C4922A' opacity='0.3'/><path d='M14 28c-1-3 1-7 4-7s5 3 4 7c-1 2-3 4-4 4s-3-2-4-4z' fill='#8BC34A' stroke='#689F38' stroke-width='1.5'/><path d='M42 22c0-3 2-6 5-6s5 3 5 6-2 5-5 5-5-2-5-5z' fill='#F5D06B' stroke='#C4922A' stroke-width='1.5'/><ellipse cx='42' cy='21' rx='3' ry='1.5' fill='#E8B84B' opacity='0.6'/></svg>", name: "Mix", key: "mix", empaques: [
         {img:"ALL-MIX.png", name:"All Mix"},
         {img:"MIX VEGETAL.png", name:"Mix vegetal"},
         {img:"MIX PALITOS MADUROS Y CHICHARROS.png", name:"Mix palitos y chicharrón"},
@@ -2812,8 +3024,8 @@ const CFG = {
         {img:"MONEDA VERDE.png", name:"Monedas verde"},
         {img:"PATAKON PISAO.png", name:"Patakon pisao"},
         {img:"CUCHAITAS.png", name:"Cucharitas"},
-        {img:"CARANTANTA de y maiz.png", name:"Carantanta"},
-        {img:"MOCKUPS NACHOS.png", name:"Nachos"},
+        {img:"CARANTANTA PATAKIS.png", name:"Carantanta"},
+        {img:"nachos naturales patakis.png", name:"Nachos"},
         {img:"ARRACACHA.png", name:"Arracacha"},
         {img:"BATATA.png", name:"Batata"},
         {img:"PAPA.png", name:"Papa"},
@@ -2821,6 +3033,12 @@ const CFG = {
         {img:"YUCA AMARILLA.png", name:"Yuca amarilla"},
         {img:"CROUTONES .png", name:"Croutones"},
         {img:"PALOMITAS DE MAIZ.png", name:"Palomitas de maíz"},
+        {img:"productos/CHIPS VERDE.png", name:"Chips verde"},
+        {img:"productos/CHIPS MADURO.png", name:"Chips maduro"},
+        {img:"productos/CHIPS DE YUCA.png", name:"Chips de yuca"},
+        {img:"productos/CHIPS DE LIMON.png", name:"Chips limón"},
+        {img:"productos/CHIPS DE AJO.png", name:"Chips ajo"},
+        {img:"productos/CHIPS HABANERO.png", name:"Chips habanero"},
       ]},
     ],
   },
@@ -2948,39 +3166,35 @@ function build(){
 
   const S=[
     /* 0 — Cover */
-    `<div class="slide" data-i="0" style="background:#fff url('portada-fondo.png') center/contain no-repeat"><div class="slide-body center">
-      <img src="sabor autentico.png" alt="100% colombiano sabor auténtico" class="portada-sello anim">
-      <img src="CARRO01.png" alt="Willys platanero" class="portada-truck anim">
-    </div></div>`,
+    `<div class="slide" data-i="0" style="background:#FFF5E6;position:relative;overflow:hidden">
+      <img src="portada-hojas-izq.png" class="portada-elem portada-top-left">
+      <img src="portada-hoja-arriba.png" class="portada-elem portada-top-center">
+      <img src="portada-hojas-der.png" class="portada-elem portada-top-right">
+      <img src="portada-hojas-abajo-izq.png" class="portada-elem portada-bottom-left">
+      <img src="portada-hoja-arriba.png" class="portada-elem portada-bottom-center">
+      <img src="portada-hojas-izq.png" class="portada-elem portada-bottom-right">
+      <img src="portada-logo.png" class="portada-elem portada-logo">
+      <img src="sabor autentico.png" alt="100% colombiano sabor auténtico" class="portada-sello">
+      <img src="CARRO01.png" alt="Willys platanero" class="portada-truck">
+    <div class="slide-body center"></div></div>`,
 
     /* 1 — Legacy */
-    `<div class="slide legacy-slide" data-i="1"><div class="slide-body">
-      <div class="center">
-        <span class="legacy-badge anim">${C.legacy.badge}</span>
-        <h2 class="mega-title anim" style="color:var(--green);text-shadow:none">${C.legacy.title}</h2>
-        <div class="legacy-accent-line anim"></div>
+    `<div class="slide legacy-slide" data-i="1"><div class="slide-body" style="padding-top:1.5rem">
+      <div class="center" style="margin-bottom:0.8rem">
+        <span class="legacy-badge anim" style="font-size:0.7rem;padding:0.3rem 1.2rem">${C.legacy.badge}</span>
+        <h2 class="mega-title anim" style="color:var(--green);text-shadow:none;font-size:clamp(1.8rem,5vw,2.8rem);margin:0.3rem 0">${C.legacy.title}</h2>
+        <div class="legacy-accent-line anim" style="margin:0.3rem auto"></div>
       </div>
 
-      <div class="legacy-tabs-v2 anim">
-        <button class="ltab-v2 active" onclick="showLegacyPanel('quienes',this)">
-          <span class="ltab-v2-icon">🏢</span>
-          <span class="ltab-v2-label">Quiénes Somos</span>
-        </button>
-        <button class="ltab-v2" onclick="showLegacyPanel('historia',this)">
-          <span class="ltab-v2-icon">📜</span>
-          <span class="ltab-v2-label">Historia</span>
-        </button>
-      </div>
-
-      <div class="legacy-panel visible anim" id="panel-quienes">
-        <div class="panel-quienes-v2">
-          <p>${C.legacy.quienes}</p>
-          <div class="legacy-highlights">${C.legacy.highlights.map(function(h){return '<div class="legacy-hl"><span class="legacy-hl-icon">'+h.icon+'</span><span class="legacy-hl-text">'+h.text+'</span></div>'}).join('')}</div>
+      <div class="cap-all-sections">
+        <div class="cap-section anim">
+          <div class="cap-section-title"><span>🏢</span> Quiénes Somos</div>
+          <p style="font-size:0.88rem;line-height:1.6;color:#555;margin:0 0 0.8rem">${C.legacy.quienes}</p>
+          <div class="legacy-highlights-inline">${C.legacy.highlights.map(function(h){return '<div class="legacy-hl-inline"><span>'+h.icon+'</span><span>'+h.text+'</span></div>'}).join('')}</div>
         </div>
-      </div>
 
-      <div class="legacy-panel anim" id="panel-historia">
-        <div class="panel-historia-v2">
+        <div class="cap-section anim">
+          <div class="cap-section-title"><span>📜</span> Historia</div>
           <div class="timeline-v2">
             ${C.legacy.timeline.map(function(t){return '<div class="tlv2-item"><div class="tlv2-dot"></div><div class="tlv2-year">'+t.year+'</div><div class="tlv2-content"><div class="tlv2-title">'+t.title+'</div><div class="tlv2-desc">'+t.desc+'</div></div></div>'}).join('')}
           </div>
@@ -2989,7 +3203,7 @@ function build(){
 
     </div></div>`,
 
-    /* 2 — Calidad, Inocuidad y Operacion */
+    /* 2 — Calidad, Inocuidad y Operación */
     `<div class="slide bg-lime" data-i="2"><div class="slide-body">
       <div class="center">
         <span class="section-label anim">Nuestro Compromiso</span>
@@ -3155,20 +3369,46 @@ function build(){
     </div></div>`,
 
     /* 7 — Capacity */
-    `<div class="slide legacy-slide" data-i="7" id="slideCapacity"><div class="slide-body">
-      <div class="center">
-        <span class="legacy-badge anim">Infraestructura</span>
-        <h2 class="mega-title anim" style="color:var(--green);text-shadow:none">${C.capacity.title}</h2>
-        <div class="legacy-accent-line anim"></div>
-        <p class="sub-title anim" style="color:#666">${C.capacity.subtitle}</p>
+    `<div class="slide legacy-slide" data-i="7" id="slideCapacity"><div class="slide-body" style="padding-top:1.5rem">
+      <div class="center" style="margin-bottom:0.8rem">
+        <span class="legacy-badge anim" style="font-size:0.7rem;padding:0.3rem 1.2rem">Infraestructura</span>
+        <h2 class="mega-title anim" style="color:var(--green);text-shadow:none;font-size:clamp(1.8rem,5vw,2.8rem);margin:0.3rem 0">${C.capacity.title}</h2>
+        <div class="legacy-accent-line anim" style="margin:0.3rem auto"></div>
       </div>
-      <div class="cap-tabs anim">${C.capacity.tabs.map((t,i)=>`
-        <div class="cap-tab" data-captab="${t.key}" onclick="showCapPanel('${t.key}')" style="cursor:pointer">
-          <span class="cap-tab-icon">${t.icon}</span>
-          <span class="cap-tab-name">${t.name}</span>
-        </div>`).join('')}</div>
-      <div class="cap-panel" id="capPanel">
-        <div class="cap-panel-content" id="capPanelContent"></div>
+
+      <div class="cap-all-sections">
+        <!-- Toneladas -->
+        <div class="cap-section anim">
+          <div class="cap-section-title"><span>🏭</span> Toneladas / Año</div>
+          <div class="ton-grid-inline">
+            <div class="ton-card-inline"><div class="ton-lbl">${C.capacity.toneladas.nacional.label}</div><div class="ton-val-inline">${C.capacity.toneladas.nacional.val}</div><div class="ton-unit">ton/año</div></div>
+            <div class="ton-card-inline"><div class="ton-lbl">${C.capacity.toneladas.exportacion.label}</div><div class="ton-val-inline">${C.capacity.toneladas.exportacion.val}</div><div class="ton-unit">ton/año</div></div>
+            <div class="ton-card-inline total"><div class="ton-lbl">Total</div><div class="ton-val-inline">${C.capacity.toneladas.total.val}</div><div class="ton-unit">ton/año</div></div>
+          </div>
+        </div>
+
+        <!-- Colaboradores -->
+        <div class="cap-section anim">
+          <div class="cap-section-title"><span>👥</span> Nuestro Equipo</div>
+          <div class="colab-inline">
+            <img src="${C.capacity.colaboradores.imagen}" alt="Equipo" class="colab-inline-img" onclick="openLightbox(event,this.src)">
+            <div class="colab-inline-info">
+              <p>${C.capacity.colaboradores.texto}</p>
+              <div class="colab-inline-stats">
+                <div class="colab-mini-stat"><strong>300+</strong><small>Colaboradores</small></div>
+                <div class="colab-mini-stat"><strong>16+</strong><small>Años de experiencia</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificaciones -->
+        <div class="cap-section anim">
+          <div class="cap-section-title"><span>🏅</span> Certificaciones</div>
+          <div class="cert-inline-grid">
+            ${C.capacity.certificaciones.sellos.map(s=>`<div class="cert-inline-item"><img src="${s.img}" alt="${s.name}" onclick="openLightbox(event,this.src)"><span>${s.name}</span></div>`).join('')}
+          </div>
+        </div>
       </div>
     </div></div>`,
 
@@ -3200,14 +3440,7 @@ function build(){
         <h2 class="mega-title anim" style="color:var(--green);text-shadow:none;font-size:clamp(1.8rem,5vw,2.8rem);margin:0.3rem 0">${C.partners.title}</h2>
         <div class="legacy-accent-line anim" style="margin:0.3rem auto"></div>
       </div>
-      <div class="aliados-tabs anim" style="margin-top:0.6rem">
-        <button class="aliado-tab active" data-atab="goya" onclick="showAliadoPanel('goya',this)"><img src="logo-goya.png" alt="Goya"> Goya</button>
-        <button class="aliado-tab" data-atab="stores" onclick="showAliadoPanel('stores',this)">🛒 Dónde Encontrarnos</button>
-        <button class="aliado-tab" data-atab="clients" onclick="showAliadoPanel('clients',this)">🤝 Clientes</button>
-        <button class="aliado-tab" data-atab="private" onclick="showAliadoPanel('private',this)">🏭 Marca Privada</button>
-      </div>
-
-      <div class="aliado-panel visible" id="apanel-goya">
+      <div class="goya-featured anim">
         <div class="goya-header">
           <img src="${C.partners.goya.logo}" alt="Goya Foods" class="goya-logo">
           <div class="goya-text">${C.partners.goya.text}</div>
@@ -3215,7 +3448,13 @@ function build(){
         ${C.partners.goya.empaques.length?`<div class="goya-empaques" style="grid-template-columns:repeat(${C.partners.goya.empaques.length},minmax(120px,180px));justify-content:center">${C.partners.goya.empaques.map(e=>`<div class="goya-emp"><img src="${e}" alt="Producto Goya" onclick="openLightbox(event,this.src)" style="cursor:pointer"></div>`).join('')}</div>`:''}
       </div>
 
-      <div class="aliado-panel" id="apanel-stores">
+      <div class="aliados-tabs anim" style="margin-top:0.6rem">
+        <button class="aliado-tab active" data-atab="stores" onclick="showAliadoPanel('stores',this)">🛒 Dónde Encontrarnos</button>
+        <button class="aliado-tab" data-atab="clients" onclick="showAliadoPanel('clients',this)">🤝 Clientes</button>
+        <button class="aliado-tab" data-atab="private" onclick="showAliadoPanel('private',this)">🏭 Marca Privada</button>
+      </div>
+
+      <div class="aliado-panel visible" id="apanel-stores">
         <div class="stores-summary anim">
           <div class="stores-stat"><span class="stores-stat-num">${C.partners.stores.cities.length}</span><span class="stores-stat-label">Ciudades</span></div>
           <div class="stores-stat"><span class="stores-stat-num">${C.partners.stores.cities.reduce((a,c)=>a+c.stores.length,0)}+</span><span class="stores-stat-label">Puntos de Venta</span></div>
@@ -3288,6 +3527,7 @@ function init(){
 function go(i){
   if(i<0||i>=total)return;cur=i;
   document.getElementById('track').style.transform=`translateX(-${i*100}%)`;
+  document.querySelector('.slider').scrollLeft=0;
   document.querySelectorAll('.slide').forEach((s,j)=>s.classList.toggle('active',j===i));
   document.querySelectorAll('.dot').forEach((d,j)=>d.classList.toggle('on',j===i));
   document.getElementById('prevBtn').disabled=i===0;
@@ -3295,11 +3535,12 @@ function go(i){
   document.getElementById('progress').style.width=((i+1)/total*100)+'%';
   document.getElementById('counter').textContent=`${i+1} / ${total}`;
   // Auto-open panels when reaching specific slides
-  if(i===5){setTimeout(function(){initPatakisRain()},300)}
+  if(i===3){carouselAutoPaused=false;startCarouselAuto();}else{stopCarouselAuto();}
+  if(i===5){setTimeout(function(){initPatakisRain()},100)}
   if(i===6){setTimeout(function(){showSpecGallery('especiales')},400)}
-  if(i===7){setTimeout(function(){showCapPanel('toneladas')},400)}
+  if(i===7){/* all sections visible by default */}
   if(i===8){buildMapPins();animateMapStats();}
-  if(i===9){setTimeout(function(){showAliadoPanel('goya',document.querySelector('.aliado-tab[data-atab="goya"]'))},400)}
+  if(i===9){setTimeout(function(){showAliadoPanel('stores',document.querySelector('.aliado-tab[data-atab="stores"]'))},400)}
 }
 function next(){go(cur+1)}function prev(){go(cur-1)}
 function showLegacyPanel(id,el){
@@ -3389,7 +3630,8 @@ function showSpecGallery(key){
     return '<div class="spec-gallery-item"><img src="'+src+'" alt="'+name+'" onclick="openLightbox(event,\''+src.replace(/'/,"\\'")+'\')">'+'<span class="spec-gallery-name">'+name+'</span></div>';
   }).join('');
   gallery.classList.add('visible');
-  gallery.scrollIntoView({behavior:'smooth',block:'nearest'});
+  var slide=gallery.closest('.slide');
+  if(slide){slide.scrollTop=slide.scrollHeight;}
 }
 function closeSpecGallery(){
   document.getElementById('specGallery').classList.remove('visible');
@@ -3426,7 +3668,7 @@ function initPatakisRain(){
     img.alt='';
     img.style.left=Math.random()*92+'%';
     img.style.animationDuration=(5+Math.random()*8)+'s';
-    img.style.animationDelay=(Math.random()*10)+'s';
+    img.style.animationDelay=(Math.random()*2)+'s';
     img.style.width=clamp(60+Math.random()*80)+'px';
     img.style.opacity=0.6+Math.random()*0.35;
     container.appendChild(img);
@@ -3505,6 +3747,20 @@ function animateMapStats(){
 
 /* Product carousel */
 var curProd=0;
+var carouselAutoTimer=null;
+var carouselAutoPaused=false;
+function startCarouselAuto(){
+  if(carouselAutoPaused)return;
+  stopCarouselAuto();
+  carouselAutoTimer=setInterval(function(){
+    var p=CFG.productos;
+    var next=(curProd+1)%p.length;
+    goProduct(next);
+  },3500);
+}
+function stopCarouselAuto(){
+  if(carouselAutoTimer){clearInterval(carouselAutoTimer);carouselAutoTimer=null;}
+}
 function goProduct(i){
   var p=CFG.productos;
   if(i<0||i>=p.length)return;
@@ -3521,16 +3777,25 @@ function goProduct(i){
   el=document.getElementById('carouselCounter');if(el)el.textContent=(i+1)+' / '+p.length;
   // Update info view
   var emp=document.getElementById('infoEmpaque');
-  if(emp)emp.src=p[i].empaque||p[i].image;
+  if(emp){
+    emp.src=p[i].empaque||p[i].image;
+    var n=p[i].name.toLowerCase();
+    var isXL=n.includes('chips');
+    var isLarge=!isXL&&(n.includes('strip')||n.includes('bombonera')||n.includes('tiras'));
+    emp.classList.toggle('empaque-large',isLarge);
+    emp.classList.toggle('empaque-xl',isXL);
+  }
   buildInfoTable(p[i]);
-  document.getElementById('cprev').disabled=i===0;
-  document.getElementById('cnext').disabled=i===p.length-1;
-  // Reset to producto view
-  showProdView('producto');
+  document.getElementById('cprev').disabled=false;
+  document.getElementById('cnext').disabled=false;
+  // Keep current view (producto/info)
+  showProdView(currentProdView);
 }
-function nextProduct(){goProduct(curProd+1)}
-function prevProduct(){goProduct(curProd-1)}
+var currentProdView='producto';
+function nextProduct(){carouselAutoPaused=true;stopCarouselAuto();goProduct(curProd+1)}
+function prevProduct(){carouselAutoPaused=true;stopCarouselAuto();goProduct(curProd-1)}
 function showProdView(view){
+  currentProdView=view;
   document.getElementById('viewProducto').classList.toggle('hidden',view!=='producto');
   document.getElementById('viewInfo').classList.toggle('hidden',view!=='info');
   document.getElementById('tabProducto').classList.toggle('active',view==='producto');
