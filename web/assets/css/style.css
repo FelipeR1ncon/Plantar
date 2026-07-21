@@ -293,9 +293,9 @@ button { font-family: inherit; cursor: pointer; }
 }
 .prod-card:hover { transform: translateY(-8px) rotate(-0.5deg); box-shadow: var(--shadow-lg); }
 .prod-card .ph {
-  height: 200px; display: grid; place-items: center; margin-bottom: 0.9rem;
+  height: 260px; display: grid; place-items: center; margin-bottom: 0.9rem; flex: 1;
 }
-.prod-card .ph img { max-height: 200px; width: auto; max-width: 100%; object-fit: contain; transition: transform .3s; }
+.prod-card .ph img { max-height: 260px; width: auto; max-width: 100%; object-fit: contain; transition: transform .3s; }
 .prod-card:hover .ph img { transform: scale(1.07) rotate(2deg); }
 .prod-card h3 {
   font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase;
@@ -307,8 +307,7 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 0.66rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
   padding: 0.2rem 0.65rem;
 }
-.prod-card p { font-size: 0.88rem; color: var(--ink-soft); margin: 0.4rem 0 0.9rem; flex: 1; }
-.prod-card .sizes { font-size: 0.75rem; font-weight: 700; color: var(--green); margin-bottom: 0.9rem; }
+.prod-card .sizes { font-size: 0.78rem; font-weight: 700; color: var(--green); margin: 0.5rem 0 0.9rem; }
 .prod-card .btn { align-self: center; font-size: 0.75rem; padding: 0.6rem 1.3rem; }
 
 /* Filtros */
