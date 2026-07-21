@@ -53,10 +53,6 @@ function renderPage() {
   const p = findProduct(id) || PRODUCTS[0];
   document.title = `${prodName(p)} — Plantar`;
 
-  const waMsg = (LANG === 'en'
-    ? `Hello Plantar 👋, I would like a quote for: ${prodName(p)}`
-    : `Hola Plantar 👋, quisiera cotizar: ${prodName(p)}`);
-
   const imgs = [...new Set([p.empaque, p.image].filter(Boolean))];
   document.getElementById('detailHero').innerHTML = `
     <div class="art rev">
@@ -74,9 +70,8 @@ function renderPage() {
         <strong style="text-transform:uppercase;font-size:0.78rem;letter-spacing:0.06em">${t('detail_presentations')}</strong>
         <div class="chip-row" style="margin-top:0.4rem">${p.sizes.split(',').map(s => `<span class="chip">${s.trim()}</span>`).join('')}</div>
       </div>` : ''}
-      <div class="cta-row" style="display:flex;gap:1rem;flex-wrap:wrap">
+      <div class="cta-row">
         <a class="btn btn-dark" href="contacto.html?producto=${p.id}">${t('detail_quote')}</a>
-        <a class="btn btn-wa" target="_blank" rel="noopener" href="${waLink(waMsg)}">${t('detail_wa')}</a>
       </div>
     </div>`;
 
