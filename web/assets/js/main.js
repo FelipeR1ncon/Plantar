@@ -280,7 +280,6 @@ function cardHTML(p) {
     <span class="cat" data-cat>${t('cat_' + p.category)}</span>
     <div class="ph"><img loading="lazy" src="${p.empaque || p.image}" alt="${prodName(p)}"></div>
     <h3>${prodName(p)}</h3>
-    ${p.sizes ? `<div class="sizes">${p.sizes}</div>` : ''}
     <span class="btn btn-outline" data-i18n="view_product">${t('view_product')}</span>
   </a>`;
 }
