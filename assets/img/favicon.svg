@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 640" fill="#2E8B57">
+  <!-- ================================================
+       P-PALM ICON — Plantar Plantain Company
+       Elegant serif P with 6 curved palm fronds
+       ================================================ -->
+
+  <!-- PALM FRONDS — curved organic leaves from top center -->
+  <!-- Far left frond (longest, most curved) -->
+  <path d="M252,210 C230,185 175,145 85,75
+           C130,110 175,150 215,182
+           C238,200 248,208 252,210Z"/>
+
+  <!-- Mid left frond -->
+  <path d="M255,205 C242,168 210,115 165,35
+           C195,95 225,155 245,192
+           C250,200 253,205 255,205Z"/>
+
+  <!-- Inner left frond -->
+  <path d="M258,200 C255,155 248,100 238,18
+           C248,85 255,150 258,190
+           C258,196 258,200 258,200Z"/>
+
+  <!-- Inner right frond -->
+  <path d="M262,200 C265,155 272,100 285,18
+           C275,85 268,150 264,190
+           C263,196 262,200 262,200Z"/>
+
+  <!-- Mid right frond -->
+  <path d="M265,205 C278,168 312,112 362,35
+           C330,98 298,158 275,193
+           C270,201 267,205 265,205Z"/>
+
+  <!-- Far right frond (longest, most curved) -->
+  <path d="M268,210 C292,185 350,140 445,75
+           C398,112 348,152 305,185
+           C282,200 272,208 268,210Z"/>
+
+  <!-- LETTER P — Classic elegant serif -->
+  <!-- Main vertical stem -->
+  <rect x="182" y="215" width="48" height="400" rx="2"/>
+
+  <!-- P bowl (the curved part) -->
+  <path d="M230,215
+           L300,215
+           C330,215 355,222 372,238
+           C392,256 402,282 402,312
+           C402,342 392,368 372,386
+           C355,402 330,410 300,412
+           L230,412
+           L230,375
+           L295,375
+           C318,375 335,369 346,358
+           C357,347 362,332 362,312
+           C362,292 357,277 346,266
+           C335,255 318,250 295,250
+           L230,250
+           Z"/>
+
+  <!-- Top serif left -->
+  <path d="M160,215 L182,215 L182,228 L168,225 Z"/>
+  <!-- Top serif right -->
+  <path d="M230,215 L252,215 L252,225 L230,228 Z"/>
+
+  <!-- Bottom serif left -->
+  <path d="M160,615 L168,600 L182,603 L182,615 Z"/>
+  <!-- Bottom serif right -->
+  <path d="M230,603 L252,600 L262,615 L230,615 Z"/>
+
+  <!-- Top bar serif -->
+  <rect x="160" y="212" width="92" height="6" rx="1"/>
+  <!-- Bottom bar serif -->
+  <rect x="160" y="612" width="102" height="6" rx="1"/>
+</svg>

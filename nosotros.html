@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros — Plantar | Empresa Colombiana de Snacks desde 2009</title>
+<meta name="description" content="Conoce la historia de Plantar: más de 16 años produciendo snacks de plátano en el Eje Cafetero colombiano. Planta de 6.000 m², 300+ colaboradores, presencia en 11 países.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="about">
+
+<header class="site-header" id="site-header"></header>
+
+<!-- HERO -->
+<section class="section band-lime" style="border-bottom:3px solid var(--dark)">
+  <div class="container about-split">
+    <div>
+      <span class="kicker" data-i18n="about_kicker"></span>
+      <h1 class="section-title" style="font-size:clamp(3rem,7vw,5.2rem)" data-i18n="about_title"></h1>
+      <p class="section-sub" style="margin-top:1rem" data-i18n="about_quienes"></p>
+    </div>
+    <div class="photo rev"><img src="assets/img/empleados.jpg" alt="Equipo de colaboradores Plantar"></div>
+  </div>
+</section>
+
+<div data-marquee=""></div>
+
+<!-- STATS -->
+<section class="section band-cream" style="padding-bottom:2rem">
+  <div class="container stats-row rev">
+    <div class="stat"><div class="num">16+</div><div class="lbl" data-i18n="stat_years"></div></div>
+    <div class="stat"><div class="num">300+</div><div class="lbl" data-i18n="stat_team"></div></div>
+    <div class="stat"><div class="num">5.000+</div><div class="lbl" data-i18n="stat_tons"></div></div>
+    <div class="stat"><div class="num">11</div><div class="lbl" data-i18n="stat_countries"></div></div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section band-cream" style="padding-top:2rem">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title" data-i18n="about_timeline_title"></h2>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- PLANTA -->
+<section class="section band-white">
+  <div class="container about-split">
+    <div class="photo rev"><img src="assets/img/planta.jpg" alt="Planta de producción Plantar"></div>
+    <div class="rev">
+      <h2 class="section-title" data-i18n="about_plant_title"></h2>
+      <p class="section-sub" style="margin:1rem 0" data-i18n="about_plant_text"></p>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,3.5vw,2.6rem);margin-top:2rem" data-i18n="about_quality_title"></h2>
+      <p class="section-sub" style="margin-top:0.8rem" data-i18n="about_quality_text"></p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICACIONES -->
+<section class="section band-dark">
+  <div class="container">
+    <div class="section-head center">
+      <h2 class="section-title" data-i18n="about_certs_title"></h2>
+    </div>
+    <div class="sellos-row rev" id="sellos"></div>
+  </div>
+</section>
+
+<!-- PRESENCIA GLOBAL -->
+<section class="section band-cream">
+  <div class="container">
+    <div class="section-head center">
+      <h2 class="section-title" data-i18n="about_global_title"></h2>
+      <p class="section-sub" style="margin:0.6rem auto 0" data-i18n="about_global_sub"></p>
+    </div>
+    <div class="world-map-wrap rev">
+      <img src="assets/img/mapa.jpg" alt="Mapa de presencia global de Plantar">
+      <div class="map-overlay" id="mapOverlay"></div>
+    </div>
+    <div class="countries rev" id="countries"></div>
+  </div>
+</section>
+
+<!-- ALIADOS -->
+<section class="section band-white">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title" data-i18n="about_partners_title"></h2>
+    </div>
+    <div class="about-split">
+      <div class="rev">
+        <img src="assets/img/logo-goya.png" alt="Goya Foods" style="height:70px;margin-bottom:1rem">
+        <p class="section-sub" data-i18n="about_goya_text"></p>
+      </div>
+      <div class="brand-strip rev">
+        <img src="assets/img/goya-verde.png" alt="Empaque Goya plátano verde">
+        <img src="assets/img/goya-maduro.png" alt="Empaque Goya plátano maduro">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container inner">
+    <h2 data-i18n="cta_band_title"></h2>
+    <a class="btn btn-primary" href="contacto.html" data-i18n="cta_band_btn"></a>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+const TIMELINE_EN = {
+  '2009': ['Our company is born!', 'The beginning of a big dream.'],
+  '2011': ['First client', 'We started operations with our first client, expanding throughout Colombia.'],
+  '2017': ['Coffee Region', 'We moved to the Coffee Region, in La Tebaida, Quindío.'],
+  '2018': ['First export', 'We crossed borders with our first export to the United States and opened a second production plant.'],
+  '2019': ['International expansion', 'We expanded our international presence with exports to Spain, Panama and the Dominican Republic.'],
+  '2020': ['Growth', 'Our team grew to 320 employees, we opened a new distribution center and strengthened alliances with our suppliers.'],
+  '2023': ['Corporate unification', 'We unified our corporate name.'],
+};
+
+function renderPage() {
+  document.getElementById('timeline').innerHTML = CFG.legacy.timeline.map(x => {
+    const en = TIMELINE_EN[x.year];
+    const title = LANG === 'en' && en ? en[0] : x.title;
+    const desc = LANG === 'en' && en ? en[1] : x.desc;
+    return `<div class="tl-item rev"><div class="year">${x.year}</div><h3>${title}</h3><p>${desc}</p></div>`;
+  }).join('');
+
+  document.getElementById('sellos').innerHTML = CFG.capacity.certificaciones.sellos.map(s =>
+    `<div class="sello"><div><img src="${s.img}" alt="${s.name}"><span>${s.name}</span></div></div>`
+  ).join('');
+
+  buildMap();
+}
+
+/* ---- Mapa interactivo: pines, líneas desde Colombia y leyenda clicable ---- */
+// Coordenadas (%) calibradas por centroide de píxeles verdes de assets/img/mapa.jpg
+const MAP_POS = [
+  { id: 'ca', x: 23.8, y: 29.3 }, { id: 'us', x: 25, y: 47.8 }, { id: 'mx', x: 25.4, y: 52.9 },
+  { id: 'do', x: 29.3, y: 57.2 }, { id: 'pr', x: 34.6, y: 57.9 }, { id: 'pa', x: 32.3, y: 63.2 },
+  { id: 'co', x: 33.5, y: 65.3 }, { id: 'gb', x: 46.4, y: 43.9 }, { id: 'ch', x: 49.4, y: 48.7 },
+  { id: 'es', x: 46.1, y: 52.7 }, { id: 'au', x: 16.9, y: 82.1 },
+];
+const CO_ORIGIN = { x: 33.5, y: 65.3 };
+let activeCountry = -1;
+
+function buildMap() {
+  const countries = CFG.global.countries;
+  let html = '';
+  MAP_POS.forEach((pos, i) => {
+    const c = countries.find(ct => ct.id === pos.id);
+    if (!c) return;
+    if (pos.id !== 'co') {
+      const dx = pos.x - CO_ORIGIN.x, dy = pos.y - CO_ORIGIN.y;
+      const len = Math.sqrt(dx * dx + dy * dy);
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+      html += `<div class="map-line" data-mapline="${i}" style="left:${CO_ORIGIN.x}%;top:${CO_ORIGIN.y}%;width:${len}%;transform:rotate(${angle}deg);background:${c.color}"></div>`;
+    }
+    html += `<div class="map-pin" data-mappin="${i}" style="left:${pos.x}%;top:${pos.y}%;background:${c.color};color:${c.color};" role="button" tabindex="0" aria-label="${c.name}">
+      <span class="map-pin-label">${c.name}</span></div>`;
+  });
+  document.getElementById('mapOverlay').innerHTML = html;
+
+  document.getElementById('countries').innerHTML = MAP_POS.map((pos, i) => {
+    const c = countries.find(ct => ct.id === pos.id);
+    return c ? `<button type="button" class="country" data-maplegend="${i}"><span class="dot" style="background:${c.color}"></span>${c.name}</button>` : '';
+  }).join('');
+
+  setTimeout(() => document.querySelectorAll('.map-line').forEach(l => l.classList.add('visible')), 400);
+
+  document.querySelectorAll('[data-mappin]').forEach(p => {
+    p.addEventListener('click', () => highlightCountry(+p.dataset.mappin));
+    p.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); highlightCountry(+p.dataset.mappin); } });
+  });
+  document.querySelectorAll('[data-maplegend]').forEach(b =>
+    b.addEventListener('click', () => highlightCountry(+b.dataset.maplegend)));
+}
+
+function highlightCountry(idx) {
+  const pins = document.querySelectorAll('.map-pin');
+  const legends = document.querySelectorAll('[data-maplegend]');
+  const lines = document.querySelectorAll('.map-line');
+  if (activeCountry === idx) {
+    activeCountry = -1;
+    pins.forEach(p => p.classList.remove('active'));
+    legends.forEach(l => l.classList.remove('active'));
+    lines.forEach(l => { l.style.opacity = ''; });
+    return;
+  }
+  activeCountry = idx;
+  pins.forEach(p => p.classList.toggle('active', +p.dataset.mappin === idx));
+  legends.forEach(l => l.classList.toggle('active', +l.dataset.maplegend === idx));
+  lines.forEach(l => { l.style.opacity = +l.dataset.mapline === idx ? '0.85' : '0.12'; });
+}
+</script>
+</body>
+</html>

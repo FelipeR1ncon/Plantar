@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productos — Plantar | Snacks de Plátano, Yuca, Papa y Más</title>
+<meta name="description" content="Catálogo completo de snacks Plantar: tostones, tajadas, sticks, yuca, papa, arracacha, mezclas y más. Presentaciones desde 28g hasta 6kg.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="products">
+
+<header class="site-header" id="site-header"></header>
+
+<section class="section band-lime" style="padding-bottom:2.5rem;border-bottom:3px solid var(--dark)">
+  <div class="container">
+    <span class="kicker" data-i18n="home_best_kicker"></span>
+    <h1 class="section-title" style="font-size:clamp(3rem,7vw,5.2rem)" data-i18n="prods_title"></h1>
+    <p class="section-sub" style="margin-top:0.6rem" data-i18n="prods_sub"></p>
+  </div>
+</section>
+
+<div data-marquee=""></div>
+
+<section class="section band-cream">
+  <div class="container">
+    <div class="filters" id="filters" style="align-items:center">
+      <input type="search" id="searchBox" class="search-box" data-i18n-ph="search_ph">
+    </div>
+    <div class="prod-grid" id="grid"></div>
+    <p id="noResults" style="display:none;text-align:center;font-weight:700;padding:3rem 0" data-i18n="no_results"></p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container inner">
+    <h2 data-i18n="cta_band_title"></h2>
+    <a class="btn btn-primary" href="contacto.html" data-i18n="cta_band_btn"></a>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+let activeCat = 'all';
+let query = '';
+
+// Normaliza para buscar: minúsculas y sin acentos
+function norm(s) {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+}
+// Variantes singular/plural de una palabra: "tajadas" → ["tajadas", "tajada"]
+function tokenVariants(w) {
+  const v = [w];
+  if (w.endsWith('es') && w.length > 4) v.push(w.slice(0, -2));
+  if (w.endsWith('s') && w.length > 3) v.push(w.slice(0, -1));
+  return v;
+}
+// Puntaje: 0 = no coincide · 1 = solo descripción · 2+ = nombre
+function matchScore(p, tokens) {
+  const name = norm(prodName(p));
+  const desc = norm(prodDesc(p));
+  let score = 0;
+  for (const t of tokens) {
+    const vars = tokenVariants(t);
+    if (vars.some(v => name.includes(v))) score += 2;
+    else if (vars.some(v => desc.includes(v))) score += 1;
+    else return 0; // todas las palabras deben coincidir en algún lado
+  }
+  return score;
+}
+
+function drawGrid() {
+  const grid = document.getElementById('grid');
+  const tokens = norm(query.trim()).split(/\s+/).filter(Boolean);
+  let list = PRODUCTS.filter(p => activeCat === 'all' || p.category === activeCat);
+  if (tokens.length) {
+    list = list
+      .map(p => ({ p, score: matchScore(p, tokens) }))
+      .filter(x => x.score > 0)
+      .sort((a, b) => b.score - a.score || a.p.idx - b.p.idx)
+      .map(x => x.p);
+  }
+  grid.innerHTML = list.map(cardHTML).join('');
+  document.getElementById('noResults').style.display = list.length ? 'none' : 'block';
+  applyI18n(grid);
+  initReveal();
+}
+
+function renderPage() {
+  // filtro por URL: productos.html?cat=tostones
+  const urlCat = new URLSearchParams(location.search).get('cat');
+  if (urlCat && CATEGORIES.includes(urlCat)) activeCat = urlCat;
+
+  const holder = document.getElementById('filters');
+  const search = document.getElementById('searchBox');
+  holder.querySelectorAll('button').forEach(b => b.remove());
+  const frag = document.createDocumentFragment();
+  const cats = ['all', ...CATEGORIES.filter(c => PRODUCTS.some(p => p.category === c))];
+  cats.forEach(c => {
+    const b = document.createElement('button');
+    b.textContent = c === 'all' ? t('filter_all') : t('cat_' + c);
+    b.className = c === activeCat ? 'on' : '';
+    b.addEventListener('click', () => {
+      activeCat = c;
+      holder.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      drawGrid();
+    });
+    frag.appendChild(b);
+  });
+  holder.insertBefore(frag, search);
+  search.oninput = e => { query = e.target.value; drawGrid(); };
+
+  drawGrid();
+}
+</script>
+</body>
+</html>
