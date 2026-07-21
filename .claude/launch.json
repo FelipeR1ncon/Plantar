@@ -6,6 +6,12 @@
       "runtimeExecutable": "/usr/bin/python3",
       "runtimeArgs": ["-m", "http.server", "8080", "-d", "/Users/felipe/Documents/personal/natalia/brochure"],
       "port": 8080
+    },
+    {
+      "name": "plantar-web",
+      "runtimeExecutable": "/usr/bin/python3",
+      "runtimeArgs": ["-m", "http.server", "8765", "-d", "/Users/felipe/Documents/personal/natalia/brochure/web"],
+      "port": 8765
     }
   ]
 }
