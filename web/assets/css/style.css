@@ -87,7 +87,7 @@ button { font-family: inherit; cursor: pointer; }
 .site-header {
   position: sticky; top: 0; z-index: 100;
   background: var(--cream);
-  border-bottom: 3px solid var(--dark);
+  border-bottom: 1.5px solid var(--dark);
   height: var(--header-h);
 }
 .site-header .inner {
