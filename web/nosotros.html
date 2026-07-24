@@ -53,7 +53,12 @@
 <!-- PLANTA -->
 <section class="section band-white">
   <div class="container about-split">
-    <div class="photo rev"><img src="assets/img/planta.jpg" alt="Planta de producción Plantar"></div>
+    <div class="plant-carousel photo rev">
+      <img id="plantImg" src="assets/img/planta-13.jpg" alt="Planta de producción Plantar en La Tebaida, Quindío">
+      <button type="button" class="g-arrow prev" id="plantPrev" aria-label="Foto anterior">‹</button>
+      <button type="button" class="g-arrow next" id="plantNext" aria-label="Foto siguiente">›</button>
+      <div class="pc-dots" id="plantDots"></div>
+    </div>
     <div class="rev">
       <h2 class="section-title" data-i18n="about_plant_title"></h2>
       <p class="section-sub" style="margin:1rem 0" data-i18n="about_plant_text"></p>
@@ -154,7 +159,39 @@ function renderPage() {
     `<div class="sello"><div><img src="${s.img}" alt="${s.name}"><span>${s.name}</span></div></div>`
   ).join('');
 
+  initPlantCarousel();
   buildMap();
+}
+
+/* ---- Carrusel de fotos de la planta ---- */
+const PLANT_PHOTOS = ['13','01','04','05','09','10','06','07','08','11','12','02','03','14']
+  .map(n => `assets/img/planta-${n}.jpg`);
+let plantTimer = null, plantIdx = 0;
+
+function initPlantCarousel() {
+  const img = document.getElementById('plantImg');
+  if (!img || plantTimer) return;
+  PLANT_PHOTOS.forEach(src => { const i = new Image(); i.src = src; });
+  const dots = document.getElementById('plantDots');
+  dots.innerHTML = PLANT_PHOTOS.map((_, i) =>
+    `<button type="button" data-dot="${i}" aria-label="Foto ${i + 1}"></button>`).join('');
+
+  const show = i => {
+    plantIdx = (i + PLANT_PHOTOS.length) % PLANT_PHOTOS.length;
+    img.classList.add('fade');
+    setTimeout(() => { img.src = PLANT_PHOTOS[plantIdx]; img.classList.remove('fade'); }, 300);
+    dots.querySelectorAll('button').forEach((d, j) => d.classList.toggle('on', j === plantIdx));
+  };
+  const restart = () => { clearInterval(plantTimer); plantTimer = setInterval(() => show(plantIdx + 1), 3500); };
+
+  document.getElementById('plantPrev').addEventListener('click', () => { show(plantIdx - 1); restart(); });
+  document.getElementById('plantNext').addEventListener('click', () => { show(plantIdx + 1); restart(); });
+  dots.addEventListener('click', e => {
+    const b = e.target.closest('[data-dot]');
+    if (b) { show(+b.dataset.dot); restart(); }
+  });
+  dots.querySelector('button').classList.add('on');
+  restart();
 }
 
 /* ---- Mapa interactivo: pines, líneas desde Colombia y leyenda clicable ---- */
