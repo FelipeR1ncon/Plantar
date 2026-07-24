@@ -189,8 +189,8 @@
 <script>
 function renderPage() {
   // 8 productos destacados variados
-  const picks = ['toston-de-platano-verde', 'toston-de-platano-maduro', 'strips-tiras-de-platano-verde',
-    'strips-tiras-de-platano-maduro', 'tostada-de-platano-verde', 'mix-vegetal',
+  const picks = ['toston-de-platano-verde', 'toston-de-platano-maduro', 'strips-de-platano-verde',
+    'strips-de-platano-maduro', 'patakon-pisao', 'mix-vegetal',
     'tajada-de-platano-verde', 'tajadas-de-platano-maduro'];
   const feats = picks.map(id => findProduct(id)).filter(Boolean);
   const list = feats.length >= 6 ? feats : PRODUCTS.slice(0, 8);

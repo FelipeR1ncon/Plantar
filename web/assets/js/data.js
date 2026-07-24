@@ -427,10 +427,10 @@ const CFG = {
       }
     },
     {
-      "name": "Tostada de plátano verde",
+      "name": "Patakón pisao",
       "desc": "Tostadas de plátano verde, que gracias a su excepcional toque crocante, rinden homenaje a la tradición de la cocina colombiana.",
       "sizes": "80g",
-      "nameEn": "Green plantain toast:",
+      "nameEn": "Patakón pisao",
       "descEn": "Green plantain toast, which thanks to its exceptional crunchy touch, pays homage to the tradition of Colombian cuisine.",
       "image": "assets/img/tostadas-de-platano.png",
       "empaque": "assets/img/patakon-pisao.png",
@@ -697,10 +697,10 @@ const CFG = {
       }
     },
     {
-      "name": "Snacks mix",
+      "name": "All Mix",
       "desc": "Deliciosa mezcla de snacks de plátano, tocineta, papa, trocitos y chicharrón que te invitan a hacer una pausa para disfrutar de la mejor combinación y deleitar un poco de cada uno de los sabores que más te gustan en cualquier momento y en cualquier lugar.",
       "sizes": "260g",
-      "nameEn": "Premium Party Mix:",
+      "nameEn": "All Mix",
       "descEn": "Delicious mix of plantain, bacon, potato, bits and pork rind snacks that invite you to take a break and enjoy the best combination.",
       "image": "assets/img/all-mix.png",
       "empaque": "assets/img/all-mix.png",
@@ -778,10 +778,10 @@ const CFG = {
       }
     },
     {
-      "name": "Nachos natural",
+      "name": "Nachos naturales",
       "desc": "Exquisitos nachos naturales a base de maíz, crujientes y dorados, con el toque perfecto de sal y una textura crocante que resalta su sabor auténtico.",
       "sizes": "28g, 65g",
-      "nameEn": "Natural Nachos:",
+      "nameEn": "Natural nachos",
       "descEn": "Exquisite natural nachos made from corn, crispy and golden, with the perfect touch of salt and a crunchy texture that highlights their authentic flavor.",
       "image": "assets/img/nachos.png",
       "empaque": "assets/img/nachos-naturales-patakis.png",
@@ -881,10 +881,10 @@ const CFG = {
       }
     },
     {
-      "name": "Strips tiras de plátano verde",
+      "name": "Strips de plátano verde",
       "desc": "Deliciosas tiras/lenguas de plátano verde que te invitan a acompañar los más deliciosos platos o simplemente darte un gusto que te recargará de energía.",
       "sizes": "170g, 200g, 340g",
-      "nameEn": "Green plantain strips:",
+      "nameEn": "Green plantain strips",
       "descEn": "Delicious strips/tongues of green plantain that invite you to accompany the most delicious dishes or simply give you a taste that will recharge you with energy.",
       "image": "assets/img/tiras-de-platano-verde-strips-verde.png",
       "empaque": "assets/img/strips-verde.png",
@@ -908,10 +908,10 @@ const CFG = {
       }
     },
     {
-      "name": "Strips tiras de plátano maduro",
+      "name": "Strips de plátano maduro",
       "desc": "Suculentas y dulces tiras de plátano maduro, idóneas para complementar todo tipo de recetas.",
       "sizes": "170g, 200g, 340g",
-      "nameEn": "Ripe plantain strips:",
+      "nameEn": "Ripe plantain strips",
       "descEn": "Succulent and sweet strips of ripe plantain, ideal to complement all kinds of recipes.",
       "image": "assets/img/strips-maduro.png",
       "empaque": "assets/img/strips-maduro.png",
@@ -935,10 +935,10 @@ const CFG = {
       }
     },
     {
-      "name": "Strips tostón verde",
+      "name": "Tostón verde 454g",
       "desc": "Irresistibles tostones de plátano verde en formato strips, elaborados con un toque especial que les permiten conservar la inigualable crocancia.",
       "sizes": "454g",
-      "nameEn": "Green Toston Strips:",
+      "nameEn": "Green plantain tostón 454g",
       "descEn": "Irresistible green plantain tostons in strip format, made with a special touch that preserves the unmatched crunch.",
       "image": "assets/img/toston-verde.png",
       "empaque": "assets/img/strips-toston-maduro.png",
@@ -1054,10 +1054,10 @@ const CFG = {
       }
     },
     {
-      "name": "Six Pack verde limón",
+      "name": "Six Pack tajada verde limón",
       "desc": "Exquisitos snacks de plátano verde, con sabor a limón en forma de tajada con el toque perfecto de sal y una crocancia única.",
       "sizes": "6 x 28g (168g)",
-      "nameEn": "Lime Green Plantain 6-Pack:",
+      "nameEn": "Lime green plantain six pack",
       "descEn": "Exquisite green plantain snacks with lime flavor in slice form with the perfect touch of salt and a unique crunch.",
       "image": "assets/img/platanitos-de-limon.png",
       "empaque": "assets/img/six-tajada-verde-limon.png",
@@ -1081,10 +1081,10 @@ const CFG = {
       }
     },
     {
-      "name": "Papa 28g",
+      "name": "Papa natural",
       "desc": "Chips de papa en presentación personal de 28g. Perfecta para llevar.",
       "sizes": "28g",
-      "nameEn": "Potato Chips 28g:",
+      "nameEn": "Natural potato chips",
       "descEn": "Potato chips in 28g personal size. Perfect to go.",
       "image": "assets/img/papa.png",
       "empaque": "assets/img/papa-natural-28-gramos.png",
@@ -1092,10 +1092,10 @@ const CFG = {
       "info": null
     },
     {
-      "name": "Papa limón 28g",
+      "name": "Papa limón",
       "desc": "Chips de papa con limón en presentación personal de 28g. Frescura en cada bocado.",
       "sizes": "28g",
-      "nameEn": "Lime Potato Chips 28g:",
+      "nameEn": "Lime potato chips",
       "descEn": "Lime potato chips in 28g personal size. Freshness in every bite.",
       "image": "assets/img/papa-limon.png",
       "empaque": "assets/img/mockups-papa-limon-patakis-28gr.png",
@@ -1103,10 +1103,10 @@ const CFG = {
       "info": null
     },
     {
-      "name": "Chips de plátano verde",
+      "name": "Tajadas naturales de plátano verde",
       "desc": "Crujientes chips de plátano verde, elaborados artesanalmente con el mejor plátano colombiano y el toque justo de sal.",
       "sizes": "312g",
-      "nameEn": "Green Plantain Chips:",
+      "nameEn": "Natural green plantain slices",
       "descEn": "Crunchy green plantain chips, handcrafted with the finest Colombian plantain and just the right touch of salt.",
       "image": "assets/img/chips-tajada-verde-en-tazon.png",
       "empaque": "assets/img/chips-verde.png",
@@ -1114,10 +1114,10 @@ const CFG = {
       "info": null
     },
     {
-      "name": "Chips de plátano maduro",
+      "name": "Tajadas naturales de plátano maduro",
       "desc": "Dulces y crujientes chips de plátano maduro, con su sabor natural que deleita en cada bocado.",
       "sizes": "312g",
-      "nameEn": "Ripe Plantain Chips:",
+      "nameEn": "Natural ripe plantain slices",
       "descEn": "Sweet and crunchy ripe plantain chips, with natural flavor that delights in every bite.",
       "image": "assets/img/chips-tajada-madura.png",
       "empaque": "assets/img/chips-maduro.png",
@@ -1125,10 +1125,10 @@ const CFG = {
       "info": null
     },
     {
-      "name": "Chips de yuca",
+      "name": "Tajadas de yuca",
       "desc": "Crujientes chips de yuca con el toque perfecto de sal, ideales para acompañar cualquier comida o disfrutar como snack.",
       "sizes": "312g",
-      "nameEn": "Cassava Chips:",
+      "nameEn": "Cassava slices",
       "descEn": "Crunchy cassava chips with the perfect touch of salt, ideal to accompany any meal or enjoy as a snack.",
       "image": "assets/img/chips-yucas-tazon.png",
       "empaque": "assets/img/chips-de-yuca.png",
@@ -1136,10 +1136,10 @@ const CFG = {
       "info": null
     },
     {
-      "name": "Chips de limón",
+      "name": "Tajadas verdes con limón",
       "desc": "Chips de plátano verde con un delicioso toque de limón que resalta su sabor natural. Frescura y crocancia en cada bocado.",
       "sizes": "312g",
-      "nameEn": "Lime Chips:",
+      "nameEn": "Green plantain slices with lime",
       "descEn": "Green plantain chips with a delicious touch of lime that enhances their natural flavor. Freshness and crunch in every bite.",
       "image": "assets/img/chips-tajada-verde-limon.png",
       "empaque": "assets/img/chips-de-limon.png",
@@ -1147,10 +1147,10 @@ const CFG = {
       "info": null
     },
     {
-      "name": "Chips de ajo",
+      "name": "Tajadas verdes con ajo",
       "desc": "Chips de plátano verde con un irresistible sabor a ajo. La combinación perfecta entre crocancia y sabor.",
       "sizes": "312g",
-      "nameEn": "Garlic Chips:",
+      "nameEn": "Green plantain slices with garlic",
       "descEn": "Green plantain chips with an irresistible garlic flavor. The perfect combination of crunch and taste.",
       "image": "assets/img/chips-tajada-y-ajo.png",
       "empaque": "assets/img/chips-de-ajo.png",
@@ -1158,10 +1158,10 @@ const CFG = {
       "info": null
     },
     {
-      "name": "Chips habanero",
+      "name": "Tajadas picantes habanero",
       "desc": "Chips de plátano verde con el toque picante del habanero. Para los amantes del sabor intenso y la crocancia.",
       "sizes": "312g",
-      "nameEn": "Habanero Chips:",
+      "nameEn": "Spicy habanero plantain slices",
       "descEn": "Green plantain chips with the spicy touch of habanero. For lovers of intense flavor and crunch.",
       "image": "assets/img/chips-tajada-picante-habanero.png",
       "empaque": "assets/img/chips-habanero.png",

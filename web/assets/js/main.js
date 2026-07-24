@@ -82,7 +82,7 @@ const I18N = {
     footer_about: 'Empresa colombiana productora de snacks de plátano, yuca, papa y raíces desde 2009. La Tebaida, Quindío — Eje Cafetero.',
     footer_nav: 'Navegación', footer_contact: 'Contacto', footer_certs: 'Certificaciones',
     footer_rights: 'Todos los derechos reservados.',
-    cat_tostones: 'Tostones', cat_patakon: 'Patakón / Tostada', cat_tajadas: 'Tajadas / Chips',
+    cat_tostones: 'Tostones', cat_patakon: 'Patakón / Tostada', cat_tajadas: 'Tajadas y monedas',
     cat_strips: 'Lenguas / Strips', cat_sticks: 'Palitos / Sticks', cat_raices: 'Raíces',
     cat_mix: 'Mezclas / Mix', cat_maiz: 'Maíz', cat_familiares: 'Familiares', cat_esp: 'Especiales',
   },
@@ -158,7 +158,7 @@ const I18N = {
     footer_about: 'Colombian producer of plantain, cassava, potato and root snacks since 2009. La Tebaida, Quindío — Coffee Region.',
     footer_nav: 'Navigation', footer_contact: 'Contact', footer_certs: 'Certifications',
     footer_rights: 'All rights reserved.',
-    cat_tostones: 'Tostones', cat_patakon: 'Patakón / Toast', cat_tajadas: 'Chips & slices',
+    cat_tostones: 'Tostones', cat_patakon: 'Patakón / Toast', cat_tajadas: 'Slices & coins',
     cat_strips: 'Strips', cat_sticks: 'Sticks', cat_raices: 'Roots',
     cat_mix: 'Mixes', cat_maiz: 'Corn', cat_familiares: 'Family size', cat_esp: 'Specials',
   },
@@ -194,8 +194,7 @@ function prodDesc(p) { return LANG === 'en' && p.descEn ? p.descEn : p.desc; }
 function categoryOf(p) {
   const n = p.name.toLowerCase();
   // Familiares: formatos grandes y multipacks
-  if (n.includes('six pack') || n.includes('bombonera') || n.includes('anillos') ||
-      (n.includes('strips') && (n.includes('tostón') || n.includes('toston')))) return 'familiares';
+  if (n.includes('six pack') || n.includes('bombonera') || n.includes('anillos') || n.includes('454')) return 'familiares';
   if (n.includes('mix') || n.includes('all mix')) return 'mix';
   if (n.includes('strips') || n.includes('lengua')) return 'strips';
   if (n.includes('tostón') || n.includes('toston')) return 'tostones';
