@@ -213,7 +213,9 @@ const CATEGORIES = ['tostones', 'patakon', 'tajadas', 'strips', 'sticks', 'raice
 
 const PRODUCTS = CFG.productos
   .map((p, i) => ({ ...p, id: slugify(p.name), idx: i, category: categoryOf(p) }))
-  .sort((a, b) => CATEGORIES.indexOf(a.category) - CATEGORIES.indexOf(b.category) || a.idx - b.idx);
+  // orden: por categoría y, dentro de cada una, alfabético — así los nombres iguales quedan seguidos
+  .sort((a, b) => CATEGORIES.indexOf(a.category) - CATEGORIES.indexOf(b.category) ||
+    a.name.localeCompare(b.name, 'es'));
 
 function productUrl(p) { return `producto.html?id=${p.id}`; }
 function findProduct(id) { return PRODUCTS.find(p => p.id === id); }
