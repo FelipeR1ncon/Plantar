@@ -82,7 +82,8 @@ const I18N = {
     footer_about: 'Empresa colombiana productora de snacks de plátano, yuca, papa y raíces desde 2009. La Tebaida, Quindío — Eje Cafetero.',
     footer_nav: 'Navegación', footer_contact: 'Contacto', footer_certs: 'Certificaciones',
     footer_rights: 'Todos los derechos reservados.',
-    cat_tostones: 'Tostones', cat_patakon: 'Patakón / Tostada', cat_tajadas: 'Tajadas y monedas',
+    cat_tostones: 'Tostones', cat_patakon: 'Patakón / Tostada', cat_tajadas: 'Tajadas',
+    cat_papamonedas: 'Papa y monedas',
     cat_strips: 'Lenguas / Strips', cat_sticks: 'Palitos / Sticks', cat_raices: 'Raíces',
     cat_mix: 'Mezclas / Mix', cat_maiz: 'Maíz', cat_familiares: 'Familiares', cat_esp: 'Especiales',
   },
@@ -158,7 +159,8 @@ const I18N = {
     footer_about: 'Colombian producer of plantain, cassava, potato and root snacks since 2009. La Tebaida, Quindío — Coffee Region.',
     footer_nav: 'Navigation', footer_contact: 'Contact', footer_certs: 'Certifications',
     footer_rights: 'All rights reserved.',
-    cat_tostones: 'Tostones', cat_patakon: 'Patakón / Toast', cat_tajadas: 'Slices & coins',
+    cat_tostones: 'Tostones', cat_patakon: 'Patakón / Toast', cat_tajadas: 'Slices',
+    cat_papamonedas: 'Potato & coins',
     cat_strips: 'Strips', cat_sticks: 'Sticks', cat_raices: 'Roots',
     cat_mix: 'Mixes', cat_maiz: 'Corn', cat_familiares: 'Family size', cat_esp: 'Specials',
   },
@@ -201,6 +203,7 @@ function categoryOf(p) {
   if (n.includes('mini tostada')) return 'esp';
   if (n.includes('patakón') || n.includes('patakon') || n.includes('tostada')) return 'patakon';
   if (n.includes('stick') || n.includes('palito')) return 'sticks';
+  if (n.includes('moneda') || n.includes('papa')) return 'papamonedas';
   if (n.includes('nacho') || n.includes('palomita') || n.includes('carantanta')) return 'maiz';
   if (n.includes('yuca') || n.includes('yukita') || n.includes('papa') || n.includes('batata') || n.includes('arracacha') || n.includes('malanga') || n.includes('ñame')) return 'raices';
   if (n.includes('canasta') || n.includes('cono') || n.includes('cucharita') || n.includes('crouton') || n.includes('rosquill')) return 'esp';
@@ -208,7 +211,7 @@ function categoryOf(p) {
   return 'esp';
 }
 // Orden del portafolio: primero Patakis (línea core), luego Familiares y al final Especiales
-const CATEGORIES = ['tostones', 'patakon', 'tajadas', 'strips', 'sticks', 'raices', 'mix', 'maiz', 'familiares', 'esp'];
+const CATEGORIES = ['tostones', 'patakon', 'tajadas', 'papamonedas', 'strips', 'sticks', 'raices', 'mix', 'maiz', 'familiares', 'esp'];
 
 const PRODUCTS = CFG.productos
   .map((p, i) => ({ ...p, id: slugify(p.name), idx: i, category: categoryOf(p) }))
