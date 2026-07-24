@@ -211,7 +211,7 @@ button { font-family: inherit; cursor: pointer; }
   z-index: 0; pointer-events: none; user-select: none;
 }
 .hero-art .hero-bg-word img {
-  width: min(94%, 640px); opacity: 0.09; transform: rotate(-6deg);
+  width: min(120%, 860px); max-width: none; opacity: 0.11;
 }
 .bag-box {
   position: relative; width: 100%;
