@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#FBF8EA">
 <title>Plantar — Snacks de Plátano Colombianos | Plantain Company</title>
-<meta name="description" content="Plantar S.A.S — Snacks de plátano, yuca, papa y raíces 100% colombianos. Tostones, tajadas, sticks y más. Exportamos a 11 países. Maquila y marca privada.">
+<meta name="description" content="Snacks de plátano Colombia — Plantar S.A.S. Tostones, tajadas, strips, yuca y raíces 100% colombianas. Exportación de snacks colombianos a 11 países y maquila de plátano para tu marca.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,8 +92,8 @@
       </div>
     </div>
     <div class="hero-art">
+      <div class="hero-bg-word"><img src="assets/img/patakis-logo.png" alt=""></div>
       <div class="bag-stack">
-        <img class="patakis-brand" src="assets/img/patakis-logo.png" alt="Patakis">
         <div class="bag-box">
           <div class="glow"></div>
           <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="#C9E265" stroke-width="1.6" stroke-dasharray="4 5" stroke-linecap="round"/></svg>
@@ -113,9 +113,7 @@
 <section class="section band-cream">
   <div class="container">
     <div class="section-head center rev">
-      <span class="kicker" data-i18n="home_best_kicker"></span>
       <h2 class="section-title" data-i18n="home_best_title"></h2>
-      <p class="section-sub" data-i18n="home_best_sub"></p>
     </div>
     <div class="prod-grid" id="featuredGrid"></div>
     <div style="text-align:center;margin-top:2.5rem">
@@ -138,6 +136,12 @@
         <div class="stat"><div class="num">16+</div><div class="lbl" data-i18n="stat_years"></div></div>
         <div class="stat"><div class="num">11</div><div class="lbl" data-i18n="stat_countries"></div></div>
         <div class="stat"><div class="num">5.000+</div><div class="lbl" data-i18n="stat_tons"></div></div>
+      </div>
+      <div class="sellos-mini rev">
+        <img src="assets/img/sello-bureau-veritas-iso-9001-logo.png" alt="ISO 9001">
+        <img src="assets/img/sello-invima-logo.png" alt="INVIMA">
+        <img src="assets/img/sello-kosher.png" alt="Kosher">
+        <img src="assets/img/sello-gluten.png" alt="Gluten Free">
       </div>
       <a class="btn btn-outline" href="nosotros.html" data-i18n="home_about_cta"></a>
     </div>
@@ -185,8 +189,9 @@
 <script>
 function renderPage() {
   // 8 productos destacados variados
-  const picks = ['toston-de-platano-verde', 'tajadas-de-platano-maduro', 'maduritos-picante-habanero',
-    'platanitos-queso-explosion', 'toston-de-yuca', 'papa-trufa', 'snacks-mix', 'toston-de-limon'];
+  const picks = ['toston-de-platano-verde', 'toston-de-platano-maduro', 'strips-tiras-de-platano-verde',
+    'strips-tiras-de-platano-maduro', 'tostada-de-platano-verde', 'mix-vegetal',
+    'tajada-de-platano-verde', 'tajadas-de-platano-maduro'];
   const feats = picks.map(id => findProduct(id)).filter(Boolean);
   const list = feats.length >= 6 ? feats : PRODUCTS.slice(0, 8);
   document.getElementById('featuredGrid').innerHTML = list.map(cardHTML).join('');
@@ -203,14 +208,13 @@ let heroCarouselTimer = null;
 function initHeroCarousel() {
   const bag = document.getElementById('heroBag');
   if (!bag || heroCarouselTimer) return;
+  // Los más vendedores: tostones, strips/lenguas, tostada/patakón y mix de vegetales
   const bags = [
     'assets/img/toston-verde.png',
     'assets/img/toston-maduro.png',
-    'assets/img/maduritos.png',
-    'assets/img/platanitos-queso-explosion.png',
-    'assets/img/all-mix.png',
-    'assets/img/moneda-verde.png',
-    'assets/img/papa-trufa-2.png',
+    'assets/img/strips-verde.png',
+    'assets/img/strips-maduro.png',
+    'assets/img/patakon-pisao.png',
     'assets/img/mix-vegetal.png',
   ];
   bags.forEach(src => { const i = new Image(); i.src = src; }); // precarga

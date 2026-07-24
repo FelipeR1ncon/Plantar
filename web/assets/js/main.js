@@ -3,7 +3,7 @@
    Requiere data.js (CFG) cargado antes.
    ============================================================ */
 
-const WA_NUMBER = '573106437745'; // (+57) 310 643 77 45 — ventas
+const WA_NUMBER = '573125769026'; // (+57) 312 576 90 26 — ventas (pendiente confirmar)
 const CONTACT = CFG.partners.contact;
 
 /* ---------- i18n ---------- */
@@ -15,10 +15,10 @@ const I18N = {
     nav_maquila: 'Maquila', nav_contact: 'Contacto', nav_quote: 'Cotiza ahora',
     hero_kicker: 'Snacks colombianos',
     hero_title_1: 'El sabor', hero_script: 'auténtico', hero_title_2: 'del plátano',
-    hero_sub: 'Somos Plantar, empresa colombiana con más de 16 años llevando snacks de plátano, yuca, papa y raíces del Eje Cafetero al mundo.',
-    hero_cta_products: 'Ver productos', hero_cta_quote: 'Cotizar',
+    hero_sub: 'Transformamos plátano y otras raíces colombianas en snacks con el crunch perfecto en cada bocado.',
+    hero_cta_products: 'Ver productos', hero_cta_quote: 'Cotiza tu pedido',
     marquee: 'Del campo a la mesa • Sabor auténtico • 100% colombiano • Snacks naturales •',
-    home_best_kicker: 'Nuestro catálogo', home_best_title: 'Productos estrella',
+    home_best_kicker: 'Nuestro catálogo', home_best_title: 'Nuestros productos',
     home_best_sub: 'Tostones, tajadas, sticks, yuca, papa y mezclas únicas. Todo con la crocancia de la cocina colombiana.',
     home_best_cta: 'Ver todo el catálogo',
     home_about_kicker: 'Desde 2009', home_about_title: 'Hechos en el Eje Cafetero',
@@ -40,47 +40,61 @@ const I18N = {
     spec_sodium: 'Sodio', spec_sugar: 'Azúcares', spec_extra: 'Presentaciones adicionales',
     detail_quote: 'Cotizar este producto', detail_wa: 'Preguntar por WhatsApp',
     related_title: 'También te puede gustar', back_catalog: '← Volver al catálogo',
-    about_title: 'Nuestro legado', about_kicker: 'Desde 2009',
-    about_quienes: CFG.legacy.quienes,
+    about_title: 'Quiénes somos', about_kicker: 'Plantar S.A.S.',
+    about_quienes: 'Plantar S.A.S. nació en el Eje Cafetero colombiano con una misión clara: llevar lo mejor del campo colombiano a Colombia y al mundo. Hoy, 16 años después, seguimos fieles a ese propósito: distribuimos a nivel nacional y exportamos a 11 países, con procesos rigurosos que garantizan la misma calidad en cada lote.',
     about_timeline_title: 'Nuestra historia',
-    about_plant_title: 'Nuestra planta', about_plant_text: CFG.operations.planta,
+    about_plant_title: 'Nuestra planta', about_plant_text: 'Nuestra planta de producción en La Tebaida, Quindío, combina tecnología de punta con la tradición colombiana. Con más de 4.000 m², garantizamos calidad, trazabilidad y eficiencia en cada lote que transformamos en snacks.',
     about_quality_title: 'Calidad e inocuidad', about_quality_text: CFG.operations.calidad,
-    about_certs_title: 'Certificaciones y sellos',
-    about_global_title: 'Presencia global', about_global_sub: 'Países donde tenemos presencia',
-    about_partners_title: 'Aliados estratégicos', about_goya_text: CFG.partners.goya.text,
-    stat_years: 'Años de experiencia', stat_countries: 'Países', stat_tons: 'Toneladas / año', stat_team: 'Colaboradores',
-    maquila_title: CFG.maquila.title, maquila_desc: CFG.maquila.desc,
+    about_certs_title: 'Nuestras certificaciones',
+    about_global_title: 'Nuestra presencia', about_global_sub: 'Países donde tenemos presencia',
+    about_partners_title: 'Nuestros aliados',
+    about_goya_text: 'Somos aliados de marcas reconocidas como Goya Foods, para quienes producimos línea de plátano verde y plátano maduro bajo los más altos estándares de calidad e inocuidad alimentaria.',
+    values_title: 'Nuestros valores',
+    val_quality_t: 'Calidad', val_quality_d: 'Cada producto sale de nuestra planta con los más altos estándares.',
+    val_origin_t: 'Origen', val_origin_d: 'Materia prima 100% colombiana, del campo directo a la planta.',
+    val_commit_t: 'Compromiso', val_commit_d: 'Con nuestros colaboradores, clientes y el agro nacional.',
+    stat_years: 'Años de trayectoria', stat_countries: 'Países', stat_tons: 'Toneladas producidas', stat_team: 'Colaboradores', stat_containers: 'Contenedores / mes',
+    maquila_title: 'Fabricamos tu marca, con nuestros estándares',
+    maquila_desc: 'Producimos snacks de plátano, yuca y raíces bajo tu propia marca, con la calidad y trazabilidad que exigen los mercados nacional e internacional.',
     maquila_highlight: CFG.maquila.highlight,
     maquila_pb_title: 'Marca privada', maquila_pb_text: CFG.partners.privateBrand.text,
-    maquila_how_title: '¿Qué incluye nuestro servicio?',
-    maquila_cta: 'Cotiza tu proyecto de maquila',
+    maquila_certs_title: 'Certificaciones',
+    maquila_how_title: 'Cómo trabajamos',
+    maquila_step1: 'Cuéntanos tu marca, tus objetivos y volúmenes esperados',
+    maquila_step2: 'Desarrollamos juntos la fórmula, el sabor y el empaque',
+    maquila_step3: 'Producimos bajo tus especificaciones y estándares de calidad',
+    maquila_step4: 'Entregamos o exportamos donde lo necesites',
+    maquila_goya_text: 'Empresas como Goya Foods ya confían en nuestra capacidad de producción y en nuestros estándares de calidad para fabricar su línea de strips de plátano.',
+    maquila_band: '¿Tienes una marca o una idea de producto? Hablemos de cómo hacerla realidad.',
+    maquila_band_btn: 'Solicitar información de maquila',
+    maquila_cta: 'Conocer el servicio de maquila',
     contact_title: 'Conecta con nosotros', contact_sub: '¿Interesado en nuestros productos? Escríbenos y te responderemos lo antes posible.',
-    contact_sales: 'Ventas', contact_reception: 'Recepción', contact_phones: 'Teléfonos',
+    contact_emails: 'Correos', contact_sales: 'Ventas', contact_reception: 'Recepción', contact_phones: 'Teléfonos',
     contact_address: 'Dirección', contact_wa_cta: 'Escríbenos por WhatsApp',
     form_title: 'Solicita una cotización',
     form_name: 'Nombre completo', form_company: 'Empresa', form_email: 'Correo electrónico',
     form_phone: 'Teléfono', form_products: 'Productos de interés', form_msg: 'Mensaje',
     form_msg_ph: 'Cuéntanos qué cantidades y presentaciones necesitas…',
-    form_send_wa: 'Enviar por WhatsApp', form_send_mail: 'Enviar por correo',
-    form_note: 'Al enviar se abrirá WhatsApp o tu correo con el mensaje listo para nuestro equipo de ventas.',
+    form_send_wa: 'Enviar por WhatsApp', form_send_mail: 'Enviar solicitud',
+    form_note: 'Al enviar se abrirá tu correo con el mensaje listo para nuestro equipo de ventas.',
     form_required: 'Por favor escribe tu nombre y un mensaje o selecciona productos.',
     wa_greeting: 'Hola Plantar 👋, estoy interesado en sus productos.',
     footer_about: 'Empresa colombiana productora de snacks de plátano, yuca, papa y raíces desde 2009. La Tebaida, Quindío — Eje Cafetero.',
     footer_nav: 'Navegación', footer_contact: 'Contacto', footer_certs: 'Certificaciones',
     footer_rights: 'Todos los derechos reservados.',
-    cat_tostones: 'Tostones', cat_tajadas: 'Tajadas y chips', cat_sticks: 'Sticks y palitos',
-    cat_raices: 'Yuca, papa y raíces', cat_mix: 'Mezclas', cat_maiz: 'Maíz',
-    cat_six: 'Six pack', cat_esp: 'Especiales',
+    cat_tostones: 'Tostones', cat_patakon: 'Patakón / Tostada', cat_tajadas: 'Tajadas / Chips',
+    cat_strips: 'Lenguas / Strips', cat_sticks: 'Palitos / Sticks', cat_raices: 'Raíces',
+    cat_mix: 'Mezclas / Mix', cat_maiz: 'Maíz', cat_familiares: 'Familiares', cat_esp: 'Especiales',
   },
   en: {
     nav_home: 'Home', nav_products: 'Products', nav_about: 'About us',
     nav_maquila: 'Private label', nav_contact: 'Contact', nav_quote: 'Get a quote',
     hero_kicker: 'Colombian snacks',
     hero_title_1: 'The authentic', hero_script: 'flavor', hero_title_2: 'of plantain',
-    hero_sub: 'We are Plantar, a Colombian company with over 16 years bringing plantain, cassava, potato and root snacks from the Coffee Region to the world.',
-    hero_cta_products: 'View products', hero_cta_quote: 'Get a quote',
+    hero_sub: 'We transform plantain and other Colombian roots into snacks with the perfect crunch in every bite.',
+    hero_cta_products: 'View products', hero_cta_quote: 'Quote your order',
     marquee: 'From farm to table • Authentic flavor • 100% Colombian • Natural snacks •',
-    home_best_kicker: 'Our catalog', home_best_title: 'Featured products',
+    home_best_kicker: 'Our catalog', home_best_title: 'Our products',
     home_best_sub: 'Tostones, chips, sticks, cassava, potato and unique mixes. All with the crunch of Colombian cuisine.',
     home_best_cta: 'View full catalog',
     home_about_kicker: 'Since 2009', home_about_title: 'Made in the Coffee Region',
@@ -102,38 +116,51 @@ const I18N = {
     spec_sodium: 'Sodium', spec_sugar: 'Sugars', spec_extra: 'Additional presentations',
     detail_quote: 'Quote this product', detail_wa: 'Ask on WhatsApp',
     related_title: 'You may also like', back_catalog: '← Back to catalog',
-    about_title: 'Our legacy', about_kicker: 'Since 2009',
-    about_quienes: 'We are a Colombian company dedicated to producing and marketing the highest quality plantain snacks. With over 16 years of experience, we bring the authentic flavor of Colombian plantain to international markets, standing out for our quality standards, innovation and commitment to excellence.',
+    about_title: 'Who we are', about_kicker: 'Plantar S.A.S.',
+    about_quienes: 'Plantar S.A.S. was born in the Colombian Coffee Region with a clear mission: to bring the best of the Colombian countryside to Colombia and the world. Today, 16 years later, we remain true to that purpose: we distribute nationwide and export to 11 countries, with rigorous processes that guarantee the same quality in every batch.',
     about_timeline_title: 'Our story',
-    about_plant_title: 'Our plant', about_plant_text: 'Located in La Tebaida, Quindío, 500m from the Quindío free trade zone, our plant spans over 6,000 m² with optimal facilities that allow us to develop our expansion projects.',
+    about_plant_title: 'Our plant', about_plant_text: 'Our production plant in La Tebaida, Quindío, combines state-of-the-art technology with Colombian tradition. With over 4,000 m², we guarantee quality, traceability and efficiency in every batch we transform into snacks.',
     about_quality_title: 'Quality & food safety', about_quality_text: 'We are committed to manufacturing innovative, safe, high-quality products. Built on a culture of food safety, continuous improvement and strict regulatory compliance, we strive to guarantee global customer satisfaction and sustainable development.',
-    about_certs_title: 'Certifications & seals',
-    about_global_title: 'Global presence', about_global_sub: 'Countries where we operate',
-    about_partners_title: 'Strategic partners',
-    about_goya_text: 'Goya Foods is one of our main commercial partners. As the largest Hispanic food company in the United States, Goya trusts the quality and authenticity of our plantain products to bring Latin flavor to millions of homes.',
-    stat_years: 'Years of experience', stat_countries: 'Countries', stat_tons: 'Tons / year', stat_team: 'Employees',
-    maquila_title: CFG.maquila.titleEn, maquila_desc: CFG.maquila.descEn,
+    about_certs_title: 'Our certifications',
+    about_global_title: 'Our presence', about_global_sub: 'Countries where we operate',
+    about_partners_title: 'Our partners',
+    about_goya_text: 'We are partners of renowned brands such as Goya Foods, for whom we produce green and ripe plantain lines under the highest quality and food safety standards.',
+    values_title: 'Our values',
+    val_quality_t: 'Quality', val_quality_d: 'Every product leaves our plant meeting the highest standards.',
+    val_origin_t: 'Origin', val_origin_d: '100% Colombian raw material, straight from the field to the plant.',
+    val_commit_t: 'Commitment', val_commit_d: 'To our employees, our clients and Colombian agriculture.',
+    stat_years: 'Years in the industry', stat_countries: 'Countries', stat_tons: 'Tons produced', stat_team: 'Employees', stat_containers: 'Containers / month',
+    maquila_title: 'We manufacture your brand, with our standards',
+    maquila_desc: 'We produce plantain, cassava and root snacks under your own brand, with the quality and traceability that national and international markets demand.',
     maquila_highlight: CFG.maquila.highlightEn,
     maquila_pb_title: 'Private label', maquila_pb_text: 'At Plantar we offer contract manufacturing and private label development services. With our experience, technology and installed capacity, we produce plantain snacks and other products under your own brand, guaranteeing the highest quality and food safety standards.',
-    maquila_how_title: 'What does our service include?',
-    maquila_cta: 'Quote your private label project',
+    maquila_certs_title: 'Certifications',
+    maquila_how_title: 'How we work',
+    maquila_step1: 'Tell us about your brand, your goals and expected volumes',
+    maquila_step2: 'Together we develop the formula, flavor and packaging',
+    maquila_step3: 'We produce under your specifications and quality standards',
+    maquila_step4: 'We deliver or export wherever you need it',
+    maquila_goya_text: 'Companies like Goya Foods already trust our production capacity and quality standards to manufacture their plantain strips line.',
+    maquila_band: 'Do you have a brand or a product idea? Let’s talk about making it happen.',
+    maquila_band_btn: 'Request private label information',
+    maquila_cta: 'Learn about our private label service',
     contact_title: 'Connect with us', contact_sub: 'Interested in our products? Write to us and we will reply as soon as possible.',
-    contact_sales: 'Sales', contact_reception: 'Reception', contact_phones: 'Phones',
+    contact_emails: 'Emails', contact_sales: 'Sales', contact_reception: 'Reception', contact_phones: 'Phones',
     contact_address: 'Address', contact_wa_cta: 'Message us on WhatsApp',
     form_title: 'Request a quote',
     form_name: 'Full name', form_company: 'Company', form_email: 'Email',
     form_phone: 'Phone', form_products: 'Products of interest', form_msg: 'Message',
     form_msg_ph: 'Tell us the quantities and presentations you need…',
-    form_send_wa: 'Send via WhatsApp', form_send_mail: 'Send via email',
-    form_note: 'Submitting opens WhatsApp or your email client with the message ready for our sales team.',
+    form_send_wa: 'Send via WhatsApp', form_send_mail: 'Send request',
+    form_note: 'Submitting opens your email client with the message ready for our sales team.',
     form_required: 'Please enter your name and a message or select products.',
     wa_greeting: 'Hello Plantar 👋, I am interested in your products.',
     footer_about: 'Colombian producer of plantain, cassava, potato and root snacks since 2009. La Tebaida, Quindío — Coffee Region.',
     footer_nav: 'Navigation', footer_contact: 'Contact', footer_certs: 'Certifications',
     footer_rights: 'All rights reserved.',
-    cat_tostones: 'Tostones', cat_tajadas: 'Chips & slices', cat_sticks: 'Sticks',
-    cat_raices: 'Cassava, potato & roots', cat_mix: 'Mixes', cat_maiz: 'Corn',
-    cat_six: 'Six pack', cat_esp: 'Specials',
+    cat_tostones: 'Tostones', cat_patakon: 'Patakón / Toast', cat_tajadas: 'Chips & slices',
+    cat_strips: 'Strips', cat_sticks: 'Sticks', cat_raices: 'Roots',
+    cat_mix: 'Mixes', cat_maiz: 'Corn', cat_familiares: 'Family size', cat_esp: 'Specials',
   },
 };
 
@@ -166,20 +193,27 @@ function prodDesc(p) { return LANG === 'en' && p.descEn ? p.descEn : p.desc; }
 
 function categoryOf(p) {
   const n = p.name.toLowerCase();
-  if (n.includes('six pack')) return 'six';
-  if (n.includes('tostón') || n.includes('toston') || n.includes('patakón') || n.includes('bombonera') || n.includes('tostada') || n.includes('mini tostada')) return 'tostones';
+  // Familiares: formatos grandes y multipacks
+  if (n.includes('six pack') || n.includes('bombonera') || n.includes('anillos') ||
+      (n.includes('strips') && (n.includes('tostón') || n.includes('toston')))) return 'familiares';
   if (n.includes('mix') || n.includes('all mix')) return 'mix';
+  if (n.includes('strips') || n.includes('lengua')) return 'strips';
+  if (n.includes('tostón') || n.includes('toston')) return 'tostones';
+  if (n.includes('mini tostada')) return 'esp';
+  if (n.includes('patakón') || n.includes('patakon') || n.includes('tostada')) return 'patakon';
   if (n.includes('stick') || n.includes('palito')) return 'sticks';
   if (n.includes('nacho') || n.includes('palomita') || n.includes('carantanta')) return 'maiz';
   if (n.includes('yuca') || n.includes('yukita') || n.includes('papa') || n.includes('batata') || n.includes('arracacha') || n.includes('malanga') || n.includes('ñame')) return 'raices';
-  if (n.includes('tajada') || n.includes('chips') || n.includes('platanito') || n.includes('madurito') || n.includes('moneda') || n.includes('strips')) return 'tajadas';
+  if (n.includes('canasta') || n.includes('cono') || n.includes('cucharita') || n.includes('crouton') || n.includes('rosquill')) return 'esp';
+  if (n.includes('tajada') || n.includes('chips') || n.includes('platanito') || n.includes('madurito') || n.includes('moneda')) return 'tajadas';
   return 'esp';
 }
-const CATEGORIES = ['tostones', 'tajadas', 'sticks', 'raices', 'mix', 'maiz', 'six', 'esp'];
+// Orden del portafolio: primero Patakis (línea core), luego Familiares y al final Especiales
+const CATEGORIES = ['tostones', 'patakon', 'tajadas', 'strips', 'sticks', 'raices', 'mix', 'maiz', 'familiares', 'esp'];
 
-const PRODUCTS = CFG.productos.map((p, i) => ({
-  ...p, id: slugify(p.name), idx: i, category: categoryOf(p),
-}));
+const PRODUCTS = CFG.productos
+  .map((p, i) => ({ ...p, id: slugify(p.name), idx: i, category: categoryOf(p) }))
+  .sort((a, b) => CATEGORIES.indexOf(a.category) - CATEGORIES.indexOf(b.category) || a.idx - b.idx);
 
 function productUrl(p) { return `producto.html?id=${p.id}`; }
 function findProduct(id) { return PRODUCTS.find(p => p.id === id); }

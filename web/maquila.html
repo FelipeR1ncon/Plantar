@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#FBF8EA">
 <title>Maquila y Marca Privada — Plantar | Fabricamos tu Marca</title>
-<meta name="description" content="Maquila tu marca con Plantar: fabricación por contrato y marca privada de snacks de plátano, yuca y más. Certificaciones ISO 9001, INVIMA, Kosher, Gluten Free.">
+<meta name="description" content="Maquila de plátano en Colombia: fabricamos snacks de plátano, yuca y raíces bajo tu marca con certificaciones ISO 9001, INVIMA, Kosher y Gluten Free. Exportación de snacks colombianos.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
       <span class="kicker" style="color:var(--dark)" data-i18n="home_maquila_kicker"></span>
       <h1 class="section-title" style="color:var(--dark);font-size:clamp(2.8rem,6.5vw,4.8rem)" data-i18n="maquila_title"></h1>
       <p style="margin:1.2rem 0 1.6rem;font-size:1.1rem;max-width:560px" data-i18n="maquila_desc"></p>
-      <a class="btn btn-dark" href="contacto.html" data-i18n="maquila_cta"></a>
+      <a class="btn btn-dark" href="#como-trabajamos" data-i18n="maquila_cta"></a>
     </div>
     <div class="photo rev" style="border:3px solid var(--dark);border-radius:var(--radius-lg);overflow:hidden">
       <img src="assets/img/maquila-con-nosotros.jpg" alt="Maquila con nosotros — Plantar">
@@ -33,41 +33,49 @@
 
 <div data-marquee="dark"></div>
 
-<!-- HIGHLIGHT -->
+<!-- CERTIFICACIONES -->
 <section class="section band-cream" style="text-align:center">
   <div class="container">
-    <span class="kicker" data-i18n="home_maquila_kicker"></span>
-    <h2 class="section-title" style="font-size:clamp(2.4rem,5.5vw,4rem)" data-i18n="maquila_highlight"></h2>
-    <p class="section-sub" style="margin:1rem auto 0" data-i18n="maquila_pb_text"></p>
+    <div class="section-head center">
+      <h2 class="section-title" data-i18n="maquila_certs_title"></h2>
+    </div>
+    <div class="sellos-row rev">
+      <div class="sello"><div><img src="assets/img/sello-bureau-veritas-iso-9001-logo.png" alt="ISO 9001"><span>ISO 9001</span></div></div>
+      <div class="sello"><div><img src="assets/img/sello-invima-logo.png" alt="INVIMA"><span>INVIMA</span></div></div>
+      <div class="sello"><div><img src="assets/img/sello-kosher.png" alt="Kosher"><span>Kosher</span></div></div>
+      <div class="sello"><div><img src="assets/img/sello-gluten.png" alt="Gluten Free"><span>Gluten Free</span></div></div>
+    </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="section band-white">
+<!-- CÓMO TRABAJAMOS -->
+<section class="section band-white" id="como-trabajamos">
   <div class="container">
     <div class="section-head">
       <h2 class="section-title" data-i18n="maquila_how_title"></h2>
     </div>
-    <div class="feature-list" id="features"></div>
+    <div class="feature-list">
+      <div class="feature rev"><span class="n">01</span><span data-i18n="maquila_step1"></span></div>
+      <div class="feature rev"><span class="n">02</span><span data-i18n="maquila_step2"></span></div>
+      <div class="feature rev"><span class="n">03</span><span data-i18n="maquila_step3"></span></div>
+      <div class="feature rev"><span class="n">04</span><span data-i18n="maquila_step4"></span></div>
+    </div>
   </div>
 </section>
 
-<!-- CLIENTES MAQUILA -->
+<!-- ALIADOS -->
 <section class="section band-lime" style="border-top:3px solid var(--dark);border-bottom:3px solid var(--dark)">
-  <div class="container about-split">
-    <div class="photo rev"><img src="assets/img/maquila-clientes.jpg" alt="Marcas de clientes maquiladas por Plantar"></div>
-    <div class="rev">
-      <h2 class="section-title" data-i18n="about_partners_title"></h2>
-      <p class="section-sub" style="margin:1rem 0" data-i18n="about_goya_text"></p>
-      <img src="assets/img/logo-goya.png" alt="Goya Foods" style="height:60px">
-    </div>
+  <div class="container" style="text-align:center;max-width:760px">
+    <h2 class="section-title" data-i18n="about_partners_title"></h2>
+    <p class="section-sub" style="margin:1rem auto 1.8rem" data-i18n="maquila_goya_text"></p>
+    <img src="assets/img/logo-goya.png" alt="Goya Foods" style="height:72px;margin:0 auto">
   </div>
 </section>
 
 <section class="cta-band">
   <div class="container inner">
-    <h2 data-i18n="maquila_cta"></h2>
-    <a class="btn btn-primary" href="contacto.html" data-i18n="cta_band_btn"></a>
+    <h2 data-i18n="maquila_band"></h2>
+    <a class="btn btn-primary" href="contacto.html" data-i18n="maquila_band_btn"></a>
   </div>
 </section>
 
@@ -76,21 +84,7 @@
 <script src="assets/js/data.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
-const FEATURES_EN = [
-  'Custom product development',
-  'Packaging with your brand and design',
-  'Compliance with international standards',
-  'Scalable production capacity',
-  'Technical and quality support',
-  'Certifications: ISO 9001, INVIMA, Kosher, Gluten Free',
-];
-
-function renderPage() {
-  const feats = CFG.partners.privateBrand.features;
-  document.getElementById('features').innerHTML = feats.map((f, i) =>
-    `<div class="feature rev"><span class="n">${String(i + 1).padStart(2, '0')}</span>${LANG === 'en' ? FEATURES_EN[i] || f : f}</div>`
-  ).join('');
-}
+function renderPage() { /* contenido estático vía data-i18n */ }
 </script>
 </body>
 </html>

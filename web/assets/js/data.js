@@ -1167,6 +1167,17 @@ const CFG = {
       "empaque": "assets/img/chips-habanero.png",
       "color": "#e53935",
       "info": null
+    },
+    {
+      "name": "Anillos de plátano verde",
+      "desc": "Crocantes anillos de plátano verde, ideales para compartir en familia y acompañar tus comidas con el toque perfecto de sal.",
+      "sizes": "",
+      "nameEn": "Green plantain rings",
+      "descEn": "Crunchy green plantain rings, perfect for sharing with the family and pairing with your meals with the perfect touch of salt.",
+      "image": "assets/img/anillos-de-olatano-verde.png",
+      "empaque": "",
+      "color": "#95c11f",
+      "info": null
     }
   ],
   "maquila": {
@@ -1790,11 +1801,12 @@ const CFG = {
     },
     "contact": {
       "emails": [
+        "jefecomercial@plantarsas.com",
         "ventasnacionales@plantarsas.com",
-        "recepcion@plantarsas.com"
+        "amejia@plantarsas.com"
       ],
       "phones": [
-        "(+57) 310 643 77 45",
+        "(+57) 312 576 90 26",
         "(+57) 314 431 56 79"
       ],
       "address": "La Tebaida, Quindío - Lote 1E Bonanza, Vereda Padilla, Colombia",

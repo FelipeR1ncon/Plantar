@@ -144,6 +144,12 @@ button { font-family: inherit; cursor: pointer; }
   gap: 2rem; padding: clamp(3rem, 7vw, 5.5rem) 0;
   position: relative; z-index: 2;
 }
+@media (min-width: 901px) {
+  /* corre el texto a la derecha para no cruzarse con la hoja animada */
+  .hero .inner > div:first-child { padding-left: clamp(1rem, 6vw, 6.5rem); }
+}
+.sellos-mini { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.6rem; }
+.sellos-mini img { height: 52px; width: auto; object-fit: contain; }
 .hero .kicker {
   font-size: clamp(2rem, 3.6vw, 2.8rem);
   margin-bottom: 0.35em;
@@ -198,11 +204,14 @@ button { font-family: inherit; cursor: pointer; }
 }
 .bag-stack {
   position: relative; z-index: 2; width: 100%;
-  display: flex; flex-direction: column; align-items: center; gap: 3.2rem;
+  display: flex; flex-direction: column; align-items: center;
 }
-.patakis-brand {
-  width: min(520px, 92%); margin: 0 auto;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+.hero-art .hero-bg-word {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  z-index: 0; pointer-events: none; user-select: none;
+}
+.hero-art .hero-bg-word img {
+  width: min(94%, 640px); opacity: 0.09; transform: rotate(-6deg);
 }
 .bag-box {
   position: relative; width: 100%;

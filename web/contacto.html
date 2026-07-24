@@ -31,16 +31,14 @@
     <!-- Datos de contacto -->
     <div class="rev">
       <div class="contact-card">
-        <h3 data-i18n="contact_sales"></h3>
-        <a href="mailto:ventasnacionales@plantarsas.com">ventasnacionales@plantarsas.com</a>
-      </div>
-      <div class="contact-card">
-        <h3 data-i18n="contact_reception"></h3>
-        <a href="mailto:recepcion@plantarsas.com">recepcion@plantarsas.com</a>
+        <h3 data-i18n="contact_emails"></h3>
+        <div><a href="mailto:jefecomercial@plantarsas.com">jefecomercial@plantarsas.com</a></div>
+        <div><a href="mailto:ventasnacionales@plantarsas.com">ventasnacionales@plantarsas.com</a></div>
+        <div><a href="mailto:amejia@plantarsas.com">amejia@plantarsas.com</a></div>
       </div>
       <div class="contact-card">
         <h3 data-i18n="contact_phones"></h3>
-        <div>(+57) 310 643 77 45</div>
+        <div>(+57) 312 576 90 26</div>
         <div>(+57) 314 431 56 79</div>
       </div>
       <div class="contact-card">
@@ -66,8 +64,7 @@
       <label for="fMsg" data-i18n="form_msg"></label>
       <textarea id="fMsg" data-i18n-ph="form_msg_ph"></textarea>
       <div class="form-actions">
-        <button type="button" class="btn btn-wa" id="sendWa" data-i18n="form_send_wa"></button>
-        <button type="button" class="btn btn-outline" id="sendMail" data-i18n="form_send_mail"></button>
+        <button type="button" class="btn btn-dark" id="sendMail" data-i18n="form_send_mail"></button>
       </div>
       <p class="form-note" data-i18n="form_note"></p>
     </form>
@@ -113,10 +110,6 @@ function renderPage() {
     `<label><input type="checkbox" data-name="${prodName(p)}" ${p.id === pre ? 'checked' : ''}> ${prodName(p)}</label>`
   ).join('');
 
-  document.getElementById('sendWa').onclick = () => {
-    if (!validForm()) return;
-    window.open(waLink(buildMessage()), '_blank');
-  };
   document.getElementById('sendMail').onclick = () => {
     if (!validForm()) return;
     const subject = LANG === 'en' ? 'Quote request — Plantar website' : 'Solicitud de cotización — sitio web Plantar';
