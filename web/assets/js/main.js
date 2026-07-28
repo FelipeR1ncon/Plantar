@@ -205,8 +205,9 @@ const FAMILIARES_312 = [
 function categoryOf(p) {
   const n = p.name.toLowerCase();
   if (n.includes('six pack')) return 'sixpack';
+  if (n === 'tostón verde 454g') return 'strips';
   // Familiares: formatos grandes y multipacks
-  if (n.includes('bombonera') || n.includes('anillos') || n.includes('454') ||
+  if (n.includes('bombonera') || n.includes('anillos') ||
       FAMILIARES_312.includes(n)) return 'familiares';
   if (n.includes('mix') || n.includes('all mix')) return 'mix';
   if (n.includes('strips') || n.includes('lengua')) return 'strips';
