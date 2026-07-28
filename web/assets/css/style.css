@@ -178,7 +178,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .hero-art .bag {
   position: relative; z-index: 2;
-  width: min(500px, 92%); margin: 0 auto;
+  height: 92%; width: auto; max-width: 92%; object-fit: contain;
+  margin: 0 auto;
   filter: drop-shadow(0 36px 48px rgba(0, 0, 0, 0.45));
   animation: floatBag 6s ease-in-out infinite;
   transition: transform .4s, opacity .45s;
@@ -218,7 +219,8 @@ button { font-family: inherit; cursor: pointer; }
 .bag-box {
   position: relative; width: 100%;
   display: grid; place-items: center;
-  min-height: 320px;
+  /* altura fija: al rotar empaques de distinto tamaño no hay saltos de layout */
+  height: clamp(420px, 46vw, 560px);
 }
 .doodle { position: absolute; z-index: 1; opacity: 0.9; pointer-events: none; }
 .doodle.sway { animation: swayDoodle 5s ease-in-out infinite; }
