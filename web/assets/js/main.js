@@ -202,8 +202,20 @@ const FAMILIARES_312 = [
   'tajadas picantes habanero',
 ];
 
+// Reubicaciones puntuales definidas por el negocio (nombre en minúsculas → categoría)
+const CAT_OVERRIDES = {
+  'croutones': 'mix',
+  'cucharitas de plátano verde': 'patakon',
+  'rosquillitas': 'raices',
+  'monedas de plátano maduro': 'esp',
+  'malanga': 'esp',
+  'snacks de ñame': 'esp',
+  'tajadas de yuca': 'familiares',
+};
+
 function categoryOf(p) {
   const n = p.name.toLowerCase();
+  if (CAT_OVERRIDES[n]) return CAT_OVERRIDES[n];
   if (n.includes('six pack')) return 'sixpack';
   if (n === 'tostón verde 454g') return 'strips';
   // Familiares: formatos grandes y multipacks
