@@ -193,10 +193,20 @@ function slugify(s) {
 function prodName(p) { return LANG === 'en' && p.nameEn ? p.nameEn.replace(/:$/, '') : p.name; }
 function prodDesc(p) { return LANG === 'en' && p.descEn ? p.descEn : p.desc; }
 
+// Línea de tajadas 312g (bolsa grande): va en Familiares
+const FAMILIARES_312 = [
+  'tajadas naturales de plátano verde',
+  'tajadas naturales de plátano maduro',
+  'tajadas verdes con ajo',
+  'tajadas verdes con limón',
+  'tajadas picantes habanero',
+];
+
 function categoryOf(p) {
   const n = p.name.toLowerCase();
   // Familiares: formatos grandes y multipacks
-  if (n.includes('six pack') || n.includes('bombonera') || n.includes('anillos') || n.includes('454')) return 'familiares';
+  if (n.includes('six pack') || n.includes('bombonera') || n.includes('anillos') || n.includes('454') ||
+      FAMILIARES_312.includes(n)) return 'familiares';
   if (n.includes('mix') || n.includes('all mix')) return 'mix';
   if (n.includes('strips') || n.includes('lengua')) return 'strips';
   if (n.includes('tostón') || n.includes('toston')) return 'tostones';
