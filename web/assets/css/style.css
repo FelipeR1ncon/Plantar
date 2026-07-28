@@ -213,7 +213,7 @@ button { font-family: inherit; cursor: pointer; }
   pointer-events: none; user-select: none;
 }
 .hero-art .hero-bg-word img {
-  width: clamp(220px, 24vw, 340px);
+  width: clamp(270px, 29vw, 410px);
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
 }
 .bag-box {
