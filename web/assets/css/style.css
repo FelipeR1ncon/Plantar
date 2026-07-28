@@ -141,7 +141,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .hero .inner {
   display: grid; grid-template-columns: 1fr 1fr; align-items: center;
-  gap: 2rem; padding: clamp(3rem, 7vw, 5.5rem) 0;
+  gap: 2rem; padding: clamp(1rem, 3.5vh, 2.5rem) 0;
   position: relative; z-index: 2;
 }
 @media (min-width: 901px) {
@@ -209,18 +209,18 @@ button { font-family: inherit; cursor: pointer; }
 }
 .hero-art .hero-bg-word {
   width: 100%; display: flex; justify-content: center;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(1rem, 3vh, 2.5rem);
   pointer-events: none; user-select: none;
 }
 .hero-art .hero-bg-word img {
-  width: clamp(270px, 29vw, 410px);
+  width: min(clamp(250px, 28vw, 400px), 38vh);
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
 }
 .bag-box {
   position: relative; width: 100%;
   display: grid; place-items: center;
-  /* altura fija: al rotar empaques de distinto tamaño no hay saltos de layout */
-  height: clamp(420px, 46vw, 560px);
+  /* altura fija (relativa al alto de pantalla): sin saltos y el hero cabe completo */
+  height: clamp(300px, 46vh, 520px);
 }
 .doodle { position: absolute; z-index: 1; opacity: 0.9; pointer-events: none; }
 .doodle.sway { animation: swayDoodle 5s ease-in-out infinite; }
