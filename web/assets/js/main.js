@@ -85,7 +85,7 @@ const I18N = {
     cat_tostones: 'Tostones', cat_patakon: 'Patakón / Tostada', cat_tajadas: 'Tajadas',
     cat_monedas: 'Monedas', cat_papa: 'Papa',
     cat_strips: 'Lenguas / Strips', cat_sticks: 'Palitos / Sticks', cat_raices: 'Raíces',
-    cat_mix: 'Mezclas / Mix', cat_maiz: 'Maíz', cat_familiares: 'Familiares', cat_esp: 'Especiales',
+    cat_mix: 'Mezclas / Mix', cat_maiz: 'Maíz', cat_sixpack: 'Six Pack', cat_familiares: 'Familiares', cat_esp: 'Especiales',
   },
   en: {
     nav_home: 'Home', nav_products: 'Products', nav_about: 'About us',
@@ -162,7 +162,7 @@ const I18N = {
     cat_tostones: 'Tostones', cat_patakon: 'Patakón / Toast', cat_tajadas: 'Slices',
     cat_monedas: 'Coins', cat_papa: 'Potato',
     cat_strips: 'Strips', cat_sticks: 'Sticks', cat_raices: 'Roots',
-    cat_mix: 'Mixes', cat_maiz: 'Corn', cat_familiares: 'Family size', cat_esp: 'Specials',
+    cat_mix: 'Mixes', cat_maiz: 'Corn', cat_sixpack: 'Six Pack', cat_familiares: 'Family size', cat_esp: 'Specials',
   },
 };
 
@@ -204,8 +204,9 @@ const FAMILIARES_312 = [
 
 function categoryOf(p) {
   const n = p.name.toLowerCase();
+  if (n.includes('six pack')) return 'sixpack';
   // Familiares: formatos grandes y multipacks
-  if (n.includes('six pack') || n.includes('bombonera') || n.includes('anillos') || n.includes('454') ||
+  if (n.includes('bombonera') || n.includes('anillos') || n.includes('454') ||
       FAMILIARES_312.includes(n)) return 'familiares';
   if (n.includes('mix') || n.includes('all mix')) return 'mix';
   if (n.includes('strips') || n.includes('lengua')) return 'strips';
@@ -222,7 +223,7 @@ function categoryOf(p) {
   return 'esp';
 }
 // Orden del portafolio: primero Patakis (línea core), luego Familiares y al final Especiales
-const CATEGORIES = ['tostones', 'patakon', 'tajadas', 'monedas', 'papa', 'strips', 'sticks', 'raices', 'mix', 'maiz', 'familiares', 'esp'];
+const CATEGORIES = ['tostones', 'patakon', 'tajadas', 'monedas', 'papa', 'strips', 'sticks', 'raices', 'mix', 'maiz', 'sixpack', 'familiares', 'esp'];
 
 const PRODUCTS = CFG.productos
   .map((p, i) => ({ ...p, id: slugify(p.name), idx: i, category: categoryOf(p) }))
