@@ -838,7 +838,7 @@ const CFG = {
       "nameEn": "Plantain Croutons:",
       "descEn": "Crispy plantain croutons, perfect for salads and soups.",
       "image": "assets/img/croutones-patakis.png",
-      "empaque": "assets/img/croutones.png",
+      "empaque": "",
       "color": "#e8491e",
       "info": null
     },
