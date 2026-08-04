@@ -247,7 +247,18 @@ function subRank(p) {
   return 1;
 }
 
+// Productos ocultos temporalmente del catálogo (sus datos se conservan en data.js)
+const OCULTOS = [
+  'tostón trufa',
+  'rosquillitas',
+  'snacks de ñame',
+  'tostón de limón',
+  'monedas de plátano verde',
+  'yuca amarilla',
+];
+
 const PRODUCTS = CFG.productos
+  .filter(p => !OCULTOS.includes(p.name.toLowerCase()))
   .map((p, i) => ({ ...p, id: slugify(p.name), idx: i, category: categoryOf(p) }))
   // orden: por categoría, luego por subgrupo y, dentro de cada uno, alfabético
   .sort((a, b) => CATEGORIES.indexOf(a.category) - CATEGORIES.indexOf(b.category) ||
