@@ -204,7 +204,7 @@ const FAMILIARES_312 = [
 
 // Reubicaciones puntuales definidas por el negocio (nombre en minúsculas → categoría)
 const CAT_OVERRIDES = {
-  'croutones': 'mix',
+  'croutones': 'esp',
   'cucharitas de plátano verde': 'patakon',
   'rosquillitas': 'raices',
   'monedas de plátano maduro': 'esp',
