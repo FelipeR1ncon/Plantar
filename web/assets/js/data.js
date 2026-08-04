@@ -1178,6 +1178,17 @@ const CFG = {
       "empaque": "assets/img/bombonera-de-anillos.png",
       "color": "#95c11f",
       "info": null
+    },
+    {
+      "name": "Papa fosforito",
+      "desc": "Crujientes bastones finos de papa, dorados y con el toque justo de sal. Ideales para picar, acompañar o coronar tus platos.",
+      "sizes": "",
+      "nameEn": "Matchstick potato",
+      "descEn": "Crispy thin potato sticks, golden and with just the right touch of salt. Perfect for snacking, pairing or topping your dishes.",
+      "image": "assets/img/papa-fosforito.png",
+      "empaque": "",
+      "color": "#F5A623",
+      "info": null
     }
   ],
   "maquila": {

@@ -211,6 +211,7 @@ const CAT_OVERRIDES = {
   'malanga': 'esp',
   'snacks de ñame': 'esp',
   'tajadas de yuca': 'familiares',
+  'papa fosforito': 'esp',
 };
 
 function categoryOf(p) {
