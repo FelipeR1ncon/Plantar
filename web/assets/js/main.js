@@ -238,10 +238,20 @@ function categoryOf(p) {
 // Orden del portafolio: primero Patakis (línea core), luego Familiares y al final Especiales
 const CATEGORIES = ['tostones', 'patakon', 'tajadas', 'monedas', 'papa', 'strips', 'sticks', 'raices', 'mix', 'maiz', 'sixpack', 'familiares', 'esp'];
 
+// Dentro de Familiares: primero las tajadas y de últimas las bomboneras
+function subRank(p) {
+  const n = p.name.toLowerCase();
+  if (p.category !== 'familiares') return 0;
+  if (n.includes('tajada')) return 0;
+  if (n.includes('bombonera') || n.includes('anillos')) return 2;
+  return 1;
+}
+
 const PRODUCTS = CFG.productos
   .map((p, i) => ({ ...p, id: slugify(p.name), idx: i, category: categoryOf(p) }))
-  // orden: por categoría y, dentro de cada una, alfabético — así los nombres iguales quedan seguidos
+  // orden: por categoría, luego por subgrupo y, dentro de cada uno, alfabético
   .sort((a, b) => CATEGORIES.indexOf(a.category) - CATEGORIES.indexOf(b.category) ||
+    subRank(a) - subRank(b) ||
     a.name.localeCompare(b.name, 'es'));
 
 function productUrl(p) { return `producto.html?id=${p.id}`; }

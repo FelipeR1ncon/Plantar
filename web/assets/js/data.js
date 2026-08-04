@@ -256,9 +256,9 @@ const CFG = {
     {
       "name": "Tostón trufa",
       "desc": "Exquisitos tostones de plátano verde con un exclusivo sabor a trufa. Una experiencia gourmet en cada bocado.",
-      "sizes": "85g",
+      "sizes": "65g",
       "nameEn": "Truffle Plantain Toston:",
-      "descEn": "Exquisite green plantain tostons with an exclusive truffle flavor. A gourmet experience in every bite.",
+      "descEn": "Exquisite green plantain tostones with an exclusive truffle flavor. A gourmet experience in every bite.",
       "image": "assets/img/producto-toston-de-trufa.png",
       "empaque": "assets/img/toston-trufa.png",
       "color": "#5d4037",
@@ -1171,11 +1171,11 @@ const CFG = {
     {
       "name": "Anillos de plátano verde",
       "desc": "Crocantes anillos de plátano verde, ideales para compartir en familia y acompañar tus comidas con el toque perfecto de sal.",
-      "sizes": "",
+      "sizes": "250g",
       "nameEn": "Green plantain rings",
       "descEn": "Crunchy green plantain rings, perfect for sharing with the family and pairing with your meals with the perfect touch of salt.",
       "image": "assets/img/anillos-de-olatano-verde.png",
-      "empaque": "",
+      "empaque": "assets/img/bombonera-de-anillos.png",
       "color": "#95c11f",
       "info": null
     }
